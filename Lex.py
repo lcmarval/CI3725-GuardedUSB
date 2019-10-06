@@ -58,7 +58,7 @@ reservadas = {
             'false':'TkFalse',
 }
 
-tokens = list(reservadas.values())+ ['TkId', 'TkNum', 'TkUMinus', 'TkConditional', 'TkComments', 'TkString', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
+tokens = list(reservadas.values())+ [ 'TkString','t_TkMalID','TkId', 'TkNum', 'TkUMinus', 'TkConditional', 'TkComments', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
          'TkOpenPar', 'TkCloserPar', 'TkAsig', 'TkSemicolon','TkArrow', 'TkPlus',
          'TkMinus', 'TkMult', 'TkDiv', 'TkMod', 'TkPunto', 'TkOr', 'TkAnd', 'TkNot',
          'TkLess', 'TkLeq', 'TkGreater', 'TkGeq', 'TkEqual', 'TkNEqual', 'TkOBracket',
@@ -120,7 +120,7 @@ def t_TkUMinus(t):
     return t
 
 def t_TkString(t):
-    r'^["][\s\S]*[\w\W]*[\d\D]*["]+$'
+    r'["][\s\S]*["]'
     if t.value in reservadas:
         t.type = reservadas.get(t.value, None)
     return t
@@ -212,7 +212,15 @@ def main():
                                 temp = str(tok.type)+"(\""+str(tok.value)+"\")"+" "+str(row)+" "+str(col)
                                 arrToks.append(temp)
 
+                            elif tok.type == "TkString":
+                                temp = str(tok.type)+"("+str(tok.value)+")"+" "+str(row)+" "+str(col)
+                                arrToks.append(temp)
+
                             elif tok.type == "TkNum":
+                                temp = str(tok.type)+"(\""+str(tok.value)+"\")"+" "+str(row)+" "+str(col)
+                                arrToks.append(temp)
+
+                            elif tok.type == "TkUMinus":
                                 temp = str(tok.type)+"(\""+str(tok.value)+"\")"+" "+str(row)+" "+str(col)
                                 arrToks.append(temp)
 
