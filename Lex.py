@@ -58,11 +58,11 @@ reservadas = {
             'false':'TkFalse',
 }
 
-tokens = list(reservadas.values())+ ['TkOBlock','TkCBlock','TkSoForth', 'TkComma',
+tokens = list(reservadas.values())+ ['TkId', 'TkNum', 'TkUMinus', 'TkConditional', 'TkComments', 'TkString', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
          'TkOpenPar', 'TkCloserPar', 'TkAsig', 'TkSemicolon','TkArrow', 'TkPlus',
          'TkMinus', 'TkMult', 'TkDiv', 'TkMod', 'TkPunto', 'TkOr', 'TkAnd', 'TkNot',
          'TkLess', 'TkLeq', 'TkGreater', 'TkGeq', 'TkEqual', 'TkNEqual', 'TkOBracket',
-         'TkCBracket', 'TkTwoPoints', 'TkTwoPoints' , 'TkConcat', 'TkNum','TkId', 'TkUMinus', 'TkConditional','TkComments','TkString']
+         'TkCBracket', 'TkTwoPoints', 'TkTwoPoints' , 'TkConcat']
 
 # Regular expression rules for simple tokens
 #t_TkCaracter   = r'\'[a-zA-Z]\''
@@ -101,15 +101,16 @@ t_TkComments = r'\/\/'
 #t_TkWhiteSpace = r'\s'
 
 # A regular expression rule with some action code
-def t_TkNum(t):
-    r'[\d]+|[-][\d]+'
-    t.value = int(t.value) 
-    return t
-
 def t_TkId(t):
+    #r'^[^0-9][a-zA-Z0-9_]+$'
     r'[a-zA-Z][a-zA-Z0-9_]*'
     if t.value in reservadas:
         t.type = reservadas.get(t.value, None)
+    return t
+
+def t_TkNum(t):
+    r'[\d]+|[-][\d]+'
+    t.value = int(t.value) 
     return t
 
 def t_TkUMinus(t):
@@ -187,54 +188,46 @@ def main():
 
     # Build the lexer
     lex.lex()
-
     if (inputError()):
         first_arg = sys.argv[1]
-
         if (exist_File(first_arg)):
-
             if (first_arg.endswith('.gusb')):
-	            archivo = open(first_arg)
-	            linea= archivo.readline()
-	            contador = 0
-	            global row 
-	            while linea != '':
+                archivo = open(first_arg)
+                linea= archivo.readline()
+                contador = 0
+                global row 
+                while linea != '':
 	                # procesar linea
-	                lex.input(linea)
-	                row= row+1
-	                arrToks.append("")
+                    lex.input(linea)
+                    row= row + 1
+                    arrToks.append("")
 
-	                while True:
+                    while True:
                         tok = lex.token()
+                        if not tok or tok.type == "TkComments" : break
 
-	                    if not tok or tok.type == "TkComments" : break
-	                    
                         else:
-	                        col = tok.lexpos + 1
+                            col = tok.lexpos + 1
+                            if tok.type == "TkId":
+                                temp = str(tok.type)+"(\""+str(tok.value)+"\")"+" "+str(row)+" "+str(col)
+                                arrToks.append(temp)
 
-	                        if tok.type == "TkId":
-	                            temp = str(tok.type)+"(\""+str(tok.value)+"\")"+" "+str(row)+" "+str(col)
-	                            arrToks.append(temp)
+                            elif tok.type == "TkNum":
+                                temp = str(tok.type)+"(\""+str(tok.value)+"\")"+" "+str(row)+" "+str(col)
+                                arrToks.append(temp)
 
-	                        elif tok.type == "TkNum":
-	                            temp = str(tok.type)+"(\""+str(tok.value)+"\")"+" "+str(row)+" "+str(col)
-	                            arrToks.append(temp)
-	                        
-	                        else:
-	                            temp = str(tok.type)+" "+str(row)+" "+str(col)
-	                            arrToks.append(temp)
-
-	                contador +=1
-	                linea=archivo.readline()
-	            
-	            imprimir()
-
-	        else:
-	        	print("El archivo pasado no es un programa de GuardedUSB dado que no tiene la extensión .gusb")
+                            else:
+                                temp = str(tok.type)+" "+str(row)+" "+str(col)
+                                arrToks.append(temp)
+                    contador +=1
+                    linea=archivo.readline()
+                imprimir()
+            
+            else:
+                print("El archivo pasado no es un programa de GuardedUSB dado que no tiene la extensión .gusb")
         
         else:
             print("IOError: el archivo \""+str(first_arg)+"\" no se encuentra en el directorio actual") 
-    
     else:
         print("Error: Entrada vacia")
 
