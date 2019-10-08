@@ -1,0 +1,14 @@
+|[
+  declare
+    -6
+    "asdasd 123/*\()=!?¡¿!? asda asd ñ asdasdasoweqáéíóú ÁÉÍÓÚ asdlasdasd ;:_,.-* []{}^~¿?¡!¬°" 
+    "asdadas asdas asd a \n \d \s"
+    " ?¡!¿ ñ ,:;-_"
+    " \n \d \s"
+    
+    a, b, c : int;
+    d, $e, f : array[0..2]
+    a := b + 3;
+    read -e
+    // qloq
+]|
