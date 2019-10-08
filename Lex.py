@@ -59,15 +59,13 @@ reservadas = {
             'bool':'TkBool'
 }
 
-tokens = list(reservadas.values())+ [ 'TkString','TkBool','TkId', 'TkNum', 'TkUMinus', 'TkConditional', 'TkComments', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
+tokens = list(reservadas.values())+ [ 'TkString','TkId', 'TkNum', 'TkUMinus', 'TkConditional', 'TkComments', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
          'TkOpenPar', 'TkCloserPar', 'TkAsig', 'TkSemicolon','TkArrow', 'TkPlus',
          'TkMinus', 'TkMult', 'TkDiv', 'TkMod', 'TkPunto', 'TkOr', 'TkAnd', 'TkNot',
          'TkLess', 'TkLeq', 'TkGreater', 'TkGeq', 'TkEqual', 'TkNEqual', 'TkOBracket',
-         'TkCBracket', 'TkTwoPoints', 'TkTwoPoints' , 'TkConcat']
+         'TkCBracket', 'TkTwoPoints', 'TkConcat']
 
 # Regular expression rules for simple tokens
-#t_TkCaracter   = r'\'[a-zA-Z]\''
-
 t_TkConditional = r'\[\]'
 t_TkOBlock = r'\|\['
 t_TkCBlock = r'\]\|'
@@ -130,11 +128,11 @@ def t_newline(t):
 
 # Ignoramos espacios y tabs
 t_ignore  = ' \t'
-#t_ignore_jumpLine = r'\n'
+
 
 # Compute column.
-#     input is the input text string
-#     token is a token instance
+#     input es el texto que entra como string
+#     token es una instancia de un token
 def find_column(input, token):
     line_start = input.rfind('\n', 0, token.lexpos) + 1
     return (token.lexpos - line_start) + 1
@@ -142,7 +140,7 @@ def find_column(input, token):
 
 # Funcion: t_error
 # Maneja el proceso de tokens no validos
-#almacenandolos en una lista.
+# almacenandolos en una lista.
 def t_error(t):
     temp = "Error: Unexpected character "+str(t.value[0])+" in row "+str(row)+", column "+ str(t.lexpos+1)
     errToks.append(temp)
