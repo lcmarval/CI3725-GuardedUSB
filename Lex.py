@@ -56,9 +56,10 @@ reservadas = {
             'array':'TkArray',
             'true':'TkTrue', 
             'false':'TkFalse',
+            'bool':'TkBool'
 }
 
-tokens = list(reservadas.values())+ [ 'TkString','t_TkMalID','TkId', 'TkNum', 'TkUMinus', 'TkConditional', 'TkComments', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
+tokens = list(reservadas.values())+ [ 'TkString','TkBool','TkId', 'TkNum', 'TkUMinus', 'TkConditional', 'TkComments', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
          'TkOpenPar', 'TkCloserPar', 'TkAsig', 'TkSemicolon','TkArrow', 'TkPlus',
          'TkMinus', 'TkMult', 'TkDiv', 'TkMod', 'TkPunto', 'TkOr', 'TkAnd', 'TkNot',
          'TkLess', 'TkLeq', 'TkGreater', 'TkGeq', 'TkEqual', 'TkNEqual', 'TkOBracket',
