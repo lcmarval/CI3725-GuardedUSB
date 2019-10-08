@@ -97,12 +97,9 @@ t_TkCBracket = r'\]'
 t_TkTwoPoints = r'\:'
 t_TkConcat = r'\|\|'
 t_TkComments = r'\/\/'
-#t_TkLineFeed = r'\n'
-#t_TkWhiteSpace = r'\s'
 
 # A regular expression rule with some action code
 def t_TkId(t):
-    #r'^[^0-9][a-zA-Z0-9_]+$'
     r'[a-zA-Z][a-zA-Z0-9_]*'
     if t.value in reservadas:
         t.type = reservadas.get(t.value, None)
@@ -120,7 +117,7 @@ def t_TkUMinus(t):
     return t
 
 def t_TkString(t):
-    r'["][\s\S]*["]'
+    r'["][\|\\\]\#\%\&\(\)\*\=\¬\/\$\?\¡\!\¿\.\{\}\[\ñ\á\é\í\ó\ú\Á\É\Í\Ó\Ú\{\}\^\,\:\;\~\°\_\-\sa-zA-Z0-9]*["]'
     if t.value in reservadas:
         t.type = reservadas.get(t.value, None)
     return t
