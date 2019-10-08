@@ -59,14 +59,14 @@ reservadas = {
             'bool':'TkBool'
 }
 
-tokens = list(reservadas.values())+ [ 'TkString','TkId', 'TkNum', 'TkUMinus', 'TkConditional', 'TkComments', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
+tokens = list(reservadas.values())+ [ 'TkString','TkId', 'TkNum', 'TkUMinus', 'TkGuard', 'TkComments', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
          'TkOpenPar', 'TkCloserPar', 'TkAsig', 'TkSemicolon','TkArrow', 'TkPlus',
          'TkMinus', 'TkMult', 'TkDiv', 'TkMod', 'TkPunto', 'TkOr', 'TkAnd', 'TkNot',
          'TkLess', 'TkLeq', 'TkGreater', 'TkGeq', 'TkEqual', 'TkNEqual', 'TkOBracket',
          'TkCBracket', 'TkTwoPoints', 'TkConcat']
 
 # Regular expression rules for simple tokens
-t_TkConditional = r'\[\]'
+t_TkGuard = r'\[\]'
 t_TkOBlock = r'\|\['
 t_TkCBlock = r'\]\|'
 t_TkSoForth = r'\.\.'
@@ -83,7 +83,7 @@ t_TkDiv        = r'/'
 t_TkMod        = r'%'
 t_TkPunto      = r'\.'
 t_TkOr = r'\/\\'
-t_TkAnd = r'\/\\'
+t_TkAnd = r'\\\/'
 t_TkNot = r'!'
 t_TkLeq = r'<='
 t_TkGeq = r'>='
@@ -213,7 +213,7 @@ def main():
                                 arrToks.append(temp)
 
                             elif tok.type == "TkNum":
-                                temp = str(tok.type)+"(\""+str(tok.value)+"\")"+" "+str(row)+" "+str(col)
+                                temp = str(tok.type)+"("+str(tok.value)+")"+" "+str(row)+" "+str(col)
                                 arrToks.append(temp)
 
                             elif tok.type == "TkUMinus":
