@@ -18,6 +18,29 @@ import sys
 import re
 # from lexer import
 
+# Clase node que permite la creacion de los node del arbol sintactico.
+class Node:
+	def __init__(self,type,children=None,leaf=None):
+		self.type = type
+		if children:
+			self.children = children
+		else:
+			self.children = [ ]
+		self.leaf = leaf
+	def __str__(self):
+		return str(self.type)
+
+	#Cambia el type del nodo. hace falta?
+	def changeType(self,newType):
+		self.type = newType
+
+	#Obtiene el type del nodo.
+	def getType(self):
+		return self.type
+
+	#Agrega hijos a un nodo.
+	def addChildren(self,newChildren):
+		self.children = [newChildren] + self.children
 '''
 block: TkOBlock TkCBlock
 	  |TkBlock declare_variables Instruction_Block TkCBlock 
@@ -105,3 +128,22 @@ guards: TkGuard expression TkArrow instructions guards
 
 
 '''
+
+def main():
+	if (len(sys.argv) != 2):
+		print("Usage: python3 parser.py nombreArchivo")
+		return -1
+		
+	# Construyendo el parser
+	parser = yacc.yacc(errorlog=yacc.NullLogger())
+		
+	# Se abre el archivo con permisos de lectura
+	string = str(open(str(sys.argv[1]),'r').read())
+	result = parser.parse(string)
+	
+	#Si no hay errores, imprime el arbol.
+	if (not lexerErrorFound) and (not parserErrorFound):
+		printTree(result, 0)
+
+#Llamada a la funcion
+main()
