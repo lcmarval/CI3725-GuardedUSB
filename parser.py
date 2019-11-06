@@ -13,7 +13,7 @@
 ################################################################
 
 import ply.yacc as yacc
-import ply.lex as lex
+#import ply.lex as lex
 import sys
 import re
 from lexer import *
@@ -83,12 +83,12 @@ def p_block(p):
 		p[0] = Node('Block', [p[2]], None)
 
 	else: 
-		p[0] = Node('EMPTY', [None], None)
+		p[0] = Node('EMPTY', None, None)
 
 def p_declare_variables(p):
-	'''declare_variables : TkDeclare variable_List '''
+	'''declare_variables : TkDeclare TkId TkTwoPoints variable_List '''
 	if (p[1] == 'declare'):
-		p[0] = Node('Declare', [p[2]], None)
+		p[0] = Node('Declare', [p[2],p[4]], None)
 
 def p_variable_List(p):
 	'''variable_List : TkId TkComma variable_List
@@ -96,17 +96,18 @@ def p_variable_List(p):
 				      | TkId TkTwoPoints type
 				      | type TkComma variable_List
 				      | type '''
-	if (len(p) == 4 and p[2] == ','):
-		p[0] = Node('variable_List', p[3])
+	if (len(p) == 4 and p[2] == TkComma):
+		p[0] = Node('variable_List', [p[3]], None)
 	elif(len(p) == 6):
 		p[0] = Node('variable_List', [Node('type', p[3], None), p[5]], None)
+	elif (len(p) == 4 and p[2]== TkTwoPoints): # prueba
+		p[0] = Node('type', None, p[3])
 
-
-	elif(len(p) == 4 and p[2] == ','):
+	elif(len(p) == 4 and p[1] == 'type' and p[2] == TkComma):
 		p[0] = Node('', [Node('type', p[1], None), Node('variable_List', p[4], None)], None)
 
 	elif(len(p) == 2):
-		p[0] = Node('type',(p[1]), None)
+		p[0] = Node('type',[p[1]], None)
 
 def p_type(p):
 	'''type : TkArray TkOBracket TkNum TkSoForth TkNum TkCBracket TkSemicolon
@@ -123,7 +124,7 @@ def p_type(p):
 		p[0] = Node('array-range', [p[3], p[5]],None)
 
 	else:
-		if(len(p) == 3 and p[2] == ';'):
+		if(p[2] == TkSemicolon):
 			#armar secuencia
 			p[0]= Node('Sequencing', Node('type',p[1], None), None)
 		if(len(p) == 2):
@@ -171,20 +172,20 @@ def p_array_exp(p):
 	| TkMin '''
 	
 	if(len(p) == 8):
-		if (p[2] == '('):
+		if (p[2] == TkOpenPar):
 			p[0] = Node('array_exp', [p[1],p[3],p[5],p[7]], None)
-		elif(p[1] == '('):
+		elif(p[1] == TkOpenPar):
 			p[0] = Node('array_exp', [p[2],p[4],p[6]], None)
 	
 	if (len(p) == 5):
 		p[0] = Node('array_exp', [p[1],p[3]], None)
 
 	elif(len(p) == 4):
-		if (p[1] == '[' and p[3] == ']'):
+		if (p[1] == TkOBracket and p[3] == TkCBracket):
 			Node('array_exp', [p[2]], None)
-		elif(p[2] == '||'):
+		elif(p[2] == TkConcat):
 			p[0] = Node('Concat', [p[1],p[3]], None)
-	elif(len(p) == 2):
+	else:
 		p[0] == Node('array_exp',p[1], None)
 
 def p_expression(p):
@@ -234,12 +235,12 @@ def p_expression(p):
 
 def p_input_inst(p):
 	''' input_inst : TkRead TkId '''
-	p[0] = Node('Input', [p[3]],p[1])
+	p[0] = Node('Input', [p[2]],p[1])
 
 def p_output_inst(p):
 	'''output_inst : TkPrint expression
 	| TkPrintln expression '''
-	p[0] = Node('output_inst',[p[3]],p[1])
+	p[0] = Node('output_inst',[p[2]],p[1])
 
 def p_if_guard_inst(p):
 	'''if_guard_inst : TkIf expression TkArrow instructions TkFi 
@@ -279,16 +280,16 @@ def p_error(p):
 	global parserErrorFound
 	parserErrorFound = True
 	#print('Error de sintaxis en la linea: ' + str(p.lineno) + ', columna: '+str(obtenerColumna(p.lexer.lexdata,p))+', token inesperado: ' + str(p.type))
-	exit()
+	#exit()
 
 # Funcion que recorre el arbol y lo imprime. 
 def printTree(nodo, tabs):
 	print('\t'*tabs + str(nodo))
 	if not (isinstance(nodo, Node)):
 		return
-	for i in range(len(nodo.children)):
-			if nodo.children[i] != None:
-				printTree(nodo.children[i], tabs+1)
+	for i in range(len(nodo.child)):
+		if nodo.child[i] != None:
+			printTree(nodo.child[i], tabs+1)
 
 def main():
 	if (len(sys.argv) != 2):
@@ -304,9 +305,9 @@ def main():
 	result = parser.parse(string,lex,debug=log)
 	
 	
-	#Si no hay errores, imprime el arbol.
-	#if (not lexerErrorFound) and (not parserErrorFound):
-	#	printTree(result, 0)
+	#Si no hay errores, imprime el arbol. (not lexerErrorFound) and 
+	if (not parserErrorFound):
+		printTree(result, 0)
 
 if __name__ == "__main__":
     main()
