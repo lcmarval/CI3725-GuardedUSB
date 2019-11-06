@@ -249,7 +249,7 @@ def p_expression(p):
 		p[0] = Node('Expression', [p[2]],None)
 
 	else:
-		p[0] = Node('Expression',[p[1]], None)
+		p[0] = Node('Expression',None, [p[1]])
 
 def p_input_inst(p):
 	''' input_inst : TkRead TkId '''
