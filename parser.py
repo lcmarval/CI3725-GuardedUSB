@@ -124,7 +124,7 @@ def p_type(p):
 		p[0] = Node('array-range', [p[3], p[5]],None)
 
 	else:
-		if(p[2] == TkSemicolon):
+		if(len(p) == 3 and p[2] == TkSemicolon):
 			#armar secuencia
 			p[0]= Node('Sequencing', Node('type',p[1], None), None)
 		if(len(p) == 2):
