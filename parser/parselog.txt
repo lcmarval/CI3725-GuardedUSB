@@ -1,0 +1,13 @@
+   yacc.py: 362:PLY: PARSE DEBUG START
+   yacc.py: 410:
+   yacc.py: 411:State  : 0
+   yacc.py: 435:Stack  : . LexToken(TkOBlock,'|[',1,0)
+   yacc.py: 445:Action : Shift and goto state 2
+   yacc.py: 410:
+   yacc.py: 411:State  : 2
+   yacc.py: 435:Stack  : TkOBlock . LexToken(TkDeclare,'declare',2,4)
+   yacc.py: 445:Action : Shift and goto state 6
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare . LexToken(TkId,'x',2,12)
+   yacc.py: 580:Error  : TkOBlock TkDeclare . LexToken(TkId,'x',2,12)
