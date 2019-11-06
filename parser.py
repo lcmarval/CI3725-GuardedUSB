@@ -13,7 +13,7 @@
 ################################################################
 
 import ply.yacc as yacc
-#import ply.lex as lex
+import ply.lex as lex
 import sys
 import re
 from lexer import *
@@ -42,6 +42,10 @@ precedence = (
 	('left', 'TkOpenPar','TkClosePar'),
 	('left', 'TkArrow')
 )
+
+	#('left', 'TkRof','TkFi'),
+	#('right', 'TkAtoi','TkMin','TkMax', 'TkSize'),
+	#('right', 'TkIf','TkGuard','TkDo', 'TkFor'),
 
 class Node:
 	def __init__(self,type,child=None,leaf=None):
@@ -82,9 +86,9 @@ def p_block(p):
 		p[0] = Node('EMPTY', [None], None)
 
 def p_declare_variables(p):
-	'''declare_variables : TkDeclare TkTwoPoints variable_List '''
+	'''declare_variables : TkDeclare variable_List '''
 	if (p[1] == 'declare'):
-		p[0] = Node('Declare', [p[3]], None)
+		p[0] = Node('Declare', [p[2]], None)
 
 def p_variable_List(p):
 	'''variable_List : TkId TkComma variable_List
@@ -92,13 +96,13 @@ def p_variable_List(p):
 				      | TkId TkTwoPoints type
 				      | type TkComma variable_List
 				      | type '''
-	if (len(p) == 4 and p[2] == TkComma):
+	if (len(p) == 4 and p[2] == ','):
 		p[0] = Node('variable_List', p[3])
 	elif(len(p) == 6):
 		p[0] = Node('variable_List', [Node('type', p[3], None), p[5]], None)
 
 
-	elif(len(p) == 4 and p[2] == TkComma):
+	elif(len(p) == 4 and p[2] == ','):
 		p[0] = Node('', [Node('type', p[1], None), Node('variable_List', p[4], None)], None)
 
 	elif(len(p) == 2):
@@ -119,7 +123,7 @@ def p_type(p):
 		p[0] = Node('array-range', [p[3], p[5]],None)
 
 	else:
-		if(p[2] == TkSemicolon):
+		if(len(p) == 3 and p[2] == ';'):
 			#armar secuencia
 			p[0]= Node('Sequencing', Node('type',p[1], None), None)
 		if(len(p) == 2):
@@ -135,13 +139,13 @@ def p_instruction_block(p):
 	else:
 		p[0] = Node('Sequencing', [p[1], p[3]], None)
 
+	#| iteration_do_inst
 def p_instructions(p):
 	'''instructions : assign_inst
 	| input_inst
 	| output_inst
 	| if_guard_inst
 	| iteration_for_inst
-	| iteration_do_inst
 	| iteration_mult_guard_inst
 	| block '''
 	
@@ -167,20 +171,20 @@ def p_array_exp(p):
 	| TkMin '''
 	
 	if(len(p) == 8):
-		if (p[2] == TkOpenPar):
+		if (p[2] == '('):
 			p[0] = Node('array_exp', [p[1],p[3],p[5],p[7]], None)
-		elif(p[1] == TkOpenPar):
+		elif(p[1] == '('):
 			p[0] = Node('array_exp', [p[2],p[4],p[6]], None)
 	
 	if (len(p) == 5):
 		p[0] = Node('array_exp', [p[1],p[3]], None)
 
 	elif(len(p) == 4):
-		if (p[1] == TkOBracket and p[3] == TkCBracket):
+		if (p[1] == '[' and p[3] == ']'):
 			Node('array_exp', [p[2]], None)
-		elif(p[2] == TkConcat):
+		elif(p[2] == '||'):
 			p[0] = Node('Concat', [p[1],p[3]], None)
-	else:
+	elif(len(p) == 2):
 		p[0] == Node('array_exp',p[1], None)
 
 def p_expression(p):
@@ -238,16 +242,16 @@ def p_output_inst(p):
 	p[0] = Node('output_inst',[p[3]],p[1])
 
 def p_if_guard_inst(p):
-	'''if_guard_inst : TkIf expression TkArrow instructions if_guard_inst TkFi
-	| TkGuard expression TkArrow instructions
+	'''if_guard_inst : TkIf expression TkArrow instructions TkFi 
+	| TkIf expression TkArrow instructions guards
 	'''
 	if (len(p) == 7):
 		p[0] = Node('If', [p[2],p[4],p[5]],None)
 	else:
 		p[0] = Node('If',[p[2],p[4]], None)
 def p_guards(p):
-	'''guards : TkGuard expression TkArrow instructions guards
-	| TkGuard expression TkArrow instructions '''
+	'''guards : TkGuard expression TkArrow instructions TkFi
+	| TkGuard expression TkArrow instructions guards '''
 	if (len(p) == 6):
 		p[0] = Node('Guard',[p[2],p[4],p[5]], None)
 	else:
@@ -258,9 +262,9 @@ def p_iteration_for_inst(p):
     '''
 	p[0] = Node('iteration_for_inst', [p[4],p[6],p[8]], None)
 
-def p_iteration_do_inst(p):
-	'''iteration_do_inst : TkDo expression TkArrow instructions TkOd '''
-	p[0] = Node('iteration_do_inst', [p[2],p[4]],None)
+#def p_iteration_do_inst(p):
+#	'''iteration_do_inst : TkDo expression TkArrow instructions TkOd '''
+#	p[0] = Node('iteration_do_inst', [p[2],p[4]],None)
 
 def p_iteration_mult_guard_inst(p):
 	'''iteration_mult_guard_inst : TkDo expression TkArrow instructions guards TkOd
