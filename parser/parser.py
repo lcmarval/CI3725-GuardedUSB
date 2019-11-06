@@ -152,7 +152,7 @@ def p_instructions(p):
 def p_assign_inst(p):
 	'''assign_inst : TkId TkAsig expression'''
 	if (len(p) == 4):
-		p[0] = Node('Asig', [p[3]], None)
+		p[0] = Node('Asig', [p[3]], p[1])
 
 def p_array_exp(p):
 	'''array_exp : TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp 
