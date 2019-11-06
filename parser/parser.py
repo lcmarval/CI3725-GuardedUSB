@@ -31,14 +31,18 @@ parserErrorFound=False
 
 # Operators precedence
 precedence = (
+	('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
 	('left', 'TkPlus', 'TkMinus'),
 	('left', 'TkMult', 'TkDiv','TkMod'),
 	('left', 'TkOr'),
 	('right', 'TkAnd'),
 	('right', 'TkNot','TkUminus'),
+	('left', 'TkConcat'),
 	('left', 'TkOBracket', 'TkCBracket'),
-	('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
 	('left', 'TkOpenPar','TkClosePar'),
+	#('left', 'TkRof','TkFi'),
+	#('right', 'TkAtoi','TkMin','TkMax', 'TkSize'),
+	#('right', 'TkIf','TkGuard','TkDo', 'TkFor'),
 	('left', 'TkArrow')
 )
 
@@ -134,13 +138,13 @@ def p_instruction_block(p):
 	else:
 		p[0] = Node('Sequencing', [p[1], p[3]], None)
 
+	#| iteration_do_inst
 def p_instructions(p):
 	'''instructions : assign_inst
 	| input_inst
 	| output_inst
 	| if_guard_inst
 	| iteration_for_inst
-	| iteration_do_inst
 	| iteration_mult_guard_inst
 	| block '''
 	
@@ -257,9 +261,9 @@ def p_iteration_for_inst(p):
     '''
 	p[0] = Node('iteration_for_inst', [p[4],p[6],p[8]], None)
 
-def p_iteration_do_inst(p):
-	'''iteration_do_inst : TkDo expression TkArrow instructions TkOd '''
-	p[0] = Node('iteration_do_inst', [p[2],p[4]],None)
+#def p_iteration_do_inst(p):
+#	'''iteration_do_inst : TkDo expression TkArrow instructions TkOd '''
+#	p[0] = Node('iteration_do_inst', [p[2],p[4]],None)
 
 def p_iteration_mult_guard_inst(p):
 	'''iteration_mult_guard_inst : TkDo expression TkArrow instructions guards TkOd

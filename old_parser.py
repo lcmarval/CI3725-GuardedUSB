@@ -31,6 +31,7 @@ parserErrorFound=False
 
 # Operators precedence
 precedence = (
+	('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
 	('left', 'TkPlus', 'TkMinus'),
 	('left', 'TkMult', 'TkDiv','TkMod'),
 	('left', 'TkOr'),
@@ -38,7 +39,6 @@ precedence = (
 	('right', 'TkNot','TkUminus'),
 	('left', 'TkConcat'),
 	('left', 'TkOBracket', 'TkCBracket'),
-	('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
 	('left', 'TkOpenPar','TkClosePar'),
 	('left', 'TkArrow')
 )

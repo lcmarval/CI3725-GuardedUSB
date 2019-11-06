@@ -59,8 +59,8 @@ reservadas = {
             'bool':'TkBool'
 }
 
-tokens = list(reservadas.values())+ [ 'TkString','TkId', 'TkNum', 'TkUMinus', 'TkGuard', 'TkComments', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
-         'TkOpenPar', 'TkCloserPar', 'TkAsig', 'TkSemicolon','TkArrow', 'TkPlus',
+tokens = list(reservadas.values())+ [ 'TkString','TkId', 'TkNum', 'TkUminus', 'TkGuard', 'TkComments', 'TkOBlock', 'TkCBlock', 'TkSoForth', 'TkComma',
+         'TkOpenPar', 'TkClosePar', 'TkAsig', 'TkSemicolon','TkArrow', 'TkPlus',
          'TkMinus', 'TkMult', 'TkDiv', 'TkMod', 'TkPunto', 'TkOr', 'TkAnd', 'TkNot',
          'TkLess', 'TkLeq', 'TkGreater', 'TkGeq', 'TkEqual', 'TkNEqual', 'TkOBracket',
          'TkCBracket', 'TkTwoPoints', 'TkConcat']
@@ -72,7 +72,7 @@ t_TkCBlock = r'\]\|'
 t_TkSoForth = r'\.\.'
 t_TkComma = r','
 t_TkOpenPar = r'\('
-t_TkCloserPar = r'\)'
+t_TkClosePar = r'\)'
 t_TkAsig = r'\:\='
 t_TkSemicolon = r';'
 t_TkArrow = r'\-\-\>'
@@ -109,7 +109,7 @@ def t_TkNum(t):
     t.value = int(t.value) 
     return t
 
-def t_TkUMinus(t):
+def t_TkUminus(t):
     r'[-][a-zA-Z][a-zA-Z0-9_]*'
     if t.value in reservadas:
         t.type = reservadas.get(t.value, None)
@@ -179,11 +179,10 @@ def exist_File(fname):
     else:
         return False
 
+# Build the lexer
+lex.lex()
 #Funcion Principal main
 def main():
-
-    # Build the lexer
-    lex.lex()
     if (inputError()):
         first_arg = sys.argv[1]
         if (exist_File(first_arg)):
@@ -216,7 +215,7 @@ def main():
                                 temp = str(tok.type)+"("+str(tok.value)+")"+" "+str(row)+" "+str(col)
                                 arrToks.append(temp)
 
-                            elif tok.type == "TkUMinus":
+                            elif tok.type == "TkUminus":
                                 temp = str(tok.type)+"(\""+str(tok.value)+"\")"+" "+str(row)+" "+str(col)
                                 arrToks.append(temp)
 
