@@ -279,8 +279,9 @@ def p_iteration_mult_guard_inst(p):
 def p_error(p):
 	global parserErrorFound
 	parserErrorFound = True
+	print('Error Token= ' + str(p))
 	#print('Error de sintaxis en la linea: ' + str(p.lineno) + ', columna: '+str(obtenerColumna(p.lexer.lexdata,p))+', token inesperado: ' + str(p.type))
-	#exit()
+	exit()
 
 # Funcion que recorre el arbol y lo imprime. 
 def printTree(nodo, tabs):
