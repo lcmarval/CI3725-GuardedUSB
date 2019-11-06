@@ -73,7 +73,7 @@ class Node:
 # Initial rule
 def p_block(p):
 	'''block : TkOBlock TkCBlock
-	| TkOBlock declare_variables instruction_block TkCBlock 
+	| TkOBlock TkDeclare variable_List instruction_block TkCBlock 
 	| TkOBlock instruction_block TkCBlock '''
 	
 	if (len(p) == 5 ):
@@ -85,51 +85,49 @@ def p_block(p):
 	else: 
 		p[0] = Node('EMPTY', [None], None)
 
-def p_declare_variables(p):
-	'''declare_variables : TkDeclare variable_List '''
-	if (p[1] == 'declare'):
-		p[0] = Node('Declare', [p[2]], None)
+#def p_declare_variables(p):
+#	declare_variables : TkDeclare variable_List 
+#	if (p[1] == 'declare'):
+#		p[0] = Node('Declare', [p[2]], None)
 
 def p_variable_List(p):
-	'''variable_List : TkId TkComma variable_List
+	'''variable_List : TkId TkComma variable_List	
 				      | TkId TkTwoPoints type TkComma variable_List
+				      | TkId TkTwoPoints type TkSemicolon variable_List
 				      | TkId TkTwoPoints type
 				      | type TkComma variable_List
-				      | type '''
-	if (len(p) == 4 and p[2] == ','):
-		p[0] = Node('variable_List', p[3])
-	elif(len(p) == 6):
-		p[0] = Node('variable_List', [Node('type', p[3], None), p[5]], None)
+				      | type TkSemicolon
+				      | type
+				      | variable_List variable_List   '''  
 
+	if (len(p) == 6):
+		p[0] = Node('variable_List', [p[3],p[5]], None)
+	
+	#elif(len(p) == 6 and p[4] == ','):
+	#	p[0] = Node('variable_List', [p[3], p[5]], None)
 
-	elif(len(p) == 4 and p[2] == ','):
-		p[0] = Node('', [Node('type', p[1], None), Node('variable_List', p[4], None)], None)
+	#elif(len(p) == 4 and p[2] == ':' ):
+	#	p[0] = Node('variable_List', [p[1],p[3]], None)
 
-	elif(len(p) == 2):
-		p[0] = Node('type',(p[1]), None)
+	elif(len(p) == 4):
+		p[0] = Node('variable_List', [p[3]], None)
+
+	elif(len(p) == 3):
+		p[0] = Node('variable_List',[p[2]], None)
+
+	else:
+		p[0] = Node('variable_List',[p[1]], None)
 
 def p_type(p):
-	'''type : TkArray TkOBracket TkNum TkSoForth TkNum TkCBracket TkSemicolon
-	| TkInt TkSemicolon
-	| TkBool TkSemicolon
-	| TkArray TkOBracket TkNum TkSoForth TkNum TkCBracket
+	'''type : TkArray TkOBracket TkNum TkSoForth TkNum TkCBracket
 	| TkInt
 	| TkBool '''
 
-	if (p[1] == 'array' and len(p) == 9):
-		p[0] = Node('Sequencing', Node('array-range',[p[3], p[7]],None), None)
-
-	elif (p[1] == 'array' and len(p) == 8):
+	if (p[1] == 'array' and len(p) == 7):
 		p[0] = Node('array-range', [p[3], p[5]],None)
 
 	else:
-		if(len(p) == 3 and p[2] == ';'):
-			#armar secuencia
-			p[0]= Node('Sequencing', Node('type',p[1], None), None)
-		if(len(p) == 2):
-			#no se arma secuencia
-			p[0]= Node('type', p[1], None)
-
+		p[0] = p[1]
 def p_instruction_block(p):
 	'''instruction_block : instructions TkSemicolon instruction_block
 	| instructions '''
@@ -154,7 +152,7 @@ def p_instructions(p):
 def p_assign_inst(p):
 	'''assign_inst : TkId TkAsig expression'''
 	if (len(p) == 4):
-		p[0] = Node('Asig', [p[1],p[3]], None)
+		p[0] = Node('Asig', [p[3]], None)
 
 def p_array_exp(p):
 	'''array_exp : TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp 
@@ -187,6 +185,10 @@ def p_array_exp(p):
 	elif(len(p) == 2):
 		p[0] == Node('array_exp',p[1], None)
 
+def p_array_exp1(p):
+	''' array_exp1 : TkOpenPar array_exp TkClosePar '''
+	p[0] = Node('array_exp1',[p[2]], None)
+
 def p_expression(p):
 	'''expression : TkOpenPar expression TkPlus expression TkClosePar
 	| TkOpenPar expression TkMinus expression TkClosePar
@@ -203,12 +205,20 @@ def p_expression(p):
     | TkOpenPar expression TkAnd expression TkClosePar
     | TkOpenPar TkUminus expression TkClosePar
     | TkOpenPar TkNot expression TkClosePar
-    | TkOpenPar array_exp TkClosePar
     | TkOpenPar TkId TkClosePar
     | TkOpenPar TkNum TkClosePar
     | TkOpenPar TkFalse TkClosePar
     | TkOpenPar TkTrue TkClosePar
-    | TkOpenPar TkString TkClosePar  
+    | TkOpenPar TkString TkClosePar 
+	| TkUminus expression
+	| TkNot expression
+	| array_exp
+	| TkId
+	| TkNum
+	| TkFalse
+	| TkTrue
+	| TkString      
+    | array_exp1 
 	| expression TkPlus expression
 	| expression TkMinus expression
 	| expression TkMult expression
@@ -221,20 +231,29 @@ def p_expression(p):
 	| expression TkNEqual expression
 	| expression TkEqual expression  		   
 	| expression TkOr expression
-	| expression TkAnd expression	   
-	| TkUminus expression
-	| TkNot expression
-	| array_exp
-	| TkId
-	| TkNum
-	| TkFalse
-	| TkTrue
-	| TkString  '''
-	p[0] = p[1]
+	| expression TkAnd expression '''	   
+
+	if(len(p) == 6):
+		p[0] = Node('Expression', [p[2],p[4]], [p[3]])
+	
+	elif(len(p) == 5):
+		p[0] = Node('Expression', [p[3]], [p[2]])
+	
+	elif(len(p) == 4):
+		if (p[1] == TkOpenPar and p[3] == TkClosePar):
+			p[0] = Node('Expression', None, [p[2]])
+		else:
+			p[0] = Node('Expression',[p[1],p[3]],[p[2]])
+
+	elif(len(p) == 3):
+		p[0] = Node('Expression', [p[2]],None)
+
+	else:
+		p[0] = Node('Expression',[p[1]], None)
 
 def p_input_inst(p):
 	''' input_inst : TkRead TkId '''
-	p[0] = Node('Input', [p[3]],p[1])
+	p[0] = Node('Input', [p[2]],p[1])
 
 def p_output_inst(p):
 	'''output_inst : TkPrint expression
@@ -306,7 +325,8 @@ def main():
 	
 	#Si no hay errores, imprime el arbol.
 	#if (not lexerErrorFound) and (not parserErrorFound):
-	#	printTree(result, 0)
+	if not parserErrorFound:
+		printTree(result, 0)
 
 if __name__ == "__main__":
     main()
