@@ -234,22 +234,22 @@ def p_expression(p):
 	| expression TkAnd expression '''	   
 
 	if(len(p) == 6):
-		p[0] = Node('Expression', [p[2],p[4]], [p[3]])
+		p[0] = Node('Expression', [p[2],p[4]], p[3])
 	
 	elif(len(p) == 5):
-		p[0] = Node('Expression', [p[3]], [p[2]])
+		p[0] = Node('Expression', [p[3]], p[2])
 	
 	elif(len(p) == 4):
 		if (p[1] == TkOpenPar and p[3] == TkClosePar):
 			p[0] = Node('Expression', None, [p[2]])
 		else:
-			p[0] = Node('Expression',[p[1],p[3]],[p[2]])
+			p[0] = Node('Expression',[p[1],p[3]],p[2])
 
 	elif(len(p) == 3):
 		p[0] = Node('Expression', [p[2]],None)
 
 	else:
-		p[0] = Node('Expression',None, [p[1]])
+		p[0] = Node('Expression',None, p[1])
 
 def p_input_inst(p):
 	''' input_inst : TkRead TkId '''
@@ -258,23 +258,23 @@ def p_input_inst(p):
 def p_output_inst(p):
 	'''output_inst : TkPrint expression
 	| TkPrintln expression '''
-	p[0] = Node('output_inst',[p[3]],p[1])
+	p[0] = Node('output_inst',[p[2]],p[1])
 
 def p_if_guard_inst(p):
 	'''if_guard_inst : TkIf expression TkArrow instructions TkFi 
 	| TkIf expression TkArrow instructions guards
 	'''
-	if (len(p) == 7):
-		p[0] = Node('If', [p[2],p[4],p[5]],None)
+	if (len(p) == 6 and (p[5] == TkFi)):
+		p[0] = Node('If', [p[2],p[4]],None)
 	else:
-		p[0] = Node('If',[p[2],p[4]], None)
+		p[0] = Node('If',[p[2],p[4],p[5]], None)
 def p_guards(p):
 	'''guards : TkGuard expression TkArrow instructions TkFi
 	| TkGuard expression TkArrow instructions guards '''
-	if (len(p) == 6):
-		p[0] = Node('Guard',[p[2],p[4],p[5]], None)
-	else:
+	if (len(p) == 6 and (p[5] == TkFi)):
 		p[0] = Node('Guard',[p[2],p[4]], None)
+	else:
+		p[0] = Node('Guard',[p[2],p[4],p[5]], None)
 
 def p_iteration_for_inst(p):
 	''' iteration_for_inst : TkFor TkId TkIn expression TkTo expression TkArrow block TkRof
@@ -289,9 +289,9 @@ def p_iteration_mult_guard_inst(p):
 	'''iteration_mult_guard_inst : TkDo expression TkArrow instructions guards TkOd
 	| TkDo expression TkArrow instructions TkOd '''
 	if(len(p) == 7):
-		p[0] = Node('iteration_mult_guard_int',[p[2],p[4],p[5]] , None)
+		p[0] = Node('Do',[p[2],p[4],p[5]] , None)
 	else:
-		p[0] = Node('iteration_mult_guard_int',[p[2],p[4]] , None)
+		p[0] = Node('Do',[p[2],p[4]] , None)
 
 #Regla de los errores sintacticos
 def p_error(p):
