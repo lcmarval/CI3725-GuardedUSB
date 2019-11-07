@@ -225,7 +225,8 @@ def p_expression(p):
     | expression TkNEqual expression
     | expression TkEqual expression            
     | expression TkOr expression
-    | expression TkAnd expression      
+    | expression TkAnd expression
+    | expression TkConcat expression      
     | TkUminus expression
     | TkNot expression
     | array_exp
