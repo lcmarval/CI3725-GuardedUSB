@@ -73,66 +73,74 @@ class Node:
 # Initial rule
 def p_block(p):
 	'''block : TkOBlock TkCBlock
-	| TkOBlock declare_variables instruction_block TkCBlock 
+	| TkOBlock TkDeclare variable_List instruction_block TkCBlock 
 	| TkOBlock instruction_block TkCBlock '''
 	
-	if (len(p) == 5 ):
-		p[0] = Node('Block', [p[2],p[3]], None)
+	if (len(p) == 6 ):
+		p[0] = Node('Block', [p[3],p[4]], None)
 
 	elif(len(p) == 4):
 		p[0] = Node('Block', [p[2]], None)
 
 	else: 
-		p[0] = Node('EMPTY', [None], None)
+		p[0] = Node('EMPTY', None, None)
 
-def p_declare_variables(p):
-	'''declare_variables : TkDeclare variable_List '''
-	if (p[1] == 'declare'):
-		p[0] = Node('Declare', [p[2]], None)
+#def p_declare_variables(p): ???
+#    '''declare_variables : TkDeclare TkId TkTwoPoints variable_List 
+#                        | TkDeclare TkId TkComma variable_List '''
+#    if (p[1] == 'declare'):
+#        p[0] = Node('Declare', [p[2],p[4]], None)
 
 def p_variable_List(p):
-	'''variable_List : TkId TkComma variable_List
+	'''variable_List : TkId TkComma variable_List	
 				      | TkId TkTwoPoints type TkComma variable_List
+				      | TkId TkTwoPoints type TkSemicolon variable_List
 				      | TkId TkTwoPoints type
 				      | type TkComma variable_List
-				      | type '''
-	if (len(p) == 4 and p[2] == ','):
-		p[0] = Node('variable_List', p[3])
-	elif(len(p) == 6):
-		p[0] = Node('variable_List', [Node('type', p[3], None), p[5]], None)
+				      | type TkSemicolon
+				      | type
+				      | variable_List variable_List   '''  
 
+	if (len(p) == 6):
+		p[0] = Node('variable_List', [p[3],p[5]], None)
+	
+	#elif(len(p) == 6 and p[4] == ','):
+	#	p[0] = Node('variable_List', [p[3], p[5]], None)
 
-	elif(len(p) == 4 and p[2] == ':'):
-		p[0] = Node('', [Node('type', p[1], None), Node('variable_List', p[3], None)], None)
+	#elif(len(p) == 4 and p[2] == ':' ):
+	#	p[0] = Node('variable_List', [p[1],p[3]], None)
 
-	elif(len(p) == 2):
-		p[0] = Node('type',(p[1]), None)
+	#elif (len(p) == 4):
+    #    if (p[2] == ','):
+    #        if (p[1]== TkId):
+    #            p[0] = Node('variable_List', [p[3]], None)
+    #        elif (p[1] == 'type'):
+    #            p[0] = Node('', [Node('type', p[1], None), Node('variable_List', p[4], None)], None)
+    #    elif ( p[2]== ':'): # prueba
+    #        p[0] = Node('type', None, p[3]) 
+
+	elif(len(p) == 4):
+		p[0] = Node('variable_List', [p[3]], None)
+
+	elif(len(p) == 3):
+		p[0] = Node('variable_List',[p[2]], None)
+
+	else:
+		p[0] = Node('variable_List',[p[1]], None)
 
 def p_type(p):
-	'''type : TkArray TkOBracket TkNum TkSoForth TkNum TkCBracket TkSemicolon
-	| TkArray TkOBracket TkNum TkSoForth TkNum TkCBracket
-	| TkInt TkSemicolon
-	| TkBool TkSemicolon
+	'''type : TkArray TkOBracket TkNum TkSoForth TkNum TkCBracket
 	| TkInt
 	| TkBool '''
 
-	if (p[1] == 'array' and len(p) == 9):
-		p[0] = Node('Sequencing', Node('array-range',[p[3], p[7]],None), None)
-
-	elif (p[1] == 'array' and len(p) == 8):
+	if (p[1] == 'array' and len(p) == 7):
 		p[0] = Node('array-range', [p[3], p[5]],None)
 
 	else:
-		if(len(p) == 3 and p[2] == ';'):
-			#armar secuencia
-			p[0]= Node('Sequencing', Node('type',p[1], None), None)
-		if(len(p) == 2):
-			#no se arma secuencia
-			p[0]= Node('type', p[1], None)
+		p[0] = p[1]
 
 def p_instruction_block(p):
 	'''instruction_block : instructions TkSemicolon instruction_block
-	| instructions TkSemicolon
 	| instructions '''
 	if (len(p) == 2):
 		p[0] = Node('Block', [p[1]], None)
@@ -155,7 +163,7 @@ def p_instructions(p):
 def p_assign_inst(p):
 	'''assign_inst : TkId TkAsig expression'''
 	if (len(p) == 4):
-		p[0] = Node('Asig', [p[1],p[3]], None)
+		p[0] = Node('Asig', [p[3]], p[1])
 
 def p_array_exp(p):
 	'''array_exp : TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp 
@@ -167,9 +175,10 @@ def p_array_exp(p):
 	| array_exp TkConcat array_exp
 	| TkOBracket expression TkCBracket
 	| TkAtoi TkOpenPar TkId TkClosePar
-	| TkSize
-	| TkMax
-	| TkMin '''
+	| TkSize TkOpenPar TkId TkClosePar
+	| TkMax TkOpenPar TkId TkClosePar
+	| TkMin TkOpenPar TkId TkClosePar
+	'''
 	
 	if(len(p) == 8):
 		if (p[2] == '('):
@@ -186,7 +195,11 @@ def p_array_exp(p):
 		elif(p[2] == '||'):
 			p[0] = Node('Concat', [p[1],p[3]], None)
 	elif(len(p) == 2):
-		p[0] == Node('array_exp',p[1], None)
+		p[0] == Node('array_exp',[p[1]], None)
+
+def p_array_exp1(p):
+	''' array_exp1 : TkOpenPar array_exp TkClosePar '''
+	p[0] = Node('array_exp1',[p[2]], None)
 
 def p_expression(p):
 	'''expression : TkOpenPar expression TkPlus expression TkClosePar
@@ -204,12 +217,20 @@ def p_expression(p):
     | TkOpenPar expression TkAnd expression TkClosePar
     | TkOpenPar TkUminus expression TkClosePar
     | TkOpenPar TkNot expression TkClosePar
-    | TkOpenPar array_exp TkClosePar
     | TkOpenPar TkId TkClosePar
     | TkOpenPar TkNum TkClosePar
     | TkOpenPar TkFalse TkClosePar
     | TkOpenPar TkTrue TkClosePar
-    | TkOpenPar TkString TkClosePar  
+    | TkOpenPar TkString TkClosePar 
+	| TkUminus expression
+	| TkNot expression
+	| array_exp
+	| TkId
+	| TkNum
+	| TkFalse
+	| TkTrue
+	| TkString      
+    | array_exp1 
 	| expression TkPlus expression
 	| expression TkMinus expression
 	| expression TkMult expression
@@ -222,16 +243,39 @@ def p_expression(p):
 	| expression TkNEqual expression
 	| expression TkEqual expression  		   
 	| expression TkOr expression
-	| expression TkAnd expression	   
-	| TkUminus expression
-	| TkNot expression
-	| array_exp
-	| TkId
-	| TkNum
-	| TkFalse
-	| TkTrue
-	| TkString  '''
-	p[0] = p[1]
+	| expression TkAnd expression
+	| expression TkConcat expression '''	   
+# stringConcat hace que no sean necesarias las otras concat ?
+	if(len(p) == 6):
+		p[0] = Node('Expression', [p[2],p[4]], p[3])
+	
+	elif(len(p) == 5):
+		p[0] = Node('Expression', [p[3]], p[2])
+	
+	elif(len(p) == 4):
+		if (p[1] == '(' and p[3] == ')'):
+			p[0] = Node('Expression', None, [p[2]])
+		else:
+			p[0] = Node('Expression',[p[1],p[3]],p[2])
+
+	elif(len(p) == 3):
+		p[0] = Node('Expression', [p[2]],None)
+
+	else:
+		p[0] = Node('Expression',None, p[1])
+
+#def p_string_concat(p):
+#	''' string_concat : TkOpenPar TkId TkConcat TkId TkClosePar
+#	| TkOpenPar  TkId TkConcat TkString TkClosePar
+#	| TkOpenPar TkString TkConcat TkId TkClosePar 
+#	| TkId TkConcat TkId 
+#	| TkId TkConcat TkString
+#	| TkString TkConcat TkId
+#	 '''
+#	if (len(p) == 6):
+#		p[0] = Node('string_concat', [p[2],p[4]],p[3])
+#	else:
+#		p[0] = Node('string_concat', [p[1],p[3]],p[2])
 
 def p_input_inst(p):
 	''' input_inst : TkRead TkId '''
@@ -240,23 +284,23 @@ def p_input_inst(p):
 def p_output_inst(p):
 	'''output_inst : TkPrint expression
 	| TkPrintln expression '''
-	p[0] = Node('output_inst',[p[3]],p[1])
+	p[0] = Node('output_inst',[p[2]],p[1])
 
 def p_if_guard_inst(p):
 	'''if_guard_inst : TkIf expression TkArrow instructions TkFi 
 	| TkIf expression TkArrow instructions guards
 	'''
-	if (len(p) == 7):
-		p[0] = Node('If', [p[2],p[4],p[5]],None)
+	if (len(p) == 6 and (p[5] == TkFi)):
+		p[0] = Node('If', [p[2],p[4]],None)
 	else:
-		p[0] = Node('If',[p[2],p[4]], None)
+		p[0] = Node('If',[p[2],p[4],p[5]], None)
 def p_guards(p):
 	'''guards : TkGuard expression TkArrow instructions TkFi
 	| TkGuard expression TkArrow instructions guards '''
-	if (len(p) == 6):
-		p[0] = Node('Guard',[p[2],p[4],p[5]], None)
-	else:
+	if (len(p) == 6 and (p[5] == TkFi)):
 		p[0] = Node('Guard',[p[2],p[4]], None)
+	else:
+		p[0] = Node('Guard',[p[2],p[4],p[5]], None)
 
 def p_iteration_for_inst(p):
 	''' iteration_for_inst : TkFor TkId TkIn expression TkTo expression TkArrow block TkRof
@@ -271,14 +315,15 @@ def p_iteration_mult_guard_inst(p):
 	'''iteration_mult_guard_inst : TkDo expression TkArrow instructions guards TkOd
 	| TkDo expression TkArrow instructions TkOd '''
 	if(len(p) == 7):
-		p[0] = Node('iteration_mult_guard_int',[p[2],p[4],p[5]] , None)
+		p[0] = Node('Do',[p[2],p[4],p[5]] , None)
 	else:
-		p[0] = Node('iteration_mult_guard_int',[p[2],p[4]] , None)
+		p[0] = Node('Do',[p[2],p[4]] , None)
 
 #Regla de los errores sintacticos
 def p_error(p):
 	global parserErrorFound
 	parserErrorFound = True
+	print('Error Token= ' + str(p))
 	#print('Error de sintaxis en la linea: ' + str(p.lineno) + ', columna: '+str(obtenerColumna(p.lexer.lexdata,p))+', token inesperado: ' + str(p.type))
 	exit()
 
@@ -287,9 +332,9 @@ def printTree(nodo, tabs):
 	print('\t'*tabs + str(nodo))
 	if not (isinstance(nodo, Node)):
 		return
-	for i in range(len(nodo.children)):
-			if nodo.children[i] != None:
-				printTree(nodo.children[i], tabs+1)
+	for i in range(len(nodo.child)):
+			if nodo.child[i] != None:
+				printTree(nodo.child[i], tabs+1)
 
 def main():
 	if (len(sys.argv) != 2):
@@ -307,7 +352,7 @@ def main():
 	
 	#Si no hay errores, imprime el arbol.
 	#if (not lexerErrorFound) and (not parserErrorFound):
-	if not parserErrorFound:
+	if (not parserErrorFound):
 		printTree(result, 0)
 
 if __name__ == "__main__":

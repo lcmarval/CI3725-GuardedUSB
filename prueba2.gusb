@@ -1,0 +1,10 @@
+|[
+declare count, value: int
+read count;
+for i in 1 to count -->
+|[
+read value;
+println "Value: "  || value
+]|
+rof
+]|
