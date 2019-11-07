@@ -1,0 +1,77 @@
+GramaticaUSB
+
+Rule 0     S' -> block
+Rule 1     block -> TkOBlock TkCBlock
+Rule 2     block -> TkOBlock TkDeclare variable_List instruction_block TkCBlock
+Rule 3     block -> TkOBlock instruction_block TkCBlock
+Rule 4     variable_List -> TkId TkComma variable_List
+Rule 5     variable_List -> TkId TkTwoPoints type TkComma variable_List
+Rule 6     variable_List -> TkId TkTwoPoints type TkSemicolon
+Rule 7     variable_List -> TkId TkTwoPoints type
+Rule 8     variable_List -> type TkComma variable_List
+Rule 9     variable_List -> type TkSemicolon
+Rule 10    variable_List -> type
+Rule 11    type -> TkArray TkOBracket TkNum TkSoForth TkNum TkCBracket
+Rule 12    type -> TkInt
+Rule 13    type -> TkBool
+Rule 14    instruction_block -> instructions TkSemicolon instruction_block
+Rule 15    instruction_block -> instructions TkSemicolon
+Rule 16    instruction_block -> instructions
+Rule 17    instructions -> assign_inst
+Rule 18    instructions -> input_inst
+Rule 19    instructions -> output_inst
+Rule 20    instructions -> if_guard_inst
+Rule 21    instructions -> iteration_for_inst
+Rule 22    instructions -> iteration_mult_guard_inst
+Rule 23    instructions -> block
+Rule 24    assign_inst -> TkId TkAsig expression
+Rule 25    array_exp -> TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp
+Rule 26    array_exp -> TkOpenPar expression TkTwoPoints expression TkClosePar array_exp
+Rule 27    array_exp -> TkId TkOBracket expression TkCBracket
+Rule 28    array_exp -> TkId TkConcat literal
+Rule 29    array_exp -> array_exp TkConcat literal
+Rule 30    array_exp -> TkOBracket expression TkCBracket
+Rule 31    array_exp -> TkAtoi TkOpenPar TkId TkClosePar
+Rule 32    array_exp -> TkSize TkOpenPar TkId TkClosePar
+Rule 33    array_exp -> TkMax TkOpenPar TkId TkClosePar
+Rule 34    array_exp -> TkMin TkOpenPar TkId TkClosePar
+Rule 35    array_exp1 -> TkOpenPar array_exp TkClosePar
+Rule 36    expression -> TkOpenPar binop TkClosePar
+Rule 37    expression -> TkOpenPar TkUminus expression TkClosePar
+Rule 38    expression -> TkOpenPar TkNot expression TkClosePar
+Rule 39    expression -> TkOpenPar literal TkClosePar
+Rule 40    expression -> TkUminus expression
+Rule 41    expression -> TkNot expression
+Rule 42    expression -> literal
+Rule 43    expression -> binop
+Rule 44    binop -> expression TkPlus expression
+Rule 45    binop -> expression TkMinus expression
+Rule 46    binop -> expression TkMult expression
+Rule 47    binop -> expression TkDiv expression
+Rule 48    binop -> expression TkMod expression
+Rule 49    binop -> expression TkLeq expression
+Rule 50    binop -> expression TkGeq expression
+Rule 51    binop -> expression TkLess expression
+Rule 52    binop -> expression TkGreater expression
+Rule 53    binop -> expression TkNEqual expression
+Rule 54    binop -> expression TkEqual expression
+Rule 55    binop -> expression TkOr expression
+Rule 56    binop -> expression TkAnd expression
+Rule 57    binop -> expression TkConcat expression
+Rule 58    literal -> array_exp
+Rule 59    literal -> TkId
+Rule 60    literal -> TkNum
+Rule 61    literal -> TkFalse
+Rule 62    literal -> TkTrue
+Rule 63    literal -> TkString
+Rule 64    literal -> array_exp1
+Rule 65    input_inst -> TkRead TkId
+Rule 66    output_inst -> TkPrint expression
+Rule 67    output_inst -> TkPrintln expression
+Rule 68    if_guard_inst -> TkIf expression TkArrow instructions TkFi
+Rule 69    if_guard_inst -> TkIf expression TkArrow instructions guards
+Rule 70    guards -> TkGuard expression TkArrow instructions TkFi
+Rule 71    guards -> TkGuard expression TkArrow instructions guards
+Rule 72    iteration_for_inst -> TkFor TkId TkIn expression TkTo expression TkArrow block TkRof
+Rule 73    iteration_mult_guard_inst -> TkDo expression TkArrow instructions guards TkOd
+Rule 74    iteration_mult_guard_inst -> TkDo expression TkArrow instructions TkOd

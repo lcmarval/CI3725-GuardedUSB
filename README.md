@@ -34,9 +34,23 @@
 
   Proyecto del Curso CI-3725 para el trimestre Septiembre-Diciembre 2019
 
-  Funcion: Analizador lexicográfico del lenguaje GuardedUSB
+  Función: Analizador lexicográfico del lenguaje GuardedUSB
 
-  En esta etapa se reconocen los tokens y posibles errores de estos.
+  En esta etapa se reconocen los tokens y posibles errores de estos
+
+  Adicionalmente se revisa la gramatica del lenguaje, 
+
+  generando el arbol sintactico del programa pasado.
+
+  En el archivo txt se ofrece la representación de la gramática resultante para el lenguaje GuardedUSB. 
+
+  Para esta entrega a pesar de realizar varias modificaciones, 
+
+  no se logró desarrollar una gramática que a la hora de ser implementada con la librería Ply cubriera a 
+
+  completitud las restricciones del parser para dicho lenguaje.
+
+  Dentro del comprimido se entregan algunos de los programas que funcionan con la gramática propuesta.
 
 
 ### Built With
@@ -64,14 +78,22 @@ No Further needed
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Write your program in GuardUsb, at this time you should run the lexer to see the tokens recognized.
+Write your program in GuardedUSB, 
+you can run the lexer to see Tokens recognized,
+you can run the parser to see the AST.
 
 ```sh
 Python3 lexer.py yourProgram.gusb
 ```
 
+```sh
+Python3 parser.py yourProgram.gusb
+```
+Despues de ser ejecutada dicha instrucción, 
 
+en caso de ser correcto imprime la estructura del programa ejecutado
 
+en un arbol.
 
 <!-- CONTACT -->
 ## Contact
