@@ -31,7 +31,6 @@ parserErrorFound=False
 
 # Operators precedence
 precedence = (
-	('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
 	('left', 'TkPlus', 'TkMinus'),
 	('left', 'TkMult', 'TkDiv','TkMod'),
 	('left', 'TkOr'),
@@ -39,6 +38,7 @@ precedence = (
 	('right', 'TkNot','TkUminus'),
 	('left', 'TkConcat'),
 	('left', 'TkOBracket', 'TkCBracket'),
+	('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
 	('left', 'TkOpenPar','TkClosePar'),
 	('left', 'TkArrow')
 )
@@ -290,14 +290,14 @@ def p_if_guard_inst(p):
 	'''if_guard_inst : TkIf expression TkArrow instructions TkFi 
 	| TkIf expression TkArrow instructions guards
 	'''
-	if (len(p) == 6 and (p[5] == TkFi)):
+	if (len(p) == 6 and (p[5] == 'Fi')):
 		p[0] = Node('If', [p[2],p[4]],None)
 	else:
 		p[0] = Node('If',[p[2],p[4],p[5]], None)
 def p_guards(p):
 	'''guards : TkGuard expression TkArrow instructions TkFi
 	| TkGuard expression TkArrow instructions guards '''
-	if (len(p) == 6 and (p[5] == TkFi)):
+	if (len(p) == 6 and (p[5] == 'Fi')):
 		p[0] = Node('Guard',[p[2],p[4]], None)
 	else:
 		p[0] = Node('Guard',[p[2],p[4],p[5]], None)
