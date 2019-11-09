@@ -31,7 +31,6 @@ parserErrorFound=False
 
 # Operators precedence
 precedence = (
-<<<<<<< Updated upstream
     ('left', 'TkPlus', 'TkMinus'),
     ('left', 'TkMult', 'TkDiv','TkMod'),
     ('left', 'TkOr'),
@@ -42,19 +41,6 @@ precedence = (
     ('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
     ('left', 'TkOpenPar','TkClosePar'),
     ('left', 'TkArrow')
-=======
-	('left', 'TkPlus', 'TkMinus'),
-	('left', 'TkMult', 'TkDiv','TkMod'),
-	('left', 'TkOr'),
-	('right', 'TkAnd'),
-	('right', 'TkNot','TkUminus'),
-	('left', 'TkConcat'),
-	('left', 'TkOBracket', 'TkCBracket'),
-	('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
-	('left', 'TkOpenPar','TkClosePar'),
-	('right', 'TkAsig'),
-	('left', 'TkArrow')
->>>>>>> Stashed changes
 )
 
     #('left', 'TkRof','TkFi'),
@@ -99,6 +85,12 @@ def p_block(p):
     else: 
         p[0] = Node('EMPTY', None, None)
 
+#def p_declare_variables(p): ???
+#    '''declare_variables : TkDeclare TkId TkTwoPoints variable_List 
+#                        | TkDeclare TkId TkComma variable_List '''
+#    if (p[1] == 'declare'):
+#        p[0] = Node('Declare', [p[2],p[4]], None)
+
 def p_variable_List(p):
     '''variable_List : TkId TkComma variable_List   
                       | TkId TkTwoPoints type TkComma variable_List
@@ -110,6 +102,21 @@ def p_variable_List(p):
 
     if (len(p) == 6):
         p[0] = Node('variable_List', [p[3],p[5]], None)
+    
+    #elif(len(p) == 6 and p[4] == ','):
+    #   p[0] = Node('variable_List', [p[3], p[5]], None)
+
+    #elif(len(p) == 4 and p[2] == ':' ):
+    #   p[0] = Node('variable_List', [p[1],p[3]], None)
+
+    #elif (len(p) == 4):
+    #    if (p[2] == ','):
+    #        if (p[1]== TkId):
+    #            p[0] = Node('variable_List', [p[3]], None)
+    #        elif (p[1] == 'type'):
+    #            p[0] = Node('', [Node('type', p[1], None), Node('variable_List', p[4], None)], None)
+    #    elif ( p[2]== ':'): # prueba
+    #        p[0] = Node('type', None, p[3]) 
 
     elif(len(p) == 4):
         p[0] = Node('variable_List', [p[3]], None)
@@ -133,12 +140,11 @@ def p_type(p):
 
 def p_instruction_block(p):
     '''instruction_block : instructions TkSemicolon instruction_block
-    | instructions TkSemicolon
     | instructions '''
     if (len(p) == 2):
-        p[0] = Node('Ins_Block', [p[1]], None)
+        p[0] = Node('Block', [p[1]], None)
 
-    elif(len(p)==4):
+    else:
         p[0] = Node('Sequencing', [p[1], p[3]], None)
 
     #| iteration_do_inst
@@ -154,22 +160,18 @@ def p_instructions(p):
     p[0] = Node('instructions',[p[1]], None) 
 
 def p_assign_inst(p):
-<<<<<<< Updated upstream
     '''assign_inst : TkId TkAsig expression'''
     if (len(p) == 4):
         p[0] = Node('Asig', [p[3]], p[1])
-=======
-	'''assign_inst : TkId TkAsig expression'''
-	if (len(p) == 4):
-		p[0] = Node('Asig', [p[1],p[3]],None)
->>>>>>> Stashed changes
 
 def p_array_exp(p):
     '''array_exp : TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp 
     | TkOpenPar expression TkTwoPoints expression TkClosePar array_exp
     | TkId TkOBracket expression TkCBracket
-    | TkId TkConcat literal
-    | array_exp TkConcat literal
+    | TkId TkConcat TkId
+    | array_exp TkConcat TkId
+    | TkId TkConcat array_exp
+    | array_exp TkConcat array_exp
     | TkOBracket expression TkCBracket
     | TkAtoi TkOpenPar TkId TkClosePar
     | TkSize TkOpenPar TkId TkClosePar
@@ -207,7 +209,7 @@ def p_expression(p):
     | TkNot expression
     | literal
     | binop  '''       
-
+# stringConcat hace que no sean necesarias las otras concat ?
     if(len(p) == 6):
         p[0] = Node('Expression', [p[2],p[4]], p[3])
     
@@ -282,6 +284,19 @@ def p_literal(p):
     | array_exp1 '''
     p[0] = Node('literal', None, p[1])
 
+#def p_string_concat(p):
+#   ''' string_concat : TkOpenPar TkId TkConcat TkId TkClosePar
+#   | TkOpenPar  TkId TkConcat TkString TkClosePar
+#   | TkOpenPar TkString TkConcat TkId TkClosePar 
+#   | TkId TkConcat TkId 
+#   | TkId TkConcat TkString
+#   | TkString TkConcat TkId
+#    '''
+#   if (len(p) == 6):
+#       p[0] = Node('string_concat', [p[2],p[4]],p[3])
+#   else:
+#       p[0] = Node('string_concat', [p[1],p[3]],p[2])
+
 def p_input_inst(p):
     ''' input_inst : TkRead TkId '''
     p[0] = Node('Input', [p[2]],p[1])
@@ -312,6 +327,10 @@ def p_iteration_for_inst(p):
     '''
     p[0] = Node('iteration_for_inst', [p[4],p[6],p[8]], None)
 
+#def p_iteration_do_inst(p):
+#   '''iteration_do_inst : TkDo expression TkArrow instructions TkOd '''
+#   p[0] = Node('iteration_do_inst', [p[2],p[4]],None)
+
 def p_iteration_mult_guard_inst(p):
     '''iteration_mult_guard_inst : TkDo expression TkArrow instructions guards TkOd
     | TkDo expression TkArrow instructions TkOd '''
@@ -325,6 +344,7 @@ def p_error(p):
     global parserErrorFound
     parserErrorFound = True
     print('Error Token= ' + str(p))
+    #print('Error de sintaxis en la linea: ' + str(p.lineno) + ', columna: '+str(obtenerColumna(p.lexer.lexdata,p))+', token inesperado: ' + str(p.type))
     exit()
 
 # Funcion que recorre el arbol y lo imprime. 
@@ -342,13 +362,16 @@ def main():
         return -1
         
     # Construyendo el parser
+    #parser = yacc.yacc(errorlog = yacc.NullLogger())
     parser = yacc.yacc(debug=True)  
     # Se abre el archivo con permisos de lectura
     string = str(open(str(sys.argv[1]),'r').read())
     log = logging.getLogger()
     result = parser.parse(string,lex,debug=log)
     
+    
     #Si no hay errores, imprime el arbol.
+    #if (not lexerErrorFound) and (not parserErrorFound):
     if (not parserErrorFound):
         printTree(result, 0)
 
