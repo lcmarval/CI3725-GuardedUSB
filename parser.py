@@ -29,37 +29,28 @@ logging.basicConfig(
 
 parserErrorFound=False
 
-# Operators precedence
+
 precedence = (
-<<<<<<< Updated upstream
+    ('right', 'TkIf'),
+    ('left', 'TkAsig'),
     ('left', 'TkPlus', 'TkMinus'),
     ('left', 'TkMult', 'TkDiv','TkMod'),
     ('left', 'TkOr'),
     ('right', 'TkAnd'),
     ('right', 'TkNot','TkUminus'),
     ('left', 'TkConcat'),
-    ('left', 'TkOBracket', 'TkCBracket'),
+    ('left','TkCBracket'),
+    ('right','TkOBracket'),
     ('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
-    ('left', 'TkOpenPar','TkClosePar'),
-    ('left', 'TkArrow')
-=======
-	('left', 'TkPlus', 'TkMinus'),
-	('left', 'TkMult', 'TkDiv','TkMod'),
-	('left', 'TkOr'),
-	('right', 'TkAnd'),
-	('right', 'TkNot','TkUminus'),
-	('left', 'TkConcat'),
-	('left', 'TkOBracket', 'TkCBracket'),
-	('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
-	('left', 'TkOpenPar','TkClosePar'),
-	('right', 'TkAsig'),
-	('left', 'TkArrow')
->>>>>>> Stashed changes
+    ('left', 'TkClosePar'),
+    ('right', 'TkOpenPar'),
+    ('left', 'TkArrow'),
+    ('right', 'TkUminus'),
+    ('right', 'TkNot'),
+    ('nonassoc', 'TkNum', 'TkId')
+
 )
 
-    #('left', 'TkRof','TkFi'),
-    #('right', 'TkAtoi','TkMin','TkMax', 'TkSize'),
-    #('right', 'TkIf','TkGuard','TkDo', 'TkFor'),
 
 class Node:
     def __init__(self,type,child=None,leaf=None):
@@ -76,256 +67,267 @@ class Node:
     def addChild(self,newChild):
         self.child = [newChild] + self.child
 
-    #Obtiene el type del nodo.
-    def getType(self):
-        return self.type
+# regla inicial de la gramatica
 
-    #Change node type.
-    def changeType(self,newType):
-        self.type = newType
+def p_start(p):
+    ''' start : block '''
+    p[0] = p[1]
 
-# Initial rule
+
 def p_block(p):
-    '''block : TkOBlock TkCBlock
-    | TkOBlock TkDeclare variable_List instruction_block TkCBlock 
-    | TkOBlock instruction_block TkCBlock '''
+    ''' block : TkOBlock sequencing TkCBlock
+    | TkOBlock TkDeclare declare_var sequencing TkCBlock '''
     
-    if (len(p) == 6 ):
-        p[0] = Node('Block', [p[3],p[4]], None)
-
-    elif(len(p) == 4):
-        p[0] = Node('Block', [p[2]], None)
+    if(len(p) == 4):
+        p[0] = p[2]
 
     else: 
-        p[0] = Node('EMPTY', None, None)
+        p[0] = Node('BLOCK', [p[3],p[4]], None)
 
-def p_variable_List(p):
-    '''variable_List : TkId TkComma variable_List   
-                      | TkId TkTwoPoints type TkComma variable_List
-                      | TkId TkTwoPoints type TkSemicolon
-                      | TkId TkTwoPoints type
-                      | type TkComma variable_List
-                      | type TkSemicolon
-                      | type  '''  
+def p_declare_var(p):
+    ''' declare_var : variables TkTwoPoints type TkSemicolon declare_var
+    | variables  TkTwoPoints type  '''
 
-    if (len(p) == 6):
-        p[0] = Node('variable_List', [p[3],p[5]], None)
-
-    elif(len(p) == 4):
-        p[0] = Node('variable_List', [p[3]], None)
-
-    elif(len(p) == 3):
-        p[0] = Node('variable_List',[p[2]], None)
+    if (len(p) == 5):
+        p[0] = Node('DECLARE_VAR', [p[1],p[3]],None)
 
     else:
-        p[0] = Node('variable_List',[p[1]], None)
+        p[0] = Node('DECLARE_VAR',[p[1],p[3]],None)
+
+def p_variables(p):
+    ''' variables : TkId TkComma variables
+    | TkId '''
+
+    if (len(p) == 2):
+        p[0] = Node('VARIABLE', None, p[1])
+    else:
+        p[0] = Node ('VARIABLE', [p[3]], p[1])
+
+# Poner los arreglos de manera explicita array
+# Complementar casos
+
+# No es trabajo del parser revisar si dicha expresion es de tipo entero
+def p_array(p):
+    ''' array : TkArray TkOBracket expression TkSoForth expression TkCBracket
+    '''
+    p[0] = Node('Array', [p[3],p[5]],None)
+
+# Regla de la gramatica para que el parser reconozca todas las operaciones de los arreglos.
+def p_op_array(p):
+    '''op_array : TkAtoi TkOpenPar TkId TkClosePar
+    | TkSize TkOpenPar TkId TkClosePar
+    | TkMin TkOpenPar TkId TkClosePar
+    | TkMax TkOpenPar TkId TkClosePar
+    | TkAtoi TkOpenPar array_exp TkClosePar
+    | TkSize TkOpenPar array_exp TkClosePar
+    | TkMin TkOpenPar array_exp TkClosePar
+    | TkMax TkOpenPar array_exp TkClosePar
+    '''
+
+    p[0] = Node('ARRAY-OPERATION',[p[3]], p[1])
+
+
+def p_array_exp(p):
+    ''' array_exp : TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1
+    | TkId TkOpenPar expression TkTwoPoints expression TkClosePar
+    | TkId TkOBracket expression TkCBracket
+    '''
+    if (len(p) == 8):
+        p[0] = Node('ARRAY-EXPRESSION', [p[3],p[5],p[7]], p[1])
+
+    elif(len(p) == 5):
+        p[0] = Node('ARRAY-EXPRESSION', [p[3]], p[1])
+
+    else:
+        p[0] = Node('ARRAY-EXPRESSION', [p[3], p[5]], p[1])
+
+def p_array_exp1(p):
+    ''' array_exp1 : TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1 
+    | TkOpenPar expression TkTwoPoints expression TkClosePar array_exp2
+    | TkOpenPar expression TkTwoPoints expression TkClosePar '''
+
+    if(len(p) == 7):
+        p[0] = Node('Array-EXPRESSION (exp:exp)', [p[2],p[4],p[6]] ,None)
+    else:
+        p[0] = Node('Array-EXPRESSION (exp:exp)', [p[2],p[4]] ,None)
+
+def p_array_exp2(p):
+    ''' array_exp2 : TkOBracket expression TkCBracket'''
+    p[0] = Node('ARRAY-EXPRESSION',[p[2]] , None)
+
+
 
 def p_type(p):
-    '''type : TkArray TkOBracket TkNum TkSoForth TkNum TkCBracket
-    | TkInt
-    | TkBool '''
+    ''' type : TkInt
+    | TkBool
+    | array
+    | TkInt TkComma type
+    | TkBool TkComma type
+    | array TkComma type '''
 
-    if (p[1] == 'array' and len(p) == 7):
-        p[0] = Node('array-range', [p[3], p[5]],None)
-
+    if(p[1] == 'bool' ):
+        p[0] = Node('TYPE-BOOL',None,None)
+    elif(isinstance(p[1],int)):
+        p[0] = Node('TYPE-INT',None,None)
     else:
-        p[0] = p[1]
+        p[0] = Node('TYPE-ARRAY',None,None)
 
-def p_instruction_block(p):
-    '''instruction_block : instructions TkSemicolon instruction_block
-    | instructions TkSemicolon
-    | instructions '''
-    if (len(p) == 2):
-        p[0] = Node('Ins_Block', [p[1]], None)
+def p_sequencing(p):
+    ''' sequencing : instruction TkSemicolon
+    | instruction TkSemicolon sequencing '''
 
-    elif(len(p)==4):
-        p[0] = Node('Sequencing', [p[1], p[3]], None)
+    if (len(p) == 3):
+        p[0] = Node('SEQUENCING', [p[1]], None)
+    else:
+        p[0] = Node('SEQUENCING', [p[1], p[3]], None)
 
-    #| iteration_do_inst
-def p_instructions(p):
-    '''instructions : assign_inst
+def p_instruction(p):
+    '''instruction : assign_inst
     | input_inst
     | output_inst
-    | if_guard_inst
+    | if_inst
     | iteration_for_inst
     | iteration_mult_guard_inst
     | block '''
-    
-    p[0] = Node('instructions',[p[1]], None) 
 
-def p_assign_inst(p):
-<<<<<<< Updated upstream
-    '''assign_inst : TkId TkAsig expression'''
-    if (len(p) == 4):
-        p[0] = Node('Asig', [p[3]], p[1])
-=======
-	'''assign_inst : TkId TkAsig expression'''
-	if (len(p) == 4):
-		p[0] = Node('Asig', [p[1],p[3]],None)
->>>>>>> Stashed changes
-
-def p_array_exp(p):
-    '''array_exp : TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp 
-    | TkOpenPar expression TkTwoPoints expression TkClosePar array_exp
-    | TkId TkOBracket expression TkCBracket
-    | TkId TkConcat literal
-    | array_exp TkConcat literal
-    | TkOBracket expression TkCBracket
-    | TkAtoi TkOpenPar TkId TkClosePar
-    | TkSize TkOpenPar TkId TkClosePar
-    | TkMax TkOpenPar TkId TkClosePar
-    | TkMin TkOpenPar TkId TkClosePar
-    '''
-    
-    if(len(p) == 8):
-        if (p[2] == '('):
-            p[0] = Node('array_exp', [p[1],p[3],p[5],p[7]], None)
-        elif(p[1] == '('):
-            p[0] = Node('array_exp', [p[2],p[4],p[6]], None)
-    
-    if (len(p) == 5):
-        p[0] = Node('array_exp', [p[1],p[3]], None)
-
-    elif(len(p) == 4):
-        if (p[1] == '[' and p[3] == ']'):
-            Node('array_exp', [p[2]], None)
-        elif(p[2] == '||'):
-            p[0] = Node('Concat', [p[1],p[3]], None)
-    elif(len(p) == 2):
-        p[0] == Node('array_exp',[p[1]], None)
-
-def p_array_exp1(p):
-    ''' array_exp1 : TkOpenPar array_exp TkClosePar '''
-    p[0] = Node('array_exp1',[p[2]], None)
+    p[0] = Node('INSTRUCTION',[p[1]],None)
 
 def p_expression(p):
-    '''expression : TkOpenPar binop TkClosePar
-    | TkOpenPar TkUminus expression TkClosePar
-    | TkOpenPar TkNot expression TkClosePar
-    | TkOpenPar literal TkClosePar
-    | TkUminus expression
-    | TkNot expression
-    | literal
-    | binop  '''       
-
-    if(len(p) == 6):
-        p[0] = Node('Expression', [p[2],p[4]], p[3])
-    
-    elif(len(p) == 5):
-        p[0] = Node('Expression', [p[3]], p[2])
-    
-    elif(len(p) == 4):
-        if (p[1] == '(' and p[3] == ')'):
-            p[0] = Node('Expression', None, [p[2]])
-        else:
-            p[0] = Node('Expression',[p[1],p[3]],p[2])
-
-    elif(len(p) == 3):
-        p[0] = Node('Expression', [p[2]],None)
-
-    else:
-        p[0] = Node('Expression',None, p[1])
-
-def p_binop(p):
-    '''binop : expression TkPlus expression
-    | expression TkMinus expression
-    | expression TkMult expression
-    | expression TkDiv expression
-    | expression TkMod expression
-    | expression TkLeq expression
-    | expression TkGeq expression
-    | expression TkLess expression
-    | expression TkGreater expression
-    | expression TkNEqual expression
-    | expression TkEqual expression            
-    | expression TkOr expression
-    | expression TkAnd expression
+    '''expression : TkOpenPar expression TkClosePar
     | expression TkConcat expression
-    '''
-    if (len(p) == 4):
-        if (p[2] == '+'):
-            p[0] = Node('+', None, [p[1],p[2]])
-        elif (p[2] == '-'):
-            p[0] = Node('-', None, [p[1],p[2]])
-        elif (p[2] == '*'):
-            p[0] = Node('*', None, [p[1],p[2]])
-        elif (p[2] == '/'):
-            p[0] = Node('/', None, [p[1],p[2]])
-        elif (p[2] == '%'):
-            p[0] = Node('%', None, [p[1],p[2]])
-        elif (p[2] == '<='):
-            p[0] = Node('<=', None, [p[1],p[2]])
-        elif (p[2] == '>='):
-            p[0] = Node('>=', None, [p[1],p[2]])
-        elif (p[2] == '<'):
-            p[0] = Node('<', None, [p[1],p[2]])
-        elif (p[2] == '>'):
-            p[0] = Node('>', None, [p[1],p[2]])
-        elif (p[2] == '!='):
-            p[0] = Node('!=', None, [p[1],p[2]])
-        elif (p[2] == '=='):
-            p[0] = Node('==', None, [p[1],p[2]])
-        elif (p[2] == '\\\/'):
-            p[0] = Node('Or', None, [p[1],p[2]])
-        elif (p[2] == '\/\\'):
-            p[0] = Node('And', None, [p[1],p[2]])  
-        elif (p[2] == '||'):
-            p[0] = Node('Concat', None, [p[1],p[2]])
-
-def p_literal(p):
-    '''literal : array_exp
-    | TkId
+    | expression TkPlus expression 
+    | expression TkMinus expression 
+    | expression TkMult expression 
+    | expression TkDiv expression 
+    | expression TkMod expression 
+    | expression TkAnd expression
+    | expression TkOr expression 
+    | expression TkLess expression
+    | expression TkLeq expression 
+    | expression TkGreater expression 
+    | expression TkGeq expression 
+    | expression TkEqual expression 
+    | expression TkNEqual expression
+    | TkMinus expression %prec TkUminus 
+    | TkNot expression
+    | op_array expression
+    | array_exp   
+    | TkId  
     | TkNum
+    | TkTrue 
     | TkFalse
-    | TkTrue
-    | TkString      
-    | array_exp1 '''
-    p[0] = Node('literal', None, p[1])
+    | TkString
+    '''
+   # CREO QUE NUESTROS STRINGS SON SOLO CON COMILLAS DOBLES , QUITAR EL CASO DE COMILLAS SIMPLES
+    if(len(p) == 2):
+        strings = re.compile('[\'][a-zA-Z_][\']|["][a-zA-Z_]["]')
+        idTk = re.compile('[a-zA-Z][a-zA-Z0-9_]*')
+        if(p[1] == 'true'):
+            p[0] = Node('TRUE-LITERAL', None, p[1])
+        elif(p[1] == 'false'):
+            p[0] = Node('FALSE-LITERAL', None, p[1])
+        elif(isinstance(p[1],int)):
+            p[0] = Node('TKNUM-LITERAL', None, p[1])
+        elif isinstance(p[1],Node):
+            p[0] = Node('ARRAY-EXPRESSION', None, p[1])
+        elif(idTk.match(p[1])):
+            p[0] = Node('ID-LITERAL',None, p[1])
+        elif strings.match(p[1]):
+            p[0] = Node('STRING-LITERAL',None, p[1])
+        else:
+            p[0] = Node('ARRAY-EXPRESSION',[p[1]], None)
+
+    elif(len(p) == 4):
+        if(p[1] == '('):
+            p[0] = Node('(EXPRESION)',[p[2]],None)
+        else:
+            if(p[2] == '||'):
+                p[0] = Node('CONCAT-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '+'):
+                p[0] = Node('SUM-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '-'):
+                p[0] = Node('SUBSTRACT-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '*'):
+                p[0] = Node('MULT-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '/'):
+                p[0] = Node('DIV-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '%'):
+                p[0] = Node('MOD-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '/\\'):
+                p[0] = Node('AND-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '\/'):
+                p[0] = Node('OR-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '<'):
+                p[0] = Node('LESS-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '<='):
+                p[0] = Node('LEQ-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '>'):
+                p[0] = Node('GREATER-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '>='):
+                p[0] = Node('GEQ-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '=='):
+                p[0] = Node('EQUAL-EXPRESSION',[p[1],p[3]],p[2])
+            elif(p[2] == '!='):
+                p[0] = Node('NEQUAL-EXPRESSION',[p[1],p[3]],p[2])
+    else:
+        if (p[1] == '-'):
+            p[0]=Node("UNARY_MINUS-EXPRESSION",  [p[2]], p[1])
+        elif(p[1] == '!'):
+            p[0]=Node("NOT-EXPRESSION",  [p[2]], p[1])
+        else:
+            p[0]=Node("ARRAY-OP-EXPRESSION",  [p[2]], p[1])
+
+def p_assign_inst(p):
+    ''' assign_inst : TkId TkAsig expression '''
+
+    p[0] = Node('ASSIGN', [p[3]], p[1])
 
 def p_input_inst(p):
     ''' input_inst : TkRead TkId '''
-    p[0] = Node('Input', [p[2]],p[1])
+    p[0] = Node('INPUT', [p[2]],p[1])
 
 def p_output_inst(p):
     '''output_inst : TkPrint expression
     | TkPrintln expression '''
-    p[0] = Node('output_inst',[p[2]],p[1])
+    p[0] = Node('OUTPUT',[p[2]],p[1])
 
-def p_if_guard_inst(p):
-    '''if_guard_inst : TkIf expression TkArrow instructions TkFi 
-    | TkIf expression TkArrow instructions guards
+def p_if_inst(p):
+    '''if_inst : TkIf expression TkArrow sequencing TkFi 
+    | TkIf expression TkArrow sequencing guards_inst TkFi
     '''
     if (len(p) == 6 and (p[5] == 'Fi')):
-        p[0] = Node('If', [p[2],p[4]],None)
+        p[0] = Node('IF', [p[2],p[4]],None)
     else:
-        p[0] = Node('If',[p[2],p[4],p[5]], None)
-def p_guards(p):
-    '''guards : TkGuard expression TkArrow instructions TkFi
-    | TkGuard expression TkArrow instructions guards '''
-    if (len(p) == 6 and (p[5] == 'Fi')):
-        p[0] = Node('Guard',[p[2],p[4]], None)
+        p[0] = Node('IF',[p[2],p[4],p[5]], None)
+
+def p_guards_inst(p):
+    '''guards_inst : TkGuard expression TkArrow sequencing
+    | TkGuard expression TkArrow sequencing guards_inst '''
+    if (len(p) == 5):
+        p[0] = Node('GUARD',[p[2],p[4]], None)
     else:
-        p[0] = Node('Guard',[p[2],p[4],p[5]], None)
+        p[0] = Node('GUARD',[p[2],p[4],p[5]], None)
 
 def p_iteration_for_inst(p):
     ''' iteration_for_inst : TkFor TkId TkIn expression TkTo expression TkArrow block TkRof
     '''
-    p[0] = Node('iteration_for_inst', [p[4],p[6],p[8]], None)
+    p[0] = Node('FOR', [p[4],p[6],p[8]], None)
 
 def p_iteration_mult_guard_inst(p):
-    '''iteration_mult_guard_inst : TkDo expression TkArrow instructions guards TkOd
-    | TkDo expression TkArrow instructions TkOd '''
+    '''iteration_mult_guard_inst : TkDo expression TkArrow sequencing TkOd
+    | TkDo expression TkArrow sequencing guards_inst TkOd '''
     if(len(p) == 7):
-        p[0] = Node('Do',[p[2],p[4],p[5]] , None)
+        p[0] = Node('DO',[p[2],p[4],p[5]] , None)
     else:
-        p[0] = Node('Do',[p[2],p[4]] , None)
+        p[0] = Node('DO',[p[2],p[4]] , None)
 
-#Regla de los errores sintacticos
+
 def p_error(p):
     global parserErrorFound
     parserErrorFound = True
     print('Error Token= ' + str(p))
-    exit()
+    #print('Error de sintaxis en la linea: ' + str(p.lineno) + ', columna: '+str(obtenerColumna(p.lexer.lexdata,p))+', token inesperado: ' + str(p.type))
+    #exit()
 
 # Funcion que recorre el arbol y lo imprime. 
 def printTree(nodo, tabs):
@@ -342,13 +344,16 @@ def main():
         return -1
         
     # Construyendo el parser
+    #parser = yacc.yacc(errorlog = yacc.NullLogger())
     parser = yacc.yacc(debug=True)  
     # Se abre el archivo con permisos de lectura
     string = str(open(str(sys.argv[1]),'r').read())
     log = logging.getLogger()
     result = parser.parse(string,lex,debug=log)
     
+    
     #Si no hay errores, imprime el arbol.
+    #if (not lexerErrorFound) and (not parserErrorFound):
     if (not parserErrorFound):
         printTree(result, 0)
 

@@ -124,22 +124,37 @@ def p_op_array(p):
     | TkMax TkOpenPar array_exp TkClosePar
     '''
 
-    p[0] = Node('op_array',[p[3]], p[1])
+    p[0] = Node('ARRAY-OPERATION',[p[3]], p[1])
 
 
 def p_array_exp(p):
-    ''' array_exp : array_exp TkOpenPar expression TkTwoPoints expression TkClosePar
+    ''' array_exp : TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1
     | TkId TkOpenPar expression TkTwoPoints expression TkClosePar
     | TkId TkOBracket expression TkCBracket
     '''
-    if (len(p) == 7):
-        idTk = re.compile('[a-zA-Z][a-zA-Z0-9_]*')
-        if (idTk.match(p[1])):
-            p[0] = Node('ARRAY-EXPRESSION', [p[3],p[5]], p[1])
-        else:
-            p[0] = Node('ARRAY-EXPRESSION', [p[1],p[3],p[5]], None)
-    else:
+    if (len(p) == 8):
+        p[0] = Node('ARRAY-EXPRESSION', [p[3],p[5],p[7]], p[1])
+
+    elif(len(p) == 5):
         p[0] = Node('ARRAY-EXPRESSION', [p[3]], p[1])
+
+    else:
+        p[0] = Node('ARRAY-EXPRESSION', [p[3], p[5]], p[1])
+
+def p_array_exp1(p):
+    ''' array_exp1 : TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1 
+    | TkOpenPar expression TkTwoPoints expression TkClosePar array_exp2
+    | TkOpenPar expression TkTwoPoints expression TkClosePar '''
+
+    if(len(p) == 7):
+        p[0] = Node('Array-EXPRESSION (exp:exp)', [p[2],p[4],p[6]] ,None)
+    else:
+        p[0] = Node('Array-EXPRESSION (exp:exp)', [p[2],p[4]] ,None)
+
+def p_array_exp2(p):
+    ''' array_exp2 : TkOBracket expression TkCBracket'''
+    p[0] = Node('ARRAY-EXPRESSION',[p[2]] , None)
+
 
 
 def p_type(p):
@@ -195,15 +210,15 @@ def p_expression(p):
     | expression TkNEqual expression
     | TkMinus expression %prec TkUminus 
     | TkNot expression
-    | op_array expression  
+    | op_array expression
+    | array_exp   
     | TkId  
     | TkNum
     | TkTrue 
     | TkFalse
     | TkString
-    | array_exp 
     '''
-
+   # CREO QUE NUESTROS STRINGS SON SOLO CON COMILLAS DOBLES , QUITAR EL CASO DE COMILLAS SIMPLES
     if(len(p) == 2):
         strings = re.compile('[\'][a-zA-Z_][\']|["][a-zA-Z_]["]')
         idTk = re.compile('[a-zA-Z][a-zA-Z0-9_]*')
@@ -214,7 +229,7 @@ def p_expression(p):
         elif(isinstance(p[1],int)):
             p[0] = Node('TKNUM-LITERAL', None, p[1])
         elif isinstance(p[1],Node):
-            p[0] = Node('ARRAY-LITERAL')
+            p[0] = Node('ARRAY-EXPRESSION', None, p[1])
         elif(idTk.match(p[1])):
             p[0] = Node('ID-LITERAL',None, p[1])
         elif strings.match(p[1]):
@@ -263,15 +278,9 @@ def p_expression(p):
             p[0]=Node("ARRAY-OP-EXPRESSION",  [p[2]], p[1])
 
 def p_assign_inst(p):
-    ''' assign_inst : TkId TkAsig assign_array
-    | TkId TkAsig expression '''
+    ''' assign_inst : TkId TkAsig expression '''
+
     p[0] = Node('ASSIGN', [p[3]], p[1])
-
-def p_assign_array(p):
-    ''' assign_array : assign_array TkComma assign_array 
-    | expression TkComma expression '''
-
-    p[0] = Node('ARRAY-ASSIGNATION',[p[1], p[3]],None)
 
 def p_input_inst(p):
     ''' input_inst : TkRead TkId '''
