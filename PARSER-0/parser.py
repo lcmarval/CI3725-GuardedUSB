@@ -286,8 +286,8 @@ def p_output_inst(p):
     p[0] = Node('OUTPUT',[p[2]],p[1])
 
 def p_if_inst(p):
-    '''if_inst : TkIf expression TkArrow block TkFi 
-    | TkIf expression TkArrow block guards_inst
+    '''if_inst : TkIf expression TkArrow sequencing TkFi 
+    | TkIf expression TkArrow sequencing guards_inst TkFi
     '''
     if (len(p) == 6 and (p[5] == 'Fi')):
         p[0] = Node('IF', [p[2],p[4]],None)
@@ -295,8 +295,8 @@ def p_if_inst(p):
         p[0] = Node('IF',[p[2],p[4],p[5]], None)
 
 def p_guards_inst(p):
-    '''guards_inst : TkGuard expression TkArrow block
-    | TkGuard expression TkArrow block guards_inst '''
+    '''guards_inst : TkGuard expression TkArrow sequencing
+    | TkGuard expression TkArrow sequencing guards_inst '''
     if (len(p) == 5):
         p[0] = Node('GUARD',[p[2],p[4]], None)
     else:
@@ -308,8 +308,8 @@ def p_iteration_for_inst(p):
     p[0] = Node('FOR', [p[4],p[6],p[8]], None)
 
 def p_iteration_mult_guard_inst(p):
-    '''iteration_mult_guard_inst : TkDo expression TkArrow block TkOd
-    | TkDo expression TkArrow block guards_inst TkOd '''
+    '''iteration_mult_guard_inst : TkDo expression TkArrow sequencing TkOd
+    | TkDo expression TkArrow sequencing guards_inst TkOd '''
     if(len(p) == 7):
         p[0] = Node('DO',[p[2],p[4],p[5]] , None)
     else:
