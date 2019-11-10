@@ -45,9 +45,7 @@ precedence = (
     ('left', 'TkClosePar'),
     ('right', 'TkOpenPar'),
     ('left', 'TkArrow'),
-    ('right', 'TkUminus'),
-    ('right', 'TkNot'),
-    ('nonassoc', 'TkNum', 'TkId')
+    ('nonassoc', 'TkNum', 'TkId','TkRof')
 
 )
 
@@ -211,16 +209,16 @@ def p_expression(p):
     | TkMinus expression %prec TkUminus 
     | TkNot expression
     | op_array expression
-    | array_exp   
+    | array_exp
+    | TkString   
     | TkId  
     | TkNum
     | TkTrue 
     | TkFalse
-    | TkString
     '''
    # CREO QUE NUESTROS STRINGS SON SOLO CON COMILLAS DOBLES , QUITAR EL CASO DE COMILLAS SIMPLES
     if(len(p) == 2):
-        strings = re.compile('[\'][a-zA-Z_][\']|["][a-zA-Z_]["]')
+        strings = re.compile('["][\?\¡\!\¿\s0-9a-zA-Z_-]*["]')
         idTk = re.compile('[a-zA-Z][a-zA-Z0-9_]*')
         if(p[1] == 'true'):
             p[0] = Node('TRUE-LITERAL', None, p[1])
@@ -230,7 +228,7 @@ def p_expression(p):
             p[0] = Node('TKNUM-LITERAL', None, p[1])
         elif isinstance(p[1],Node):
             p[0] = Node('ARRAY-EXPRESSION', None, p[1])
-        elif(idTk.match(p[1])):
+        elif(idTk.match(p[1]), str):
             p[0] = Node('ID-LITERAL',None, p[1])
         elif strings.match(p[1]):
             p[0] = Node('STRING-LITERAL',None, p[1])
