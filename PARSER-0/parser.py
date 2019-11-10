@@ -39,10 +39,16 @@ precedence = (
     ('right', 'TkAnd'),
     ('right', 'TkNot','TkUminus'),
     ('left', 'TkConcat'),
-    ('left', 'TkOBracket', 'TkCBracket'),
+    ('left','TkCBracket'),
+    ('right','TkOBracket'),
     ('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
-    ('left', 'TkOpenPar','TkClosePar'),
-    ('left', 'TkArrow')
+    ('left', 'TkClosePar'),
+    ('right', 'TkOpenPar'),
+    ('left', 'TkArrow'),
+    ('right', 'TkUminus'),
+    ('right', 'TkNot'),
+    ('nonassoc', 'TkNum', 'TkId')
+
 )
 
     #('left', 'TkRof','TkFi'),

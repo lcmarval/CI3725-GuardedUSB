@@ -4,7 +4,7 @@
 	a,b,c : int
   	g := 3+2 ;
   	b := 3+2+1 ;
-  	c := 7 ;
+  	read a ;
   	println "casa";
   	print "qloq" || "bruja";
 ]|
