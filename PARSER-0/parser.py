@@ -208,7 +208,7 @@ def p_expression(p):
     | expression TkNEqual expression
     | TkMinus expression %prec TkUminus 
     | TkNot expression
-    | op_array expression
+    | op_array
     | array_exp
     | TkString   
     | TkId  
