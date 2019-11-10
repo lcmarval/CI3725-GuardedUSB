@@ -1,4 +1,7 @@
 |[
   declare
     a, b, c : int
+  a := 5;
+  b := 6;
+  c := 7
 ]|

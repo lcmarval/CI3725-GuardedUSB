@@ -31,6 +31,8 @@ parserErrorFound=False
 
 # Operators precedence
 precedence = (
+    ('right', 'TkIf'),
+    ('left', 'TkAsig'),
     ('left', 'TkPlus', 'TkMinus'),
     ('left', 'TkMult', 'TkDiv','TkMod'),
     ('left', 'TkOr'),
@@ -80,8 +82,8 @@ def p_block(p):
         p[0] = Node('BLOCK', [p[3],p[4]], None)
 
 def p_declare_var(p):
-    ''' declare_var : variables  TkTwoPoints type
-    | variables TkTwoPoints type TkSemicolon  '''
+    ''' declare_var : variables TkTwoPoints type TkSemicolon declare_var
+    | variables  TkTwoPoints type  '''
 
     if (len(p) == 5):
         p[0] = Node('DECLARE_VAR', [p[1],p[3]],None)
