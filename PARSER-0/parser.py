@@ -29,7 +29,7 @@ logging.basicConfig(
 
 parserErrorFound=False
 
-# Operators precedence
+
 precedence = (
     ('right', 'TkIf'),
     ('left', 'TkAsig'),
@@ -51,9 +51,6 @@ precedence = (
 
 )
 
-    #('left', 'TkRof','TkFi'),
-    #('right', 'TkAtoi','TkMin','TkMax', 'TkSize'),
-    #('right', 'TkIf','TkGuard','TkDo', 'TkFor'),
 
 class Node:
     def __init__(self,type,child=None,leaf=None):
@@ -70,13 +67,13 @@ class Node:
     def addChild(self,newChild):
         self.child = [newChild] + self.child
 
-# Initial rule
+# regla inicial de la gramatica
 
 def p_start(p):
     ''' start : block '''
     p[0] = p[1]
 
-# Puede haber declare, pero el instructionsBlock es obligatorio, a menos que el programa sea vacio (Enunciado)
+
 def p_block(p):
     ''' block : TkOBlock sequencing TkCBlock
     | TkOBlock TkDeclare declare_var sequencing TkCBlock '''
@@ -196,7 +193,7 @@ def p_expression(p):
     | expression TkGeq expression 
     | expression TkEqual expression 
     | expression TkNEqual expression
-    | TkUminus expression 
+    | TkMinus expression %prec TkUminus 
     | TkNot expression
     | op_array expression  
     | TkId  
@@ -274,7 +271,7 @@ def p_assign_array(p):
     ''' assign_array : assign_array TkComma assign_array 
     | expression TkComma expression '''
 
-    p[0] = Node('INIT-ARRAY',[p[1], p[3]],None)
+    p[0] = Node('ARRAY-ASSIGNATION',[p[1], p[3]],None)
 
 def p_input_inst(p):
     ''' input_inst : TkRead TkId '''

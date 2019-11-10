@@ -29,7 +29,7 @@ logging.basicConfig(
 
 parserErrorFound=False
 
-# Operators precedence
+
 precedence = (
     ('right', 'TkIf'),
     ('left', 'TkAsig'),
@@ -39,15 +39,18 @@ precedence = (
     ('right', 'TkAnd'),
     ('right', 'TkNot','TkUminus'),
     ('left', 'TkConcat'),
-    ('left', 'TkOBracket', 'TkCBracket'),
+    ('left','TkCBracket'),
+    ('right','TkOBracket'),
     ('nonassoc', 'TkLeq', 'TkGeq','TkEqual','TkNEqual','TkLess','TkGreater'),
-    ('left', 'TkOpenPar','TkClosePar'),
-    ('left', 'TkArrow')
+    ('left', 'TkClosePar'),
+    ('right', 'TkOpenPar'),
+    ('left', 'TkArrow'),
+    ('right', 'TkUminus'),
+    ('right', 'TkNot'),
+    ('nonassoc', 'TkNum', 'TkId')
+
 )
 
-    #('left', 'TkRof','TkFi'),
-    #('right', 'TkAtoi','TkMin','TkMax', 'TkSize'),
-    #('right', 'TkIf','TkGuard','TkDo', 'TkFor'),
 
 class Node:
     def __init__(self,type,child=None,leaf=None):
@@ -64,13 +67,13 @@ class Node:
     def addChild(self,newChild):
         self.child = [newChild] + self.child
 
-# Initial rule
+# regla inicial de la gramatica
 
 def p_start(p):
     ''' start : block '''
     p[0] = p[1]
 
-# Puede haber declare, pero el instructionsBlock es obligatorio, a menos que el programa sea vacio (Enunciado)
+
 def p_block(p):
     ''' block : TkOBlock sequencing TkCBlock
     | TkOBlock TkDeclare declare_var sequencing TkCBlock '''
@@ -190,7 +193,7 @@ def p_expression(p):
     | expression TkGeq expression 
     | expression TkEqual expression 
     | expression TkNEqual expression
-    | TkUminus expression 
+    | TkMinus expression %prec TkUminus 
     | TkNot expression
     | op_array expression  
     | TkId  
@@ -268,7 +271,7 @@ def p_assign_array(p):
     ''' assign_array : assign_array TkComma assign_array 
     | expression TkComma expression '''
 
-    p[0] = Node('INIT-ARRAY',[p[1], p[3]],None)
+    p[0] = Node('ARRAY-ASSIGNATION',[p[1], p[3]],None)
 
 def p_input_inst(p):
     ''' input_inst : TkRead TkId '''
@@ -280,8 +283,8 @@ def p_output_inst(p):
     p[0] = Node('OUTPUT',[p[2]],p[1])
 
 def p_if_inst(p):
-    '''if_inst : TkIf expression TkArrow block TkFi 
-    | TkIf expression TkArrow block guards_inst
+    '''if_inst : TkIf expression TkArrow sequencing TkFi 
+    | TkIf expression TkArrow sequencing guards_inst TkFi
     '''
     if (len(p) == 6 and (p[5] == 'Fi')):
         p[0] = Node('IF', [p[2],p[4]],None)
@@ -289,8 +292,8 @@ def p_if_inst(p):
         p[0] = Node('IF',[p[2],p[4],p[5]], None)
 
 def p_guards_inst(p):
-    '''guards_inst : TkGuard expression TkArrow block
-    | TkGuard expression TkArrow block guards_inst '''
+    '''guards_inst : TkGuard expression TkArrow sequencing
+    | TkGuard expression TkArrow sequencing guards_inst '''
     if (len(p) == 5):
         p[0] = Node('GUARD',[p[2],p[4]], None)
     else:
@@ -302,8 +305,8 @@ def p_iteration_for_inst(p):
     p[0] = Node('FOR', [p[4],p[6],p[8]], None)
 
 def p_iteration_mult_guard_inst(p):
-    '''iteration_mult_guard_inst : TkDo expression TkArrow block TkOd
-    | TkDo expression TkArrow block guards_inst TkOd '''
+    '''iteration_mult_guard_inst : TkDo expression TkArrow sequencing TkOd
+    | TkDo expression TkArrow sequencing guards_inst TkOd '''
     if(len(p) == 7):
         p[0] = Node('DO',[p[2],p[4],p[5]] , None)
     else:
