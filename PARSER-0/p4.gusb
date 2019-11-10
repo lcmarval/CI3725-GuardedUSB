@@ -5,6 +5,6 @@
 		|[
 			read value;
 			println "Value: " || value ;
-		]|
+		]|;
 	rof;
 ]|
