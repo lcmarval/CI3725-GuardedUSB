@@ -216,7 +216,7 @@ def p_expression(p):
     | TkTrue 
     | TkFalse
     '''
-   # CREO QUE NUESTROS STRINGS SON SOLO CON COMILLAS DOBLES , QUITAR EL CASO DE COMILLAS SIMPLES
+   
     if(len(p) == 2):
         strings = re.compile('["][\?\¡\!\¿\s0-9a-zA-Z_-]*["]')
         idTk = re.compile('[a-zA-Z][a-zA-Z0-9_]*')
@@ -276,9 +276,22 @@ def p_expression(p):
             p[0]=Node("ARRAY-OP-EXPRESSION",  [p[2]], p[1])
 
 def p_assign_inst(p):
-    ''' assign_inst : TkId TkAsig expression '''
+    ''' assign_inst : TkId TkAsig expression assign1
+    | TkId TkAsig expression '''
 
-    p[0] = Node('ASSIGN', [p[3]], p[1])
+    if(len(p) == 4):
+        p[0] = Node('ASSIGN', [p[3]], p[1])
+    else:
+        p[0] = Node('ARRAY-ASSIGN', [p[3], p[4]], p[1])
+
+def p_assign1(p):
+    ''' assign1 : TkComma expression assign1
+    | TkComma expression '''
+
+    if(len(p) == 4):
+        p[0] = Node('ARRAY-ASSIGN-EXPANDING', [p[2],p[3]], None)
+    else:
+        p[0] = Node('ARRAY-ASSIGN-EXPANDING', [p[2]], None)
 
 def p_input_inst(p):
     ''' input_inst : TkRead TkId '''
