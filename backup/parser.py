@@ -127,6 +127,7 @@ def p_op_array(p):
 
 def p_array_exp(p):
     ''' array_exp : TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1
+    | TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOBracket expression TkCBracket
     | TkId TkOpenPar expression TkTwoPoints expression TkClosePar
     | TkId TkOBracket expression TkCBracket
     '''
@@ -136,12 +137,16 @@ def p_array_exp(p):
     elif(len(p) == 5):
         p[0] = Node('ARRAY-EXPRESSION', [p[3]], p[1])
 
-    else:
+    elif(len(p) == 7):
         p[0] = Node('ARRAY-EXPRESSION', [p[3], p[5]], p[1])
+    
+    else:
+        p[0] = Node('ARRAY-EXPRESSION', [p[3], p[5],p[8]], p[1])
+
 
 def p_array_exp1(p):
-    ''' array_exp1 : TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1 
-    | TkOpenPar expression TkTwoPoints expression TkClosePar array_exp2
+    ''' array_exp1 : TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1
+    | TkOpenPar expression TkTwoPoints expression TkClosePar array_exp2 
     | TkOpenPar expression TkTwoPoints expression TkClosePar '''
 
     if(len(p) == 7):
@@ -163,12 +168,13 @@ def p_type(p):
     | TkBool TkComma type
     | array TkComma type '''
 
-    if(p[1] == 'bool' ):
-        p[0] = Node('TYPE-BOOL',None,None)
-    elif(isinstance(p[1],int)):
-        p[0] = Node('TYPE-INT',None,None)
-    else:
-        p[0] = Node('TYPE-ARRAY',None,None)
+# Para la tercera etapa ?
+    #if(p[1] == 'bool' ):
+    #    p[0] = Node('TYPE-BOOL',None,None)
+    #elif(isinstance(p[1],int)):
+    #    p[0] = Node('TYPE-INT',None,None)
+    #else:
+    #    p[0] = Node('TYPE-ARRAY',None,None)
 
 def p_sequencing(p):
     ''' sequencing : instruction TkSemicolon
@@ -218,20 +224,22 @@ def p_expression(p):
     '''
    
     if(len(p) == 2):
-        strings = re.compile('["][\?\¡\!\¿\s0-9a-zA-Z_-]*["]')
+        # ["][\|\\\]\#\%\&\(\)\*\=\¬\/\$\?\¡\!\¿\.\{\}\[\ñ\á\é\í\ó\ú\Á\É\Í\Ó\Ú\{\}\^\,\:\;\~\°\_\-\sa-zA-Z0-9]*["]
+        # ["][\?\¡\!\¿\s0-9a-zA-Z_-]*["]
+        strings = re.compile(r'["][\"\|\\\]\#\%\&\(\)\*\=\¬\/\$\?\¡\!\¿\.\{\}\[\ñ\á\é\í\ó\ú\Á\É\Í\Ó\Ú\{\}\^\,\:\;\~\°\_\-\sa-zA-Z0-9]*["]')
         idTk = re.compile('[a-zA-Z][a-zA-Z0-9_]*')
         if(p[1] == 'true'):
             p[0] = Node('TRUE-LITERAL', None, p[1])
         elif(p[1] == 'false'):
             p[0] = Node('FALSE-LITERAL', None, p[1])
         elif(isinstance(p[1],int)):
-            p[0] = Node('TKNUM-LITERAL', None, p[1])
+            p[0] = Node('TKNUM-LITERAL '+ str(p[1]), None, p[1])
         elif isinstance(p[1],Node):
             p[0] = Node('ARRAY-EXPRESSION', None, p[1])
         elif(idTk.match(p[1]), str):
-            p[0] = Node('ID-LITERAL',None, p[1])
+            p[0] = Node('ID-LITERAL ' + p[1],None, p[1])
         elif strings.match(p[1]):
-            p[0] = Node('STRING-LITERAL',None, p[1])
+            p[0] = Node('STRING-LITERAL ' + p[1],None, p[1])
         else:
             p[0] = Node('ARRAY-EXPRESSION',[p[1]], None)
 
@@ -300,7 +308,10 @@ def p_input_inst(p):
 def p_output_inst(p):
     '''output_inst : TkPrint expression
     | TkPrintln expression '''
-    p[0] = Node('OUTPUT',[p[2]],p[1])
+    if (p[1] == 'print'):
+        p[0] = Node('Print',[p[2]],p[1])
+    elif (p[1] == 'println'):
+        p[0] = Node('Println',[p[2]],p[1])
 
 def p_if_inst(p):
     '''if_inst : TkIf expression TkArrow sequencing TkFi 
