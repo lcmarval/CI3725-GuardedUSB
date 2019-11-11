@@ -1,0 +1,3 @@
+ |[
+    a := "Variable \"i\" es igual a: " || i;
+  ]|

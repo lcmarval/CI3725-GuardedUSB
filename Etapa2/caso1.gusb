@@ -1,0 +1,6 @@
+|[
+  declare
+    a, b, i : int;
+	z, y : array[2..5]
+	f := A(2:4)[6];
+]|
