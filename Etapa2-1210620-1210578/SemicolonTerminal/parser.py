@@ -6,6 +6,8 @@
 #   - Septiembre-Diciembre 2019
 #   - CI-3725
 #   - Funcion: Parser del lenguaje GuardedUSB
+#
+# Esta version toma dentro de las instrucciones al semicolon como terminal dentro de la secuenciacion
 #   
 #    - Autores:
 #       -Luis  Marval  12-10620
