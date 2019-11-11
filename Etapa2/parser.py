@@ -66,12 +66,12 @@ class Node:
         self.child = [newChild] + self.child
 
 # regla inicial de la gramatica
-
 def p_start(p):
     ''' start : block '''
     p[0] = p[1]
 
-
+# estructura general del programa donde el declare es opcional y es necesario que exista una instruccion, la cual se maneja 
+# dentro de la secuencia
 def p_block(p):
     ''' block : TkOBlock sequencing TkCBlock
     | TkOBlock TkDeclare declare_var sequencing TkCBlock '''
@@ -101,8 +101,7 @@ def p_variables(p):
     else:
         p[0] = Node ('VARIABLE', [p[3]], p[1])
 
-# Poner los arreglos de manera explicita array
-# Complementar casos
+
 
 # No es trabajo del parser revisar si dicha expresion es de tipo entero
 def p_array(p):
@@ -124,7 +123,8 @@ def p_op_array(p):
 
     p[0] = Node('ARRAY-OPERATION',[p[3]], p[1])
 
-
+# array_exp se encarga del caso terminal de A[exp], A(exp:exp), A(exp:exp1)[1] y si no pertenece a
+# alguno de estos casos los envia al caso array_exp1
 def p_array_exp(p):
     ''' array_exp : TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1
     | TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOBracket expression TkCBracket
@@ -143,7 +143,9 @@ def p_array_exp(p):
     else:
         p[0] = Node('ARRAY-EXPRESSION', [p[3], p[5],p[8]], p[1])
 
-
+# este caso de array_exp se encarga de agregar de manera recursiva (exp:exp1) en caso de ser necesario.
+# tambien se encarga de terminar la expresion si ya llego a la candidad de modificaciones deseadas al arreglo
+# en caso de necesitar realizar una consulta se va al caso de array_exp2
 def p_array_exp1(p):
     ''' array_exp1 : TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1
     | TkOpenPar expression TkTwoPoints expression TkClosePar array_exp2 
@@ -154,12 +156,13 @@ def p_array_exp1(p):
     else:
         p[0] = Node('Array-EXPRESSION (exp:exp)', [p[2],p[4]] ,None)
 
+# array_exp2 se encarga de agregar el terminal de realizar consultas sobre una expresion de arreglos
 def p_array_exp2(p):
     ''' array_exp2 : TkOBracket expression TkCBracket'''
     p[0] = Node('ARRAY-EXPRESSION',[p[2]] , None)
 
 
-
+# Verifica que la estructura de la definicion de tipos sea acorde a la del lenguaje definido
 def p_type(p):
     ''' type : TkInt
     | TkBool
@@ -168,14 +171,14 @@ def p_type(p):
     | TkBool TkComma type
     | array TkComma type '''
 
-# Para la tercera etapa ?
-    #if(p[1] == 'bool' ):
-    #    p[0] = Node('TYPE-BOOL',None,None)
-    #elif(isinstance(p[1],int)):
-    #    p[0] = Node('TYPE-INT',None,None)
-    #else:
-    #    p[0] = Node('TYPE-ARRAY',None,None)
+    if(p[1] == 'bool' ):
+        p[0] = Node('TYPE-BOOL',None,None)
+    elif(isinstance(p[1],int)):
+        p[0] = Node('TYPE-INT',None,None)
+    else:
+        p[0] = Node('TYPE-ARRAY',None,None)
 
+#Secuenciacion
 def p_sequencing(p):
     ''' sequencing : instruction TkSemicolon
     | instruction TkSemicolon sequencing '''
@@ -185,6 +188,7 @@ def p_sequencing(p):
     else:
         p[0] = Node('SEQUENCING', [p[1], p[3]], None)
 
+# Instrucciones manejadas dentro del lenguaje guardedUSB
 def p_instruction(p):
     '''instruction : assign_inst
     | input_inst
@@ -196,6 +200,7 @@ def p_instruction(p):
 
     p[0] = Node('INSTRUCTION',[p[1]],None)
 
+# Gramatica que maneja todos los tipos de expresiones permitidos dentro del lenguaje
 def p_expression(p):
     '''expression : TkString   
     | TkId  
@@ -235,12 +240,8 @@ def p_expression(p):
         elif isinstance(p[1],Node):
             p[0] = Node('ARRAY-EXPRESSION', None, p[1])
         elif(idTk.match(p[1])):
-            print("WARNING ID-----")
-            print(p[1])
             p[0] = Node('ID-LITERAL ' + p[1],None, p[1])
         elif(strings.match(p[1])):
-            print("STRINGGGGG")
-            print(p[1])
             p[0] = Node('STRING-LITERAL ' + p[1],None, p[1])
         else:
             p[0] = Node('ARRAY-EXPRESSION',[p[1]], None)
@@ -285,6 +286,7 @@ def p_expression(p):
         else:
             p[0]=Node("ARRAY-OP-EXPRESSION",  [p[2]], p[1])
 
+# Gramatica que maneja las asignaciones, para el caso  
 def p_assign_inst(p):
     ''' assign_inst : TkId TkAsig expression assign1
     | TkId TkAsig expression '''
@@ -303,10 +305,12 @@ def p_assign1(p):
     else:
         p[0] = Node('ARRAY-ASSIGN-EXPANDING', [p[2]], None)
 
+#Gramatica que define las funciones de entrada
 def p_input_inst(p):
     ''' input_inst : TkRead TkId '''
     p[0] = Node('INPUT', [p[2]],p[1])
 
+# gramatica que define la funciones de salida
 def p_output_inst(p):
     '''output_inst : TkPrint expression
     | TkPrintln expression '''
@@ -315,6 +319,7 @@ def p_output_inst(p):
     elif (p[1] == 'println'):
         p[0] = Node('Println',[p[2]],p[1])
 
+# Gramatica para la instruccion if
 def p_if_inst(p):
     '''if_inst : TkIf expression TkArrow sequencing TkFi 
     | TkIf expression TkArrow sequencing guards_inst TkFi
@@ -324,6 +329,7 @@ def p_if_inst(p):
     else:
         p[0] = Node('IF',[p[2],p[4],p[5]], None)
 
+# Define las guardias de los condicionales
 def p_guards_inst(p):
     '''guards_inst : TkGuard expression TkArrow sequencing
     | TkGuard expression TkArrow sequencing guards_inst '''
@@ -332,11 +338,13 @@ def p_guards_inst(p):
     else:
         p[0] = Node('GUARD',[p[2],p[4],p[5]], None)
 
+# gramatica para el ciclo for
 def p_iteration_for_inst(p):
     ''' iteration_for_inst : TkFor TkId TkIn expression TkTo expression TkArrow block TkRof
     '''
     p[0] = Node('FOR', [p[4],p[6],p[8]], None)
 
+# Definicion de la gramatica para el ciclo con DO
 def p_iteration_mult_guard_inst(p):
     '''iteration_mult_guard_inst : TkDo expression TkArrow sequencing TkOd
     | TkDo expression TkArrow sequencing guards_inst TkOd '''
@@ -345,13 +353,13 @@ def p_iteration_mult_guard_inst(p):
     else:
         p[0] = Node('DO',[p[2],p[4]] , None)
 
-
+# funcion que maneja y muestra los errores en caso de ocurrir en la corrida
 def p_error(p):
     global parserErrorFound
     parserErrorFound = True
     print('Error Token= ' + str(p))
-    #print('Error de sintaxis en la linea: ' + str(p.lineno) + ', columna: '+str(obtenerColumna(p.lexer.lexdata,p))+', token inesperado: ' + str(p.type))
-    #exit()
+    print('Error de sintaxis en la linea: ' + str(p.lineno) + ', columna: '+str(find_column(p.lexer.lexdata,p))+', token inesperado: ' + str(p.type))
+    exit()
 
 # Funcion que recorre el arbol y lo imprime. 
 def printTree(nodo, tabs):
@@ -366,11 +374,9 @@ def main():
     if (len(sys.argv) != 2):
         print("Usage: python3 parser.py nombreArchivo")
         return -1
-        
-    # Construyendo el parser
-    #parser = yacc.yacc(errorlog = yacc.NullLogger())
+
     parser = yacc.yacc(debug=True)  
-    # Se abre el archivo con permisos de lectura
+    # Se procede a leer el archivo
     string = str(open(str(sys.argv[1]),'r').read())
     log = logging.getLogger()
     result = parser.parse(string,lex,debug=log)
@@ -383,4 +389,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    print ("All tests passed.")
+    print (" Finished execution ")
