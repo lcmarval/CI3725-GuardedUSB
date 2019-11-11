@@ -95,7 +95,6 @@ t_TkOBracket = r'\['
 t_TkCBracket = r'\]'
 t_TkTwoPoints = r'\:'
 t_TkConcat = r'\|\|'
-t_TkComments = r'\/\/'
 
 # A regular expression rule with some action code
 def t_TkId(t):
@@ -120,6 +119,10 @@ def t_TkString(t):
     if t.value in reservadas:
         t.type = reservadas.get(t.value, None)
     return t
+
+def t_TkComment(t):
+    r'\/\/.*'
+    pass
 
 # Define a rule so we can track line numbers
 def t_newline(t):
