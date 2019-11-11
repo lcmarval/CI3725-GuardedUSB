@@ -1,0 +1,6 @@
+|[
+	a := atoi(A);
+	a := max(A);
+	a := min(A);
+	a := size(A)
+]|

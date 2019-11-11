@@ -1,0 +1,8 @@
+|[ 
+	for i in casa to count -->
+		|[ 
+			read value;
+			println "Value: " || value
+		]|
+	rof	
+]|

@@ -1,0 +1,10 @@
+|[
+	declare g : array[1..3];
+	f ,x, y : bool;
+	a,b,c : int
+  	g := 3+2 ;
+  	b := 3+2+1 ;
+  	read a ;
+  	println "casa";
+  	print "prueba" || "test"
+]|

@@ -1,0 +1,8 @@
+|[
+	declare
+    	a, b, c : int;
+    	d,e,f : bool
+  	a := 5;
+  	b := 6;
+  	c := 7
+]|
