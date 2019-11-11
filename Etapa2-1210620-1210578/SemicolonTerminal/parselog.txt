@@ -1,283 +1,1681 @@
    yacc.py: 362:PLY: PARSE DEBUG START
    yacc.py: 410:
    yacc.py: 411:State  : 0
-   yacc.py: 435:Stack  : . LexToken(TkOBlock,'|[',1,0)
+   yacc.py: 435:Stack  : . LexToken(TkOBlock,'|[',2,1)
    yacc.py: 445:Action : Shift and goto state 3
    yacc.py: 410:
    yacc.py: 411:State  : 3
-   yacc.py: 435:Stack  : TkOBlock . LexToken(TkId,'A',2,4)
-   yacc.py: 445:Action : Shift and goto state 14
+   yacc.py: 435:Stack  : TkOBlock . LexToken(TkDeclare,'declare',3,6)
+   yacc.py: 445:Action : Shift and goto state 5
    yacc.py: 410:
-   yacc.py: 411:State  : 14
-   yacc.py: 435:Stack  : TkOBlock TkId . LexToken(TkAsig,':=',2,6)
-   yacc.py: 445:Action : Shift and goto state 26
+   yacc.py: 411:State  : 5
+   yacc.py: 435:Stack  : TkOBlock TkDeclare . LexToken(TkId,'a',4,18)
+   yacc.py: 445:Action : Shift and goto state 24
    yacc.py: 410:
-   yacc.py: 411:State  : 26
-   yacc.py: 435:Stack  : TkOBlock TkId TkAsig . LexToken(TkId,'A',2,9)
-   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 411:State  : 24
+   yacc.py: 435:Stack  : TkOBlock TkDeclare TkId . LexToken(TkComma,',',4,19)
+   yacc.py: 445:Action : Shift and goto state 49
    yacc.py: 410:
-   yacc.py: 411:State  : 30
-   yacc.py: 435:Stack  : TkOBlock TkId TkAsig TkId . LexToken(TkOBracket,'[',2,10)
-   yacc.py: 445:Action : Shift and goto state 67
+   yacc.py: 411:State  : 49
+   yacc.py: 435:Stack  : TkOBlock TkDeclare TkId TkComma . LexToken(TkId,'b',4,21)
+   yacc.py: 445:Action : Shift and goto state 24
    yacc.py: 410:
-   yacc.py: 411:State  : 67
-   yacc.py: 435:Stack  : TkOBlock TkId TkAsig TkId TkOBracket . LexToken(TkNum,2,2,11)
+   yacc.py: 411:State  : 24
+   yacc.py: 435:Stack  : TkOBlock TkDeclare TkId TkComma TkId . LexToken(TkComma,',',4,22)
+   yacc.py: 445:Action : Shift and goto state 49
+   yacc.py: 410:
+   yacc.py: 411:State  : 49
+   yacc.py: 435:Stack  : TkOBlock TkDeclare TkId TkComma TkId TkComma . LexToken(TkId,'i',4,24)
+   yacc.py: 445:Action : Shift and goto state 24
+   yacc.py: 410:
+   yacc.py: 411:State  : 24
+   yacc.py: 435:Stack  : TkOBlock TkDeclare TkId TkComma TkId TkComma TkId . LexToken(TkTwoPoints,':',4,26)
+   yacc.py: 471:Action : Reduce rule [variables -> TkId] with ['i'] and goto state 84
+   yacc.py: 506:Result : <Node @ 0x7f77636d6b70> (<__main__.Node object at 0x7f77636d6b70>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 84
+   yacc.py: 430:Defaulted state 84: Reduce using 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare TkId TkComma TkId TkComma variables . LexToken(TkTwoPoints,':',4,26)
+   yacc.py: 471:Action : Reduce rule [variables -> TkId TkComma variables] with ['b',',',<Node @ 0x7f77636d6b70>] and goto state 84
+   yacc.py: 506:Result : <Node @ 0x7f77636d6b00> (<__main__.Node object at 0x7f77636d6b00>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 84
+   yacc.py: 430:Defaulted state 84: Reduce using 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare TkId TkComma variables . LexToken(TkTwoPoints,':',4,26)
+   yacc.py: 471:Action : Reduce rule [variables -> TkId TkComma variables] with ['a',',',<Node @ 0x7f77636d6b00>] and goto state 23
+   yacc.py: 506:Result : <Node @ 0x7f776372d4a8> (<__main__.Node object at 0x7f776372d4a8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 23
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables . LexToken(TkTwoPoints,':',4,26)
+   yacc.py: 445:Action : Shift and goto state 48
+   yacc.py: 410:
+   yacc.py: 411:State  : 48
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints . LexToken(TkInt,'int',4,28)
+   yacc.py: 445:Action : Shift and goto state 80
+   yacc.py: 410:
+   yacc.py: 411:State  : 80
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints TkInt . LexToken(TkSemicolon,';',4,31)
+   yacc.py: 471:Action : Reduce rule [type -> TkInt] with ['int'] and goto state 79
+   yacc.py: 506:Result : <Node @ 0x7f77636d6a20> (<__main__.Node object at 0x7f77636d6a20>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 79
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type . LexToken(TkSemicolon,';',4,31)
+   yacc.py: 445:Action : Shift and goto state 115
+   yacc.py: 410:
+   yacc.py: 411:State  : 115
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon . LexToken(TkId,'x',5,37)
+   yacc.py: 445:Action : Shift and goto state 24
+   yacc.py: 410:
+   yacc.py: 411:State  : 24
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon TkId . LexToken(TkComma,',',5,38)
+   yacc.py: 445:Action : Shift and goto state 49
+   yacc.py: 410:
+   yacc.py: 411:State  : 49
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon TkId TkComma . LexToken(TkId,'y',5,40)
+   yacc.py: 445:Action : Shift and goto state 24
+   yacc.py: 410:
+   yacc.py: 411:State  : 24
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon TkId TkComma TkId . LexToken(TkTwoPoints,':',5,42)
+   yacc.py: 471:Action : Reduce rule [variables -> TkId] with ['y'] and goto state 84
+   yacc.py: 506:Result : <Node @ 0x7f77636d69e8> (<__main__.Node object at 0x7f77636d69e8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 84
+   yacc.py: 430:Defaulted state 84: Reduce using 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon TkId TkComma variables . LexToken(TkTwoPoints,':',5,42)
+   yacc.py: 471:Action : Reduce rule [variables -> TkId TkComma variables] with ['x',',',<Node @ 0x7f77636d69e8>] and goto state 23
+   yacc.py: 506:Result : <Node @ 0x7f77636d6c18> (<__main__.Node object at 0x7f77636d6c18>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 23
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables . LexToken(TkTwoPoints,':',5,42)
+   yacc.py: 445:Action : Shift and goto state 48
+   yacc.py: 410:
+   yacc.py: 411:State  : 48
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints . LexToken(TkArray,'array',5,44)
+   yacc.py: 445:Action : Shift and goto state 83
+   yacc.py: 410:
+   yacc.py: 411:State  : 83
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints TkArray . LexToken(TkOBracket,'[',5,49)
+   yacc.py: 445:Action : Shift and goto state 119
+   yacc.py: 410:
+   yacc.py: 411:State  : 119
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints TkArray TkOBracket . LexToken(TkNum,2,5,50)
    yacc.py: 445:Action : Shift and goto state 31
    yacc.py: 410:
    yacc.py: 411:State  : 31
-   yacc.py: 435:Stack  : TkOBlock TkId TkAsig TkId TkOBracket TkNum . LexToken(TkCBracket,']',2,12)
-   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [2] and goto state 102
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51a90> (<__main__.Node object at 0x7f0b51d51a90>)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints TkArray TkOBracket TkNum . LexToken(TkSoForth,'..',5,51)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [2] and goto state 141
+   yacc.py: 506:Result : <Node @ 0x7f77636d6c88> (<__main__.Node object at 0x7f77636d6c88>)
    yacc.py: 410:
-   yacc.py: 411:State  : 102
-   yacc.py: 435:Stack  : TkOBlock TkId TkAsig TkId TkOBracket expression . LexToken(TkCBracket,']',2,12)
-   yacc.py: 445:Action : Shift and goto state 122
+   yacc.py: 411:State  : 141
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints TkArray TkOBracket expression . LexToken(TkSoForth,'..',5,51)
+   yacc.py: 445:Action : Shift and goto state 148
    yacc.py: 410:
-   yacc.py: 411:State  : 122
-   yacc.py: 435:Stack  : TkOBlock TkId TkAsig TkId TkOBracket expression TkCBracket . LexToken(TkSemicolon,';',2,13)
-   yacc.py: 471:Action : Reduce rule [array_exp -> TkId TkOBracket expression TkCBracket] with ['A','[',<Node @ 0x7f0b51d51a90>,']'] and goto state 35
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51978> (<__main__.Node object at 0x7f0b51d51978>)
+   yacc.py: 411:State  : 148
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints TkArray TkOBracket expression TkSoForth . LexToken(TkNum,5,5,53)
+   yacc.py: 445:Action : Shift and goto state 31
    yacc.py: 410:
-   yacc.py: 411:State  : 35
-   yacc.py: 435:Stack  : TkOBlock TkId TkAsig array_exp . LexToken(TkSemicolon,';',2,13)
-   yacc.py: 471:Action : Reduce rule [expression -> array_exp] with [<Node @ 0x7f0b51d51978>] and goto state 51
-   yacc.py: 506:Result : <Node @ 0x7f0b52092438> (<__main__.Node object at 0x7f0b52092438>)
+   yacc.py: 411:State  : 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints TkArray TkOBracket expression TkSoForth TkNum . LexToken(TkCBracket,']',5,54)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [5] and goto state 152
+   yacc.py: 506:Result : <Node @ 0x7f77636d6d68> (<__main__.Node object at 0x7f77636d6d68>)
    yacc.py: 410:
-   yacc.py: 411:State  : 51
-   yacc.py: 435:Stack  : TkOBlock TkId TkAsig expression . LexToken(TkSemicolon,';',2,13)
-   yacc.py: 471:Action : Reduce rule [assign_inst -> TkId TkAsig expression] with ['A',':=',<Node @ 0x7f0b52092438>] and goto state 7
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51ac8> (<__main__.Node object at 0x7f0b51d51ac8>)
+   yacc.py: 411:State  : 152
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints TkArray TkOBracket expression TkSoForth expression . LexToken(TkCBracket,']',5,54)
+   yacc.py: 445:Action : Shift and goto state 158
    yacc.py: 410:
-   yacc.py: 411:State  : 7
-   yacc.py: 430:Defaulted state 7: Reduce using 33
-   yacc.py: 435:Stack  : TkOBlock assign_inst . LexToken(TkSemicolon,';',2,13)
-   yacc.py: 471:Action : Reduce rule [instruction -> assign_inst] with [<Node @ 0x7f0b51d51ac8>] and goto state 6
-   yacc.py: 506:Result : <Node @ 0x7f0b5243a128> (<__main__.Node object at 0x7f0b5243a128>)
+   yacc.py: 411:State  : 158
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints TkArray TkOBracket expression TkSoForth expression TkCBracket . LexToken(TkRead,'read',7,84)
+   yacc.py: 471:Action : Reduce rule [array -> TkArray TkOBracket expression TkSoForth expression TkCBracket] with ['array','[',<Node @ 0x7f77636d6c88>,'..',<Node @ 0x7f77636d6d68>,']'] and goto state 82
+   yacc.py: 506:Result : <Node @ 0x7f77636d69b0> (<__main__.Node object at 0x7f77636d69b0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 82
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints array . LexToken(TkRead,'read',7,84)
+   yacc.py: 471:Action : Reduce rule [type -> array] with [<Node @ 0x7f77636d69b0>] and goto state 79
+   yacc.py: 506:Result : <Node @ 0x7f77636d6ef0> (<__main__.Node object at 0x7f77636d6ef0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 79
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon variables TkTwoPoints type . LexToken(TkRead,'read',7,84)
+   yacc.py: 471:Action : Reduce rule [declare_var -> variables TkTwoPoints type] with [<Node @ 0x7f77636d6c18>,':',<Node @ 0x7f77636d6ef0>] and goto state 137
+   yacc.py: 506:Result : <Node @ 0x7f77636d6e10> (<__main__.Node object at 0x7f77636d6e10>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 137
+   yacc.py: 435:Stack  : TkOBlock TkDeclare variables TkTwoPoints type TkSemicolon declare_var . LexToken(TkRead,'read',7,84)
+   yacc.py: 471:Action : Reduce rule [declare_var -> variables TkTwoPoints type TkSemicolon declare_var] with [<Node @ 0x7f776372d4a8>,':',<Node @ 0x7f77636d6a20>,';',<Node @ 0x7f77636d6e10>] and goto state 22
+   yacc.py: 506:Result : <Node @ 0x7f77636d6a90> (<__main__.Node object at 0x7f77636d6a90>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 22
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var . LexToken(TkRead,'read',7,84)
+   yacc.py: 445:Action : Shift and goto state 15
+   yacc.py: 410:
+   yacc.py: 411:State  : 15
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var TkRead . LexToken(TkId,'a',7,89)
+   yacc.py: 445:Action : Shift and goto state 27
+   yacc.py: 410:
+   yacc.py: 411:State  : 27
+   yacc.py: 430:Defaulted state 27: Reduce using 68
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var TkRead TkId . None
+   yacc.py: 471:Action : Reduce rule [input_inst -> TkRead TkId] with ['read','a'] and goto state 8
+   yacc.py: 506:Result : <Node @ 0x7f77636d6a58> (<__main__.Node object at 0x7f77636d6a58>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 8
+   yacc.py: 430:Defaulted state 8: Reduce using 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var input_inst . None
+   yacc.py: 471:Action : Reduce rule [instruction -> input_inst] with [<Node @ 0x7f77636d6a58>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636d6eb8> (<__main__.Node object at 0x7f77636d6eb8>)
    yacc.py: 410:
    yacc.py: 411:State  : 6
-   yacc.py: 435:Stack  : TkOBlock instruction . LexToken(TkSemicolon,';',2,13)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction . LexToken(TkSemicolon,';',7,90)
    yacc.py: 445:Action : Shift and goto state 25
    yacc.py: 410:
    yacc.py: 411:State  : 25
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon . LexToken(TkId,'A',3,16)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon . LexToken(TkRead,'read',8,94)
+   yacc.py: 445:Action : Shift and goto state 15
+   yacc.py: 410:
+   yacc.py: 411:State  : 15
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon TkRead . LexToken(TkId,'b',8,99)
+   yacc.py: 445:Action : Shift and goto state 27
+   yacc.py: 410:
+   yacc.py: 411:State  : 27
+   yacc.py: 430:Defaulted state 27: Reduce using 68
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon TkRead TkId . None
+   yacc.py: 471:Action : Reduce rule [input_inst -> TkRead TkId] with ['read','b'] and goto state 8
+   yacc.py: 506:Result : <Node @ 0x7f77636d6d68> (<__main__.Node object at 0x7f77636d6d68>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 8
+   yacc.py: 430:Defaulted state 8: Reduce using 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon input_inst . None
+   yacc.py: 471:Action : Reduce rule [instruction -> input_inst] with [<Node @ 0x7f77636d6d68>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636d6ba8> (<__main__.Node object at 0x7f77636d6ba8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction . LexToken(TkSemicolon,';',8,100)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon . LexToken(TkId,'x',9,104)
    yacc.py: 445:Action : Shift and goto state 14
    yacc.py: 410:
    yacc.py: 411:State  : 14
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId . LexToken(TkAsig,':=',3,18)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId . LexToken(TkAsig,':=',9,106)
    yacc.py: 445:Action : Shift and goto state 26
    yacc.py: 410:
    yacc.py: 411:State  : 26
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig . LexToken(TkId,'A',3,21)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig . LexToken(TkId,'x',9,109)
    yacc.py: 445:Action : Shift and goto state 30
    yacc.py: 410:
    yacc.py: 411:State  : 30
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId . LexToken(TkOpenPar,'(',3,22)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId . LexToken(TkOpenPar,'(',9,110)
    yacc.py: 445:Action : Shift and goto state 66
    yacc.py: 410:
    yacc.py: 411:State  : 66
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar . LexToken(TkNum,2,3,23)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar . LexToken(TkNum,2,9,111)
    yacc.py: 445:Action : Shift and goto state 31
    yacc.py: 410:
    yacc.py: 411:State  : 31
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar TkNum . LexToken(TkTwoPoints,':',3,24)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar TkNum . LexToken(TkTwoPoints,':',9,112)
    yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [2] and goto state 101
-   yacc.py: 506:Result : <Node @ 0x7f0b51d519e8> (<__main__.Node object at 0x7f0b51d519e8>)
+   yacc.py: 506:Result : <Node @ 0x7f77636d6e10> (<__main__.Node object at 0x7f77636d6e10>)
    yacc.py: 410:
    yacc.py: 411:State  : 101
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression . LexToken(TkTwoPoints,':',3,24)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression . LexToken(TkTwoPoints,':',9,112)
    yacc.py: 445:Action : Shift and goto state 121
    yacc.py: 410:
    yacc.py: 411:State  : 121
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints . LexToken(TkNum,4,3,25)
-   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints . LexToken(TkId,'a',9,113)
+   yacc.py: 445:Action : Shift and goto state 30
    yacc.py: 410:
-   yacc.py: 411:State  : 31
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints TkNum . LexToken(TkClosePar,')',3,26)
-   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [4] and goto state 143
-   yacc.py: 506:Result : <Node @ 0x7f0b51d519b0> (<__main__.Node object at 0x7f0b51d519b0>)
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints TkId . LexToken(TkClosePar,')',9,114)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['a'] and goto state 143
+   yacc.py: 506:Result : <Node @ 0x7f77636d6da0> (<__main__.Node object at 0x7f77636d6da0>)
    yacc.py: 410:
    yacc.py: 411:State  : 143
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression . LexToken(TkClosePar,')',3,26)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression . LexToken(TkClosePar,')',9,114)
    yacc.py: 445:Action : Shift and goto state 149
    yacc.py: 410:
    yacc.py: 411:State  : 149
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar . LexToken(TkOpenPar,'(',3,27)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar . LexToken(TkOpenPar,'(',9,115)
    yacc.py: 445:Action : Shift and goto state 153
    yacc.py: 410:
    yacc.py: 411:State  : 153
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar . LexToken(TkNum,2,3,28)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar . LexToken(TkNum,3,9,116)
    yacc.py: 445:Action : Shift and goto state 31
    yacc.py: 410:
    yacc.py: 411:State  : 31
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar TkNum . LexToken(TkTwoPoints,':',3,29)
-   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [2] and goto state 159
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51b00> (<__main__.Node object at 0x7f0b51d51b00>)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar TkNum . LexToken(TkTwoPoints,':',9,117)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [3] and goto state 159
+   yacc.py: 506:Result : <Node @ 0x7f77636d6e48> (<__main__.Node object at 0x7f77636d6e48>)
    yacc.py: 410:
    yacc.py: 411:State  : 159
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression . LexToken(TkTwoPoints,':',3,29)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression . LexToken(TkTwoPoints,':',9,117)
    yacc.py: 445:Action : Shift and goto state 163
    yacc.py: 410:
    yacc.py: 411:State  : 163
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints . LexToken(TkNum,4,3,30)
-   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints . LexToken(TkId,'b',9,118)
+   yacc.py: 445:Action : Shift and goto state 30
    yacc.py: 410:
-   yacc.py: 411:State  : 31
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints TkNum . LexToken(TkClosePar,')',3,31)
-   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [4] and goto state 165
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51cc0> (<__main__.Node object at 0x7f0b51d51cc0>)
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints TkId . LexToken(TkClosePar,')',9,119)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 165
+   yacc.py: 506:Result : <Node @ 0x7f77636de048> (<__main__.Node object at 0x7f77636de048>)
    yacc.py: 410:
    yacc.py: 411:State  : 165
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression . LexToken(TkClosePar,')',3,31)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression . LexToken(TkClosePar,')',9,119)
    yacc.py: 445:Action : Shift and goto state 166
    yacc.py: 410:
    yacc.py: 411:State  : 166
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar . LexToken(TkOpenPar,'(',3,32)
-   yacc.py: 445:Action : Shift and goto state 153
-   yacc.py: 410:
-   yacc.py: 411:State  : 153
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar . LexToken(TkNum,2,3,33)
-   yacc.py: 445:Action : Shift and goto state 31
-   yacc.py: 410:
-   yacc.py: 411:State  : 31
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar TkNum . LexToken(TkTwoPoints,':',3,34)
-   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [2] and goto state 159
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51dd8> (<__main__.Node object at 0x7f0b51d51dd8>)
-   yacc.py: 410:
-   yacc.py: 411:State  : 159
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression . LexToken(TkTwoPoints,':',3,34)
-   yacc.py: 445:Action : Shift and goto state 163
-   yacc.py: 410:
-   yacc.py: 411:State  : 163
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints . LexToken(TkNum,4,3,35)
-   yacc.py: 445:Action : Shift and goto state 31
-   yacc.py: 410:
-   yacc.py: 411:State  : 31
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints TkNum . LexToken(TkClosePar,')',3,36)
-   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [4] and goto state 165
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51e48> (<__main__.Node object at 0x7f0b51d51e48>)
-   yacc.py: 410:
-   yacc.py: 411:State  : 165
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression . LexToken(TkClosePar,')',3,36)
-   yacc.py: 445:Action : Shift and goto state 166
-   yacc.py: 410:
-   yacc.py: 411:State  : 166
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar . LexToken(TkOpenPar,'(',3,37)
-   yacc.py: 445:Action : Shift and goto state 153
-   yacc.py: 410:
-   yacc.py: 411:State  : 153
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar . LexToken(TkNum,2,3,38)
-   yacc.py: 445:Action : Shift and goto state 31
-   yacc.py: 410:
-   yacc.py: 411:State  : 31
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar TkNum . LexToken(TkTwoPoints,':',3,39)
-   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [2] and goto state 159
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51f60> (<__main__.Node object at 0x7f0b51d51f60>)
-   yacc.py: 410:
-   yacc.py: 411:State  : 159
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression . LexToken(TkTwoPoints,':',3,39)
-   yacc.py: 445:Action : Shift and goto state 163
-   yacc.py: 410:
-   yacc.py: 411:State  : 163
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints . LexToken(TkNum,4,3,40)
-   yacc.py: 445:Action : Shift and goto state 31
-   yacc.py: 410:
-   yacc.py: 411:State  : 31
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints TkNum . LexToken(TkClosePar,')',3,41)
-   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [4] and goto state 165
-   yacc.py: 506:Result : <Node @ 0x7f0b52043048> (<__main__.Node object at 0x7f0b52043048>)
-   yacc.py: 410:
-   yacc.py: 411:State  : 165
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression . LexToken(TkClosePar,')',3,41)
-   yacc.py: 445:Action : Shift and goto state 166
-   yacc.py: 410:
-   yacc.py: 411:State  : 166
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar . LexToken(TkOBracket,'[',3,42)
-   yacc.py: 445:Action : Shift and goto state 169
-   yacc.py: 410:
-   yacc.py: 411:State  : 169
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOBracket . LexToken(TkNum,2,3,43)
-   yacc.py: 445:Action : Shift and goto state 31
-   yacc.py: 410:
-   yacc.py: 411:State  : 31
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOBracket TkNum . LexToken(TkCBracket,']',3,44)
-   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [2] and goto state 170
-   yacc.py: 506:Result : <Node @ 0x7f0b520430f0> (<__main__.Node object at 0x7f0b520430f0>)
-   yacc.py: 410:
-   yacc.py: 411:State  : 170
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOBracket expression . LexToken(TkCBracket,']',3,44)
-   yacc.py: 445:Action : Shift and goto state 171
-   yacc.py: 410:
-   yacc.py: 411:State  : 171
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOBracket expression TkCBracket . LexToken(TkSemicolon,';',3,45)
-   yacc.py: 471:Action : Reduce rule [array_exp2 -> TkOBracket expression TkCBracket] with ['[',<Node @ 0x7f0b520430f0>,']'] and goto state 168
-   yacc.py: 506:Result : <Node @ 0x7f0b52043198> (<__main__.Node object at 0x7f0b52043198>)
-   yacc.py: 410:
-   yacc.py: 411:State  : 168
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar array_exp2 . LexToken(TkSemicolon,';',3,45)
-   yacc.py: 471:Action : Reduce rule [array_exp1 -> TkOpenPar expression TkTwoPoints expression TkClosePar array_exp2] with ['(',<Node @ 0x7f0b51d51f60>,':',<Node @ 0x7f0b52043048>,')',<Node @ 0x7f0b52043198>] and goto state 167
-   yacc.py: 506:Result : <Node @ 0x7f0b52043208> (<__main__.Node object at 0x7f0b52043208>)
-   yacc.py: 410:
-   yacc.py: 411:State  : 167
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1 . LexToken(TkSemicolon,';',3,45)
-   yacc.py: 471:Action : Reduce rule [array_exp1 -> TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1] with ['(',<Node @ 0x7f0b51d51dd8>,':',<Node @ 0x7f0b51d51e48>,')',<Node @ 0x7f0b52043208>] and goto state 167
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51fd0> (<__main__.Node object at 0x7f0b51d51fd0>)
-   yacc.py: 410:
-   yacc.py: 411:State  : 167
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1 . LexToken(TkSemicolon,';',3,45)
-   yacc.py: 471:Action : Reduce rule [array_exp1 -> TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1] with ['(',<Node @ 0x7f0b51d51b00>,':',<Node @ 0x7f0b51d51cc0>,')',<Node @ 0x7f0b51d51fd0>] and goto state 154
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51eb8> (<__main__.Node object at 0x7f0b51d51eb8>)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar . LexToken(TkSemicolon,';',9,120)
+   yacc.py: 471:Action : Reduce rule [array_exp1 -> TkOpenPar expression TkTwoPoints expression TkClosePar] with ['(',<Node @ 0x7f77636d6e48>,':',<Node @ 0x7f77636de048>,')'] and goto state 154
+   yacc.py: 506:Result : <Node @ 0x7f77636de0f0> (<__main__.Node object at 0x7f77636de0f0>)
    yacc.py: 410:
    yacc.py: 411:State  : 154
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1 . LexToken(TkSemicolon,';',3,45)
-   yacc.py: 471:Action : Reduce rule [array_exp -> TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1] with ['A','(',<Node @ 0x7f0b51d519e8>,':',<Node @ 0x7f0b51d519b0>,')',<Node @ 0x7f0b51d51eb8>] and goto state 35
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51d30> (<__main__.Node object at 0x7f0b51d51d30>)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1 . LexToken(TkSemicolon,';',9,120)
+   yacc.py: 471:Action : Reduce rule [array_exp -> TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1] with ['x','(',<Node @ 0x7f77636d6e10>,':',<Node @ 0x7f77636d6da0>,')',<Node @ 0x7f77636de0f0>] and goto state 35
+   yacc.py: 506:Result : <Node @ 0x7f77636d6f98> (<__main__.Node object at 0x7f77636d6f98>)
    yacc.py: 410:
    yacc.py: 411:State  : 35
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig array_exp . LexToken(TkSemicolon,';',3,45)
-   yacc.py: 471:Action : Reduce rule [expression -> array_exp] with [<Node @ 0x7f0b51d51d30>] and goto state 51
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51c18> (<__main__.Node object at 0x7f0b51d51c18>)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig array_exp . LexToken(TkSemicolon,';',9,120)
+   yacc.py: 471:Action : Reduce rule [expression -> array_exp] with [<Node @ 0x7f77636d6f98>] and goto state 51
+   yacc.py: 506:Result : <Node @ 0x7f77636d6d30> (<__main__.Node object at 0x7f77636d6d30>)
    yacc.py: 410:
    yacc.py: 411:State  : 51
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon TkId TkAsig expression . LexToken(TkSemicolon,';',3,45)
-   yacc.py: 471:Action : Reduce rule [assign_inst -> TkId TkAsig expression] with ['A',':=',<Node @ 0x7f0b51d51c18>] and goto state 7
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51e80> (<__main__.Node object at 0x7f0b51d51e80>)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression . LexToken(TkSemicolon,';',9,120)
+   yacc.py: 471:Action : Reduce rule [assign_inst -> TkId TkAsig expression] with ['x',':=',<Node @ 0x7f77636d6d30>] and goto state 7
+   yacc.py: 506:Result : <Node @ 0x7f77636d6dd8> (<__main__.Node object at 0x7f77636d6dd8>)
    yacc.py: 410:
    yacc.py: 411:State  : 7
    yacc.py: 430:Defaulted state 7: Reduce using 33
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon assign_inst . LexToken(TkSemicolon,';',3,45)
-   yacc.py: 471:Action : Reduce rule [instruction -> assign_inst] with [<Node @ 0x7f0b51d51e80>] and goto state 6
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51940> (<__main__.Node object at 0x7f0b51d51940>)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon assign_inst . LexToken(TkSemicolon,';',9,120)
+   yacc.py: 471:Action : Reduce rule [instruction -> assign_inst] with [<Node @ 0x7f77636d6dd8>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636d6fd0> (<__main__.Node object at 0x7f77636d6fd0>)
    yacc.py: 410:
    yacc.py: 411:State  : 6
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon instruction . LexToken(TkSemicolon,';',3,45)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',9,120)
    yacc.py: 445:Action : Shift and goto state 25
    yacc.py: 410:
    yacc.py: 411:State  : 25
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon instruction TkSemicolon . LexToken(TkCBlock,']|',5,48)
-   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon] with [<Node @ 0x7f0b51d51940>,';'] and goto state 50
-   yacc.py: 506:Result : <Node @ 0x7f0b51d518d0> (<__main__.Node object at 0x7f0b51d518d0>)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkFor,'for',10,124)
+   yacc.py: 445:Action : Shift and goto state 19
    yacc.py: 410:
-   yacc.py: 411:State  : 50
-   yacc.py: 435:Stack  : TkOBlock instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',5,48)
-   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f0b5243a128>,';',<Node @ 0x7f0b51d518d0>] and goto state 4
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51b70> (<__main__.Node object at 0x7f0b51d51b70>)
+   yacc.py: 411:State  : 19
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor . LexToken(TkId,'i',10,128)
+   yacc.py: 445:Action : Shift and goto state 45
+   yacc.py: 410:
+   yacc.py: 411:State  : 45
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId . LexToken(TkIn,'in',10,130)
+   yacc.py: 445:Action : Shift and goto state 76
+   yacc.py: 410:
+   yacc.py: 411:State  : 76
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn . LexToken(TkId,'a',10,133)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn TkId . LexToken(TkTo,'to',10,135)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['a'] and goto state 113
+   yacc.py: 506:Result : <Node @ 0x7f77636d6c88> (<__main__.Node object at 0x7f77636d6c88>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 113
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression . LexToken(TkTo,'to',10,135)
+   yacc.py: 445:Action : Shift and goto state 134
+   yacc.py: 410:
+   yacc.py: 411:State  : 134
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo . LexToken(TkId,'b',10,138)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo TkId . LexToken(TkArrow,'-->',10,140)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 146
+   yacc.py: 506:Result : <Node @ 0x7f77636de0b8> (<__main__.Node object at 0x7f77636de0b8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 146
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression . LexToken(TkArrow,'-->',10,140)
+   yacc.py: 445:Action : Shift and goto state 151
+   yacc.py: 410:
+   yacc.py: 411:State  : 151
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow . LexToken(TkOBlock,'|[',11,146)
+   yacc.py: 445:Action : Shift and goto state 3
+   yacc.py: 410:
+   yacc.py: 411:State  : 3
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock . LexToken(TkPrintln,'println',12,153)
+   yacc.py: 445:Action : Shift and goto state 17
+   yacc.py: 410:
+   yacc.py: 411:State  : 17
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrintln . LexToken(TkString,'"Variable \\"i\\" es igual a: "',12,161)
+   yacc.py: 445:Action : Shift and goto state 29
+   yacc.py: 410:
+   yacc.py: 411:State  : 29
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrintln TkString . LexToken(TkConcat,'||',12,191)
+   yacc.py: 471:Action : Reduce rule [expression -> TkString] with [<str @ 0x7f776375d990>] and goto state 43
+   yacc.py: 506:Result : <Node @ 0x7f77636de2b0> (<__main__.Node object at 0x7f77636de2b0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 43
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrintln expression . LexToken(TkConcat,'||',12,191)
+   yacc.py: 445:Action : Shift and goto state 52
+   yacc.py: 410:
+   yacc.py: 411:State  : 52
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrintln expression TkConcat . LexToken(TkId,'i',12,194)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrintln expression TkConcat TkId . LexToken(TkSemicolon,';',12,195)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['i'] and goto state 87
+   yacc.py: 506:Result : <Node @ 0x7f77636de438> (<__main__.Node object at 0x7f77636de438>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 87
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrintln expression TkConcat expression . LexToken(TkSemicolon,';',12,195)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkConcat expression] with [<Node @ 0x7f77636de2b0>,'||',<Node @ 0x7f77636de438>] and goto state 43
+   yacc.py: 506:Result : <Node @ 0x7f77636de470> (<__main__.Node object at 0x7f77636de470>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 43
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrintln expression . LexToken(TkSemicolon,';',12,195)
+   yacc.py: 471:Action : Reduce rule [output_inst -> TkPrintln expression] with ['println',<Node @ 0x7f77636de470>] and goto state 9
+   yacc.py: 506:Result : <Node @ 0x7f77636de278> (<__main__.Node object at 0x7f77636de278>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 9
+   yacc.py: 430:Defaulted state 9: Reduce using 35
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock output_inst . LexToken(TkSemicolon,';',12,195)
+   yacc.py: 471:Action : Reduce rule [instruction -> output_inst] with [<Node @ 0x7f77636de278>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636de390> (<__main__.Node object at 0x7f77636de390>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock instruction . LexToken(TkSemicolon,';',12,195)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock instruction TkSemicolon . LexToken(TkCBlock,']|',13,199)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon] with [<Node @ 0x7f77636de390>,';'] and goto state 4
+   yacc.py: 506:Result : <Node @ 0x7f77636de588> (<__main__.Node object at 0x7f77636de588>)
    yacc.py: 410:
    yacc.py: 411:State  : 4
-   yacc.py: 435:Stack  : TkOBlock sequencing . LexToken(TkCBlock,']|',5,48)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock sequencing . LexToken(TkCBlock,']|',13,199)
    yacc.py: 445:Action : Shift and goto state 21
    yacc.py: 410:
    yacc.py: 411:State  : 21
-   yacc.py: 435:Stack  : TkOBlock sequencing TkCBlock . $end
-   yacc.py: 471:Action : Reduce rule [block -> TkOBlock sequencing TkCBlock] with ['|[',<Node @ 0x7f0b51d51b70>,']|'] and goto state 2
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51b70> (<__main__.Node object at 0x7f0b51d51b70>)
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock sequencing TkCBlock . LexToken(TkRof,'rof',14,204)
+   yacc.py: 471:Action : Reduce rule [block -> TkOBlock sequencing TkCBlock] with ['|[',<Node @ 0x7f77636de588>,']|'] and goto state 157
+   yacc.py: 506:Result : <Node @ 0x7f77636de588> (<__main__.Node object at 0x7f77636de588>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 157
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow block . LexToken(TkRof,'rof',14,204)
+   yacc.py: 445:Action : Shift and goto state 162
+   yacc.py: 410:
+   yacc.py: 411:State  : 162
+   yacc.py: 430:Defaulted state 162: Reduce using 75
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow block TkRof . None
+   yacc.py: 471:Action : Reduce rule [iteration_for_inst -> TkFor TkId TkIn expression TkTo expression TkArrow block TkRof] with ['for','i','in',<Node @ 0x7f77636d6c88>,'to',<Node @ 0x7f77636de0b8>,'-->',<Node @ 0x7f77636de588>,'rof'] and goto state 11
+   yacc.py: 506:Result : <Node @ 0x7f77636de320> (<__main__.Node object at 0x7f77636de320>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 11
+   yacc.py: 430:Defaulted state 11: Reduce using 37
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon iteration_for_inst . None
+   yacc.py: 471:Action : Reduce rule [instruction -> iteration_for_inst] with [<Node @ 0x7f77636de320>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636d69e8> (<__main__.Node object at 0x7f77636d69e8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',14,207)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkRead,'read',16,261)
+   yacc.py: 445:Action : Shift and goto state 15
+   yacc.py: 410:
+   yacc.py: 411:State  : 15
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkRead . LexToken(TkId,'y',16,266)
+   yacc.py: 445:Action : Shift and goto state 27
+   yacc.py: 410:
+   yacc.py: 411:State  : 27
+   yacc.py: 430:Defaulted state 27: Reduce using 68
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkRead TkId . None
+   yacc.py: 471:Action : Reduce rule [input_inst -> TkRead TkId] with ['read','y'] and goto state 8
+   yacc.py: 506:Result : <Node @ 0x7f77636de400> (<__main__.Node object at 0x7f77636de400>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 8
+   yacc.py: 430:Defaulted state 8: Reduce using 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon input_inst . None
+   yacc.py: 471:Action : Reduce rule [instruction -> input_inst] with [<Node @ 0x7f77636de400>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636d6ef0> (<__main__.Node object at 0x7f77636d6ef0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',16,267)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkFor,'for',17,271)
+   yacc.py: 445:Action : Shift and goto state 19
+   yacc.py: 410:
+   yacc.py: 411:State  : 19
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor . LexToken(TkId,'j',17,275)
+   yacc.py: 445:Action : Shift and goto state 45
+   yacc.py: 410:
+   yacc.py: 411:State  : 45
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId . LexToken(TkIn,'in',17,277)
+   yacc.py: 445:Action : Shift and goto state 76
+   yacc.py: 410:
+   yacc.py: 411:State  : 76
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn . LexToken(TkMin,'min',17,280)
+   yacc.py: 445:Action : Shift and goto state 41
+   yacc.py: 410:
+   yacc.py: 411:State  : 41
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn TkMin . LexToken(TkOpenPar,'(',17,283)
+   yacc.py: 445:Action : Shift and goto state 73
+   yacc.py: 410:
+   yacc.py: 411:State  : 73
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn TkMin TkOpenPar . LexToken(TkId,'y',17,284)
+   yacc.py: 445:Action : Shift and goto state 108
+   yacc.py: 410:
+   yacc.py: 411:State  : 108
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn TkMin TkOpenPar TkId . LexToken(TkClosePar,')',17,285)
+   yacc.py: 445:Action : Shift and goto state 127
+   yacc.py: 410:
+   yacc.py: 411:State  : 127
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn TkMin TkOpenPar TkId TkClosePar . LexToken(TkTo,'to',17,287)
+   yacc.py: 471:Action : Reduce rule [op_array -> TkMin TkOpenPar TkId TkClosePar] with ['min','(','y',')'] and goto state 34
+   yacc.py: 506:Result : <Node @ 0x7f77636d6f60> (<__main__.Node object at 0x7f77636d6f60>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn op_array . LexToken(TkTo,'to',17,287)
+   yacc.py: 471:Action : Reduce rule [expression -> op_array] with [<Node @ 0x7f77636d6f60>] and goto state 113
+   yacc.py: 506:Result : <Node @ 0x7f77636de630> (<__main__.Node object at 0x7f77636de630>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 113
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression . LexToken(TkTo,'to',17,287)
+   yacc.py: 445:Action : Shift and goto state 134
+   yacc.py: 410:
+   yacc.py: 411:State  : 134
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo . LexToken(TkMax,'max',17,290)
+   yacc.py: 445:Action : Shift and goto state 42
+   yacc.py: 410:
+   yacc.py: 411:State  : 42
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo TkMax . LexToken(TkOpenPar,'(',17,293)
+   yacc.py: 445:Action : Shift and goto state 74
+   yacc.py: 410:
+   yacc.py: 411:State  : 74
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo TkMax TkOpenPar . LexToken(TkId,'y',17,294)
+   yacc.py: 445:Action : Shift and goto state 110
+   yacc.py: 410:
+   yacc.py: 411:State  : 110
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo TkMax TkOpenPar TkId . LexToken(TkClosePar,')',17,295)
+   yacc.py: 445:Action : Shift and goto state 129
+   yacc.py: 410:
+   yacc.py: 411:State  : 129
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo TkMax TkOpenPar TkId TkClosePar . LexToken(TkArrow,'-->',17,297)
+   yacc.py: 471:Action : Reduce rule [op_array -> TkMax TkOpenPar TkId TkClosePar] with ['max','(','y',')'] and goto state 34
+   yacc.py: 506:Result : <Node @ 0x7f77636de6a0> (<__main__.Node object at 0x7f77636de6a0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo op_array . LexToken(TkArrow,'-->',17,297)
+   yacc.py: 471:Action : Reduce rule [expression -> op_array] with [<Node @ 0x7f77636de6a0>] and goto state 146
+   yacc.py: 506:Result : <Node @ 0x7f77636de6d8> (<__main__.Node object at 0x7f77636de6d8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 146
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression . LexToken(TkArrow,'-->',17,297)
+   yacc.py: 445:Action : Shift and goto state 151
+   yacc.py: 410:
+   yacc.py: 411:State  : 151
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow . LexToken(TkOBlock,'|[',18,303)
+   yacc.py: 445:Action : Shift and goto state 3
+   yacc.py: 410:
+   yacc.py: 411:State  : 3
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock . LexToken(TkPrint,'print',19,310)
+   yacc.py: 445:Action : Shift and goto state 16
+   yacc.py: 410:
+   yacc.py: 411:State  : 16
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrint . LexToken(TkId,'j',19,316)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrint TkId . LexToken(TkConcat,'||',19,318)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['j'] and goto state 28
+   yacc.py: 506:Result : <Node @ 0x7f77636de780> (<__main__.Node object at 0x7f77636de780>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 28
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrint expression . LexToken(TkConcat,'||',19,318)
+   yacc.py: 445:Action : Shift and goto state 52
+   yacc.py: 410:
+   yacc.py: 411:State  : 52
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrint expression TkConcat . LexToken(TkString,'":" || y[j] || " "',19,321)
+   yacc.py: 445:Action : Shift and goto state 29
+   yacc.py: 410:
+   yacc.py: 411:State  : 29
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrint expression TkConcat TkString . LexToken(TkSemicolon,';',19,339)
+   yacc.py: 471:Action : Reduce rule [expression -> TkString] with [<str @ 0x7f77636e1420>] and goto state 87
+   yacc.py: 506:Result : <Node @ 0x7f77636de898> (<__main__.Node object at 0x7f77636de898>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 87
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrint expression TkConcat expression . LexToken(TkSemicolon,';',19,339)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkConcat expression] with [<Node @ 0x7f77636de780>,'||',<Node @ 0x7f77636de898>] and goto state 28
+   yacc.py: 506:Result : <Node @ 0x7f77636de9b0> (<__main__.Node object at 0x7f77636de9b0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 28
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock TkPrint expression . LexToken(TkSemicolon,';',19,339)
+   yacc.py: 471:Action : Reduce rule [output_inst -> TkPrint expression] with ['print',<Node @ 0x7f77636de9b0>] and goto state 9
+   yacc.py: 506:Result : <Node @ 0x7f77636de5f8> (<__main__.Node object at 0x7f77636de5f8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 9
+   yacc.py: 430:Defaulted state 9: Reduce using 35
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock output_inst . LexToken(TkSemicolon,';',19,339)
+   yacc.py: 471:Action : Reduce rule [instruction -> output_inst] with [<Node @ 0x7f77636de5f8>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636de908> (<__main__.Node object at 0x7f77636de908>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock instruction . LexToken(TkSemicolon,';',19,339)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock instruction TkSemicolon . LexToken(TkCBlock,']|',20,343)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon] with [<Node @ 0x7f77636de908>,';'] and goto state 4
+   yacc.py: 506:Result : <Node @ 0x7f77636de978> (<__main__.Node object at 0x7f77636de978>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 4
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock sequencing . LexToken(TkCBlock,']|',20,343)
+   yacc.py: 445:Action : Shift and goto state 21
+   yacc.py: 410:
+   yacc.py: 411:State  : 21
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow TkOBlock sequencing TkCBlock . LexToken(TkRof,'rof',21,348)
+   yacc.py: 471:Action : Reduce rule [block -> TkOBlock sequencing TkCBlock] with ['|[',<Node @ 0x7f77636de978>,']|'] and goto state 157
+   yacc.py: 506:Result : <Node @ 0x7f77636de978> (<__main__.Node object at 0x7f77636de978>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 157
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow block . LexToken(TkRof,'rof',21,348)
+   yacc.py: 445:Action : Shift and goto state 162
+   yacc.py: 410:
+   yacc.py: 411:State  : 162
+   yacc.py: 430:Defaulted state 162: Reduce using 75
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkFor TkId TkIn expression TkTo expression TkArrow block TkRof . None
+   yacc.py: 471:Action : Reduce rule [iteration_for_inst -> TkFor TkId TkIn expression TkTo expression TkArrow block TkRof] with ['for','j','in',<Node @ 0x7f77636de630>,'to',<Node @ 0x7f77636de6d8>,'-->',<Node @ 0x7f77636de978>,'rof'] and goto state 11
+   yacc.py: 506:Result : <Node @ 0x7f77636de7b8> (<__main__.Node object at 0x7f77636de7b8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 11
+   yacc.py: 430:Defaulted state 11: Reduce using 37
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon iteration_for_inst . None
+   yacc.py: 471:Action : Reduce rule [instruction -> iteration_for_inst] with [<Node @ 0x7f77636de7b8>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636de198> (<__main__.Node object at 0x7f77636de198>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',21,351)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkId,'a',22,355)
+   yacc.py: 445:Action : Shift and goto state 14
+   yacc.py: 410:
+   yacc.py: 411:State  : 14
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId . LexToken(TkAsig,':=',22,357)
+   yacc.py: 445:Action : Shift and goto state 26
+   yacc.py: 410:
+   yacc.py: 411:State  : 26
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig . LexToken(TkNum,3,22,360)
+   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 410:
+   yacc.py: 411:State  : 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkNum . LexToken(TkPlus,'+',22,362)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [3] and goto state 51
+   yacc.py: 506:Result : <Node @ 0x7f77636de940> (<__main__.Node object at 0x7f77636de940>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 51
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression . LexToken(TkPlus,'+',22,362)
+   yacc.py: 445:Action : Shift and goto state 53
+   yacc.py: 410:
+   yacc.py: 411:State  : 53
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression TkPlus . LexToken(TkId,'b',22,364)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression TkPlus TkId . LexToken(TkSemicolon,';',22,365)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 88
+   yacc.py: 506:Result : <Node @ 0x7f77636de860> (<__main__.Node object at 0x7f77636de860>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 88
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression TkPlus expression . LexToken(TkSemicolon,';',22,365)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkPlus expression] with [<Node @ 0x7f77636de940>,'+',<Node @ 0x7f77636de860>] and goto state 51
+   yacc.py: 506:Result : <Node @ 0x7f77636de5c0> (<__main__.Node object at 0x7f77636de5c0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 51
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression . LexToken(TkSemicolon,';',22,365)
+   yacc.py: 471:Action : Reduce rule [assign_inst -> TkId TkAsig expression] with ['a',':=',<Node @ 0x7f77636de5c0>] and goto state 7
+   yacc.py: 506:Result : <Node @ 0x7f77636de518> (<__main__.Node object at 0x7f77636de518>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 7
+   yacc.py: 430:Defaulted state 7: Reduce using 33
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon assign_inst . LexToken(TkSemicolon,';',22,365)
+   yacc.py: 471:Action : Reduce rule [instruction -> assign_inst] with [<Node @ 0x7f77636de518>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636de208> (<__main__.Node object at 0x7f77636de208>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',22,365)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkId,'b',23,369)
+   yacc.py: 445:Action : Shift and goto state 14
+   yacc.py: 410:
+   yacc.py: 411:State  : 14
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId . LexToken(TkAsig,':=',23,371)
+   yacc.py: 445:Action : Shift and goto state 26
+   yacc.py: 410:
+   yacc.py: 411:State  : 26
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig . LexToken(TkNum,-4,23,374)
+   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 410:
+   yacc.py: 411:State  : 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkNum . LexToken(TkSemicolon,';',23,376)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [-4] and goto state 51
+   yacc.py: 506:Result : <Node @ 0x7f77636deb70> (<__main__.Node object at 0x7f77636deb70>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 51
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression . LexToken(TkSemicolon,';',23,376)
+   yacc.py: 471:Action : Reduce rule [assign_inst -> TkId TkAsig expression] with ['b',':=',<Node @ 0x7f77636deb70>] and goto state 7
+   yacc.py: 506:Result : <Node @ 0x7f77636debe0> (<__main__.Node object at 0x7f77636debe0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 7
+   yacc.py: 430:Defaulted state 7: Reduce using 33
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon assign_inst . LexToken(TkSemicolon,';',23,376)
+   yacc.py: 471:Action : Reduce rule [instruction -> assign_inst] with [<Node @ 0x7f77636debe0>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636de128> (<__main__.Node object at 0x7f77636de128>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',23,376)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkIf,'if',24,380)
+   yacc.py: 445:Action : Shift and goto state 18
+   yacc.py: 410:
+   yacc.py: 411:State  : 18
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf . LexToken(TkMin,'min',24,383)
+   yacc.py: 445:Action : Shift and goto state 41
+   yacc.py: 410:
+   yacc.py: 411:State  : 41
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf TkMin . LexToken(TkOpenPar,'(',24,386)
+   yacc.py: 445:Action : Shift and goto state 73
+   yacc.py: 410:
+   yacc.py: 411:State  : 73
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf TkMin TkOpenPar . LexToken(TkId,'x',24,387)
+   yacc.py: 445:Action : Shift and goto state 108
+   yacc.py: 410:
+   yacc.py: 411:State  : 108
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf TkMin TkOpenPar TkId . LexToken(TkClosePar,')',24,388)
+   yacc.py: 445:Action : Shift and goto state 127
+   yacc.py: 410:
+   yacc.py: 411:State  : 127
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf TkMin TkOpenPar TkId TkClosePar . LexToken(TkLeq,'<=',24,390)
+   yacc.py: 471:Action : Reduce rule [op_array -> TkMin TkOpenPar TkId TkClosePar] with ['min','(','x',')'] and goto state 34
+   yacc.py: 506:Result : <Node @ 0x7f77636deb38> (<__main__.Node object at 0x7f77636deb38>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf op_array . LexToken(TkLeq,'<=',24,390)
+   yacc.py: 471:Action : Reduce rule [expression -> op_array] with [<Node @ 0x7f77636deb38>] and goto state 44
+   yacc.py: 506:Result : <Node @ 0x7f77636dec18> (<__main__.Node object at 0x7f77636dec18>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 44
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression . LexToken(TkLeq,'<=',24,390)
+   yacc.py: 445:Action : Shift and goto state 61
+   yacc.py: 410:
+   yacc.py: 411:State  : 61
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkLeq . LexToken(TkId,'b',24,393)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkLeq TkId . LexToken(TkAnd,'/\\',24,395)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 96
+   yacc.py: 506:Result : <Node @ 0x7f77636deb00> (<__main__.Node object at 0x7f77636deb00>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 96
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkLeq expression . LexToken(TkAnd,'/\\',24,395)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkLeq expression] with [<Node @ 0x7f77636dec18>,'<=',<Node @ 0x7f77636deb00>] and goto state 44
+   yacc.py: 506:Result : <Node @ 0x7f77636deba8> (<__main__.Node object at 0x7f77636deba8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 44
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression . LexToken(TkAnd,'/\\',24,395)
+   yacc.py: 445:Action : Shift and goto state 58
+   yacc.py: 410:
+   yacc.py: 411:State  : 58
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd . LexToken(TkId,'b',24,398)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd TkId . LexToken(TkLeq,'<=',24,400)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 93
+   yacc.py: 506:Result : <Node @ 0x7f77636decf8> (<__main__.Node object at 0x7f77636decf8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 93
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd expression . LexToken(TkLeq,'<=',24,400)
+   yacc.py: 445:Action : Shift and goto state 61
+   yacc.py: 410:
+   yacc.py: 411:State  : 61
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd expression TkLeq . LexToken(TkMax,'max',24,403)
+   yacc.py: 445:Action : Shift and goto state 42
+   yacc.py: 410:
+   yacc.py: 411:State  : 42
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd expression TkLeq TkMax . LexToken(TkOpenPar,'(',24,406)
+   yacc.py: 445:Action : Shift and goto state 74
+   yacc.py: 410:
+   yacc.py: 411:State  : 74
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd expression TkLeq TkMax TkOpenPar . LexToken(TkId,'x',24,407)
+   yacc.py: 445:Action : Shift and goto state 110
+   yacc.py: 410:
+   yacc.py: 411:State  : 110
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd expression TkLeq TkMax TkOpenPar TkId . LexToken(TkClosePar,')',24,408)
+   yacc.py: 445:Action : Shift and goto state 129
+   yacc.py: 410:
+   yacc.py: 411:State  : 129
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd expression TkLeq TkMax TkOpenPar TkId TkClosePar . LexToken(TkArrow,'-->',24,410)
+   yacc.py: 471:Action : Reduce rule [op_array -> TkMax TkOpenPar TkId TkClosePar] with ['max','(','x',')'] and goto state 34
+   yacc.py: 506:Result : <Node @ 0x7f77636dec88> (<__main__.Node object at 0x7f77636dec88>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd expression TkLeq op_array . LexToken(TkArrow,'-->',24,410)
+   yacc.py: 471:Action : Reduce rule [expression -> op_array] with [<Node @ 0x7f77636dec88>] and goto state 96
+   yacc.py: 506:Result : <Node @ 0x7f77636de828> (<__main__.Node object at 0x7f77636de828>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 96
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd expression TkLeq expression . LexToken(TkArrow,'-->',24,410)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkLeq expression] with [<Node @ 0x7f77636decf8>,'<=',<Node @ 0x7f77636de828>] and goto state 93
+   yacc.py: 506:Result : <Node @ 0x7f77636def60> (<__main__.Node object at 0x7f77636def60>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 93
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkAnd expression . LexToken(TkArrow,'-->',24,410)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkAnd expression] with [<Node @ 0x7f77636deba8>,'/\\',<Node @ 0x7f77636def60>] and goto state 44
+   yacc.py: 506:Result : <Node @ 0x7f77636ded30> (<__main__.Node object at 0x7f77636ded30>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 44
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression . LexToken(TkArrow,'-->',24,410)
+   yacc.py: 445:Action : Shift and goto state 75
+   yacc.py: 410:
+   yacc.py: 411:State  : 75
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow . LexToken(TkPrintln,'println',24,414)
+   yacc.py: 445:Action : Shift and goto state 17
+   yacc.py: 410:
+   yacc.py: 411:State  : 17
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow TkPrintln . LexToken(TkId,'b',24,422)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow TkPrintln TkId . LexToken(TkSemicolon,';',24,423)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 43
+   yacc.py: 506:Result : <Node @ 0x7f77636dedd8> (<__main__.Node object at 0x7f77636dedd8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 43
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow TkPrintln expression . LexToken(TkSemicolon,';',24,423)
+   yacc.py: 471:Action : Reduce rule [output_inst -> TkPrintln expression] with ['println',<Node @ 0x7f77636dedd8>] and goto state 9
+   yacc.py: 506:Result : <Node @ 0x7f77636dee10> (<__main__.Node object at 0x7f77636dee10>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 9
+   yacc.py: 430:Defaulted state 9: Reduce using 35
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow output_inst . LexToken(TkSemicolon,';',24,423)
+   yacc.py: 471:Action : Reduce rule [instruction -> output_inst] with [<Node @ 0x7f77636dee10>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636defd0> (<__main__.Node object at 0x7f77636defd0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow instruction . LexToken(TkSemicolon,';',24,423)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow instruction TkSemicolon . LexToken(TkGuard,'[]',25,427)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon] with [<Node @ 0x7f77636defd0>,';'] and goto state 112
+   yacc.py: 506:Result : <Node @ 0x7f77636ded68> (<__main__.Node object at 0x7f77636ded68>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 112
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing . LexToken(TkGuard,'[]',25,427)
+   yacc.py: 445:Action : Shift and goto state 133
+   yacc.py: 410:
+   yacc.py: 411:State  : 133
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard . LexToken(TkMin,'min',25,430)
+   yacc.py: 445:Action : Shift and goto state 41
+   yacc.py: 410:
+   yacc.py: 411:State  : 41
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard TkMin . LexToken(TkOpenPar,'(',25,433)
+   yacc.py: 445:Action : Shift and goto state 73
+   yacc.py: 410:
+   yacc.py: 411:State  : 73
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard TkMin TkOpenPar . LexToken(TkId,'y',25,434)
+   yacc.py: 445:Action : Shift and goto state 108
+   yacc.py: 410:
+   yacc.py: 411:State  : 108
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard TkMin TkOpenPar TkId . LexToken(TkClosePar,')',25,435)
+   yacc.py: 445:Action : Shift and goto state 127
+   yacc.py: 410:
+   yacc.py: 411:State  : 127
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard TkMin TkOpenPar TkId TkClosePar . LexToken(TkLess,'<',25,437)
+   yacc.py: 471:Action : Reduce rule [op_array -> TkMin TkOpenPar TkId TkClosePar] with ['min','(','y',')'] and goto state 34
+   yacc.py: 506:Result : <Node @ 0x7f77636deef0> (<__main__.Node object at 0x7f77636deef0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard op_array . LexToken(TkLess,'<',25,437)
+   yacc.py: 471:Action : Reduce rule [expression -> op_array] with [<Node @ 0x7f77636deef0>] and goto state 145
+   yacc.py: 506:Result : <Node @ 0x7f77636e40b8> (<__main__.Node object at 0x7f77636e40b8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 145
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression . LexToken(TkLess,'<',25,437)
+   yacc.py: 445:Action : Shift and goto state 60
+   yacc.py: 410:
+   yacc.py: 411:State  : 60
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkLess . LexToken(TkId,'b',25,439)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkLess TkId . LexToken(TkAnd,'/\\',25,441)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 95
+   yacc.py: 506:Result : <Node @ 0x7f77636e4278> (<__main__.Node object at 0x7f77636e4278>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 95
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkLess expression . LexToken(TkAnd,'/\\',25,441)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkLess expression] with [<Node @ 0x7f77636e40b8>,'<',<Node @ 0x7f77636e4278>] and goto state 145
+   yacc.py: 506:Result : <Node @ 0x7f77636e41d0> (<__main__.Node object at 0x7f77636e41d0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 145
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression . LexToken(TkAnd,'/\\',25,441)
+   yacc.py: 445:Action : Shift and goto state 58
+   yacc.py: 410:
+   yacc.py: 411:State  : 58
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd . LexToken(TkId,'b',25,444)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd TkId . LexToken(TkLess,'<',25,446)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 93
+   yacc.py: 506:Result : <Node @ 0x7f77636e4048> (<__main__.Node object at 0x7f77636e4048>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 93
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd expression . LexToken(TkLess,'<',25,446)
+   yacc.py: 445:Action : Shift and goto state 60
+   yacc.py: 410:
+   yacc.py: 411:State  : 60
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd expression TkLess . LexToken(TkMax,'max',25,448)
+   yacc.py: 445:Action : Shift and goto state 42
+   yacc.py: 410:
+   yacc.py: 411:State  : 42
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd expression TkLess TkMax . LexToken(TkOpenPar,'(',25,451)
+   yacc.py: 445:Action : Shift and goto state 74
+   yacc.py: 410:
+   yacc.py: 411:State  : 74
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd expression TkLess TkMax TkOpenPar . LexToken(TkId,'y',25,452)
+   yacc.py: 445:Action : Shift and goto state 110
+   yacc.py: 410:
+   yacc.py: 411:State  : 110
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd expression TkLess TkMax TkOpenPar TkId . LexToken(TkClosePar,')',25,453)
+   yacc.py: 445:Action : Shift and goto state 129
+   yacc.py: 410:
+   yacc.py: 411:State  : 129
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd expression TkLess TkMax TkOpenPar TkId TkClosePar . LexToken(TkArrow,'-->',25,455)
+   yacc.py: 471:Action : Reduce rule [op_array -> TkMax TkOpenPar TkId TkClosePar] with ['max','(','y',')'] and goto state 34
+   yacc.py: 506:Result : <Node @ 0x7f77636e4240> (<__main__.Node object at 0x7f77636e4240>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd expression TkLess op_array . LexToken(TkArrow,'-->',25,455)
+   yacc.py: 471:Action : Reduce rule [expression -> op_array] with [<Node @ 0x7f77636e4240>] and goto state 95
+   yacc.py: 506:Result : <Node @ 0x7f77636e4198> (<__main__.Node object at 0x7f77636e4198>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 95
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd expression TkLess expression . LexToken(TkArrow,'-->',25,455)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkLess expression] with [<Node @ 0x7f77636e4048>,'<',<Node @ 0x7f77636e4198>] and goto state 93
+   yacc.py: 506:Result : <Node @ 0x7f77636e44a8> (<__main__.Node object at 0x7f77636e44a8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 93
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkAnd expression . LexToken(TkArrow,'-->',25,455)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkAnd expression] with [<Node @ 0x7f77636e41d0>,'/\\',<Node @ 0x7f77636e44a8>] and goto state 145
+   yacc.py: 506:Result : <Node @ 0x7f77636e4358> (<__main__.Node object at 0x7f77636e4358>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 145
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression . LexToken(TkArrow,'-->',25,455)
+   yacc.py: 445:Action : Shift and goto state 150
+   yacc.py: 410:
+   yacc.py: 411:State  : 150
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow . LexToken(TkPrintln,'println',25,459)
+   yacc.py: 445:Action : Shift and goto state 17
+   yacc.py: 410:
+   yacc.py: 411:State  : 17
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow TkPrintln . LexToken(TkId,'a',25,467)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow TkPrintln TkId . LexToken(TkSemicolon,';',25,468)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['a'] and goto state 43
+   yacc.py: 506:Result : <Node @ 0x7f77636e42e8> (<__main__.Node object at 0x7f77636e42e8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 43
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow TkPrintln expression . LexToken(TkSemicolon,';',25,468)
+   yacc.py: 471:Action : Reduce rule [output_inst -> TkPrintln expression] with ['println',<Node @ 0x7f77636e42e8>] and goto state 9
+   yacc.py: 506:Result : <Node @ 0x7f77636e4588> (<__main__.Node object at 0x7f77636e4588>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 9
+   yacc.py: 430:Defaulted state 9: Reduce using 35
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow output_inst . LexToken(TkSemicolon,';',25,468)
+   yacc.py: 471:Action : Reduce rule [instruction -> output_inst] with [<Node @ 0x7f77636e4588>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636e4518> (<__main__.Node object at 0x7f77636e4518>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow instruction . LexToken(TkSemicolon,';',25,468)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow instruction TkSemicolon . LexToken(TkGuard,'[]',26,472)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon] with [<Node @ 0x7f77636e4518>,';'] and goto state 156
+   yacc.py: 506:Result : <Node @ 0x7f77636e4160> (<__main__.Node object at 0x7f77636e4160>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 156
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing . LexToken(TkGuard,'[]',26,472)
+   yacc.py: 445:Action : Shift and goto state 133
+   yacc.py: 410:
+   yacc.py: 411:State  : 133
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard . LexToken(TkMin,'min',26,475)
+   yacc.py: 445:Action : Shift and goto state 41
+   yacc.py: 410:
+   yacc.py: 411:State  : 41
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard TkMin . LexToken(TkOpenPar,'(',26,478)
+   yacc.py: 445:Action : Shift and goto state 73
+   yacc.py: 410:
+   yacc.py: 411:State  : 73
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard TkMin TkOpenPar . LexToken(TkId,'y',26,479)
+   yacc.py: 445:Action : Shift and goto state 108
+   yacc.py: 410:
+   yacc.py: 411:State  : 108
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard TkMin TkOpenPar TkId . LexToken(TkClosePar,')',26,480)
+   yacc.py: 445:Action : Shift and goto state 127
+   yacc.py: 410:
+   yacc.py: 411:State  : 127
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard TkMin TkOpenPar TkId TkClosePar . LexToken(TkGeq,'>=',26,482)
+   yacc.py: 471:Action : Reduce rule [op_array -> TkMin TkOpenPar TkId TkClosePar] with ['min','(','y',')'] and goto state 34
+   yacc.py: 506:Result : <Node @ 0x7f77636e4320> (<__main__.Node object at 0x7f77636e4320>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard op_array . LexToken(TkGeq,'>=',26,482)
+   yacc.py: 471:Action : Reduce rule [expression -> op_array] with [<Node @ 0x7f77636e4320>] and goto state 145
+   yacc.py: 506:Result : <Node @ 0x7f77636e45c0> (<__main__.Node object at 0x7f77636e45c0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 145
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression . LexToken(TkGeq,'>=',26,482)
+   yacc.py: 445:Action : Shift and goto state 63
+   yacc.py: 410:
+   yacc.py: 411:State  : 63
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkGeq . LexToken(TkId,'b',26,485)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkGeq TkId . LexToken(TkOr,'\\/',26,487)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 98
+   yacc.py: 506:Result : <Node @ 0x7f77636e4780> (<__main__.Node object at 0x7f77636e4780>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 98
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkGeq expression . LexToken(TkOr,'\\/',26,487)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkGeq expression] with [<Node @ 0x7f77636e45c0>,'>=',<Node @ 0x7f77636e4780>] and goto state 145
+   yacc.py: 506:Result : <Node @ 0x7f77636e46d8> (<__main__.Node object at 0x7f77636e46d8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 145
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression . LexToken(TkOr,'\\/',26,487)
+   yacc.py: 445:Action : Shift and goto state 59
+   yacc.py: 410:
+   yacc.py: 411:State  : 59
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr . LexToken(TkId,'b',26,490)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr TkId . LexToken(TkGeq,'>=',26,492)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 94
+   yacc.py: 506:Result : <Node @ 0x7f77636e4400> (<__main__.Node object at 0x7f77636e4400>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 94
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr expression . LexToken(TkGeq,'>=',26,492)
+   yacc.py: 445:Action : Shift and goto state 63
+   yacc.py: 410:
+   yacc.py: 411:State  : 63
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr expression TkGeq . LexToken(TkMax,'max',26,495)
+   yacc.py: 445:Action : Shift and goto state 42
+   yacc.py: 410:
+   yacc.py: 411:State  : 42
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr expression TkGeq TkMax . LexToken(TkOpenPar,'(',26,498)
+   yacc.py: 445:Action : Shift and goto state 74
+   yacc.py: 410:
+   yacc.py: 411:State  : 74
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr expression TkGeq TkMax TkOpenPar . LexToken(TkId,'y',26,499)
+   yacc.py: 445:Action : Shift and goto state 110
+   yacc.py: 410:
+   yacc.py: 411:State  : 110
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr expression TkGeq TkMax TkOpenPar TkId . LexToken(TkClosePar,')',26,500)
+   yacc.py: 445:Action : Shift and goto state 129
+   yacc.py: 410:
+   yacc.py: 411:State  : 129
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr expression TkGeq TkMax TkOpenPar TkId TkClosePar . LexToken(TkArrow,'-->',26,502)
+   yacc.py: 471:Action : Reduce rule [op_array -> TkMax TkOpenPar TkId TkClosePar] with ['max','(','y',')'] and goto state 34
+   yacc.py: 506:Result : <Node @ 0x7f77636e4860> (<__main__.Node object at 0x7f77636e4860>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr expression TkGeq op_array . LexToken(TkArrow,'-->',26,502)
+   yacc.py: 471:Action : Reduce rule [expression -> op_array] with [<Node @ 0x7f77636e4860>] and goto state 98
+   yacc.py: 506:Result : <Node @ 0x7f77636e46a0> (<__main__.Node object at 0x7f77636e46a0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 98
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr expression TkGeq expression . LexToken(TkArrow,'-->',26,502)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkGeq expression] with [<Node @ 0x7f77636e4400>,'>=',<Node @ 0x7f77636e46a0>] and goto state 94
+   yacc.py: 506:Result : <Node @ 0x7f77636e4a20> (<__main__.Node object at 0x7f77636e4a20>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 94
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkOr expression . LexToken(TkArrow,'-->',26,502)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkOr expression] with [<Node @ 0x7f77636e46d8>,'\\/',<Node @ 0x7f77636e4a20>] and goto state 145
+   yacc.py: 506:Result : <Node @ 0x7f77636e4898> (<__main__.Node object at 0x7f77636e4898>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 145
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression . LexToken(TkArrow,'-->',26,502)
+   yacc.py: 445:Action : Shift and goto state 150
+   yacc.py: 410:
+   yacc.py: 411:State  : 150
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow . LexToken(TkOBlock,'|[',27,508)
+   yacc.py: 445:Action : Shift and goto state 3
+   yacc.py: 410:
+   yacc.py: 411:State  : 3
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock . LexToken(TkDeclare,'declare',28,515)
+   yacc.py: 445:Action : Shift and goto state 5
+   yacc.py: 410:
+   yacc.py: 411:State  : 5
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare . LexToken(TkId,'z',28,523)
+   yacc.py: 445:Action : Shift and goto state 24
+   yacc.py: 410:
+   yacc.py: 411:State  : 24
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare TkId . LexToken(TkTwoPoints,':',28,525)
+   yacc.py: 471:Action : Reduce rule [variables -> TkId] with ['z'] and goto state 23
+   yacc.py: 506:Result : <Node @ 0x7f77636e4828> (<__main__.Node object at 0x7f77636e4828>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 23
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables . LexToken(TkTwoPoints,':',28,525)
+   yacc.py: 445:Action : Shift and goto state 48
+   yacc.py: 410:
+   yacc.py: 411:State  : 48
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints . LexToken(TkArray,'array',28,527)
+   yacc.py: 445:Action : Shift and goto state 83
+   yacc.py: 410:
+   yacc.py: 411:State  : 83
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints TkArray . LexToken(TkOBracket,'[',28,532)
+   yacc.py: 445:Action : Shift and goto state 119
+   yacc.py: 410:
+   yacc.py: 411:State  : 119
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints TkArray TkOBracket . LexToken(TkNum,2,28,533)
+   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 410:
+   yacc.py: 411:State  : 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints TkArray TkOBracket TkNum . LexToken(TkSoForth,'..',28,534)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [2] and goto state 141
+   yacc.py: 506:Result : <Node @ 0x7f77636e4ac8> (<__main__.Node object at 0x7f77636e4ac8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 141
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints TkArray TkOBracket expression . LexToken(TkSoForth,'..',28,534)
+   yacc.py: 445:Action : Shift and goto state 148
+   yacc.py: 410:
+   yacc.py: 411:State  : 148
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints TkArray TkOBracket expression TkSoForth . LexToken(TkNum,3,28,536)
+   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 410:
+   yacc.py: 411:State  : 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints TkArray TkOBracket expression TkSoForth TkNum . LexToken(TkCBracket,']',28,537)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [3] and goto state 152
+   yacc.py: 506:Result : <Node @ 0x7f77636e4ba8> (<__main__.Node object at 0x7f77636e4ba8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 152
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints TkArray TkOBracket expression TkSoForth expression . LexToken(TkCBracket,']',28,537)
+   yacc.py: 445:Action : Shift and goto state 158
+   yacc.py: 410:
+   yacc.py: 411:State  : 158
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints TkArray TkOBracket expression TkSoForth expression TkCBracket . LexToken(TkPrintln,'println',29,543)
+   yacc.py: 471:Action : Reduce rule [array -> TkArray TkOBracket expression TkSoForth expression TkCBracket] with ['array','[',<Node @ 0x7f77636e4ac8>,'..',<Node @ 0x7f77636e4ba8>,']'] and goto state 82
+   yacc.py: 506:Result : <Node @ 0x7f77636e4d30> (<__main__.Node object at 0x7f77636e4d30>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 82
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints array . LexToken(TkPrintln,'println',29,543)
+   yacc.py: 471:Action : Reduce rule [type -> array] with [<Node @ 0x7f77636e4d30>] and goto state 79
+   yacc.py: 506:Result : <Node @ 0x7f77636e4dd8> (<__main__.Node object at 0x7f77636e4dd8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 79
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare variables TkTwoPoints type . LexToken(TkPrintln,'println',29,543)
+   yacc.py: 471:Action : Reduce rule [declare_var -> variables TkTwoPoints type] with [<Node @ 0x7f77636e4828>,':',<Node @ 0x7f77636e4dd8>] and goto state 22
+   yacc.py: 506:Result : <Node @ 0x7f77636e4d68> (<__main__.Node object at 0x7f77636e4d68>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 22
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var . LexToken(TkPrintln,'println',29,543)
+   yacc.py: 445:Action : Shift and goto state 17
+   yacc.py: 410:
+   yacc.py: 411:State  : 17
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var TkPrintln . LexToken(TkId,'a',29,551)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var TkPrintln TkId . LexToken(TkConcat,'||',29,553)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['a'] and goto state 43
+   yacc.py: 506:Result : <Node @ 0x7f77636e4908> (<__main__.Node object at 0x7f77636e4908>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 43
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var TkPrintln expression . LexToken(TkConcat,'||',29,553)
+   yacc.py: 445:Action : Shift and goto state 52
+   yacc.py: 410:
+   yacc.py: 411:State  : 52
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var TkPrintln expression TkConcat . LexToken(TkId,'b',29,556)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var TkPrintln expression TkConcat TkId . LexToken(TkSemicolon,';',29,557)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 87
+   yacc.py: 506:Result : <Node @ 0x7f77636e4ac8> (<__main__.Node object at 0x7f77636e4ac8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 87
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var TkPrintln expression TkConcat expression . LexToken(TkSemicolon,';',29,557)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkConcat expression] with [<Node @ 0x7f77636e4908>,'||',<Node @ 0x7f77636e4ac8>] and goto state 43
+   yacc.py: 506:Result : <Node @ 0x7f77636e4e80> (<__main__.Node object at 0x7f77636e4e80>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 43
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var TkPrintln expression . LexToken(TkSemicolon,';',29,557)
+   yacc.py: 471:Action : Reduce rule [output_inst -> TkPrintln expression] with ['println',<Node @ 0x7f77636e4e80>] and goto state 9
+   yacc.py: 506:Result : <Node @ 0x7f77636e4d30> (<__main__.Node object at 0x7f77636e4d30>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 9
+   yacc.py: 430:Defaulted state 9: Reduce using 35
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var output_inst . LexToken(TkSemicolon,';',29,557)
+   yacc.py: 471:Action : Reduce rule [instruction -> output_inst] with [<Node @ 0x7f77636e4d30>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636e4c50> (<__main__.Node object at 0x7f77636e4c50>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction . LexToken(TkSemicolon,';',29,557)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon . LexToken(TkId,'z',30,563)
+   yacc.py: 445:Action : Shift and goto state 14
+   yacc.py: 410:
+   yacc.py: 411:State  : 14
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId . LexToken(TkAsig,':=',30,565)
+   yacc.py: 445:Action : Shift and goto state 26
+   yacc.py: 410:
+   yacc.py: 411:State  : 26
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig . LexToken(TkId,'z',30,568)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId . LexToken(TkOpenPar,'(',30,569)
+   yacc.py: 445:Action : Shift and goto state 66
+   yacc.py: 410:
+   yacc.py: 411:State  : 66
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar . LexToken(TkNum,2,30,570)
+   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 410:
+   yacc.py: 411:State  : 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar TkNum . LexToken(TkTwoPoints,':',30,571)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [2] and goto state 101
+   yacc.py: 506:Result : <Node @ 0x7f77636e47f0> (<__main__.Node object at 0x7f77636e47f0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 101
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression . LexToken(TkTwoPoints,':',30,571)
+   yacc.py: 445:Action : Shift and goto state 121
+   yacc.py: 410:
+   yacc.py: 411:State  : 121
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints . LexToken(TkId,'a',30,572)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints TkId . LexToken(TkClosePar,')',30,573)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['a'] and goto state 143
+   yacc.py: 506:Result : <Node @ 0x7f77636e4be0> (<__main__.Node object at 0x7f77636e4be0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 143
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression . LexToken(TkClosePar,')',30,573)
+   yacc.py: 445:Action : Shift and goto state 149
+   yacc.py: 410:
+   yacc.py: 411:State  : 149
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar . LexToken(TkOpenPar,'(',30,574)
+   yacc.py: 445:Action : Shift and goto state 153
+   yacc.py: 410:
+   yacc.py: 411:State  : 153
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar . LexToken(TkNum,3,30,575)
+   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 410:
+   yacc.py: 411:State  : 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar TkNum . LexToken(TkTwoPoints,':',30,576)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [3] and goto state 159
+   yacc.py: 506:Result : <Node @ 0x7f77636e4eb8> (<__main__.Node object at 0x7f77636e4eb8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 159
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression . LexToken(TkTwoPoints,':',30,576)
+   yacc.py: 445:Action : Shift and goto state 163
+   yacc.py: 410:
+   yacc.py: 411:State  : 163
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints . LexToken(TkId,'b',30,577)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints TkId . LexToken(TkClosePar,')',30,578)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['b'] and goto state 165
+   yacc.py: 506:Result : <Node @ 0x7f77636e9048> (<__main__.Node object at 0x7f77636e9048>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 165
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression . LexToken(TkClosePar,')',30,578)
+   yacc.py: 445:Action : Shift and goto state 166
+   yacc.py: 410:
+   yacc.py: 411:State  : 166
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOpenPar expression TkTwoPoints expression TkClosePar . LexToken(TkSemicolon,';',30,579)
+   yacc.py: 471:Action : Reduce rule [array_exp1 -> TkOpenPar expression TkTwoPoints expression TkClosePar] with ['(',<Node @ 0x7f77636e4eb8>,':',<Node @ 0x7f77636e9048>,')'] and goto state 154
+   yacc.py: 506:Result : <Node @ 0x7f77636e90b8> (<__main__.Node object at 0x7f77636e90b8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 154
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1 . LexToken(TkSemicolon,';',30,579)
+   yacc.py: 471:Action : Reduce rule [array_exp -> TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1] with ['z','(',<Node @ 0x7f77636e47f0>,':',<Node @ 0x7f77636e4be0>,')',<Node @ 0x7f77636e90b8>] and goto state 35
+   yacc.py: 506:Result : <Node @ 0x7f77636e4f98> (<__main__.Node object at 0x7f77636e4f98>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 35
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig array_exp . LexToken(TkSemicolon,';',30,579)
+   yacc.py: 471:Action : Reduce rule [expression -> array_exp] with [<Node @ 0x7f77636e4f98>] and goto state 51
+   yacc.py: 506:Result : <Node @ 0x7f77636e4cc0> (<__main__.Node object at 0x7f77636e4cc0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 51
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon TkId TkAsig expression . LexToken(TkSemicolon,';',30,579)
+   yacc.py: 471:Action : Reduce rule [assign_inst -> TkId TkAsig expression] with ['z',':=',<Node @ 0x7f77636e4cc0>] and goto state 7
+   yacc.py: 506:Result : <Node @ 0x7f77636e4f28> (<__main__.Node object at 0x7f77636e4f28>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 7
+   yacc.py: 430:Defaulted state 7: Reduce using 33
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon assign_inst . LexToken(TkSemicolon,';',30,579)
+   yacc.py: 471:Action : Reduce rule [instruction -> assign_inst] with [<Node @ 0x7f77636e4f28>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636e4cf8> (<__main__.Node object at 0x7f77636e4cf8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon instruction . LexToken(TkSemicolon,';',30,579)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon . LexToken(TkPrintln,'println',31,585)
+   yacc.py: 445:Action : Shift and goto state 17
+   yacc.py: 410:
+   yacc.py: 411:State  : 17
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkPrintln . LexToken(TkString,'"array[" || min(z) || ".." || max(z) || "]"',31,593)
+   yacc.py: 445:Action : Shift and goto state 29
+   yacc.py: 410:
+   yacc.py: 411:State  : 29
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkPrintln TkString . LexToken(TkSemicolon,';',31,636)
+   yacc.py: 471:Action : Reduce rule [expression -> TkString] with [<str @ 0x7f77636c3150>] and goto state 43
+   yacc.py: 506:Result : <Node @ 0x7f77636e4e48> (<__main__.Node object at 0x7f77636e4e48>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 43
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon TkPrintln expression . LexToken(TkSemicolon,';',31,636)
+   yacc.py: 471:Action : Reduce rule [output_inst -> TkPrintln expression] with ['println',<Node @ 0x7f77636e4e48>] and goto state 9
+   yacc.py: 506:Result : <Node @ 0x7f77636e4f60> (<__main__.Node object at 0x7f77636e4f60>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 9
+   yacc.py: 430:Defaulted state 9: Reduce using 35
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon output_inst . LexToken(TkSemicolon,';',31,636)
+   yacc.py: 471:Action : Reduce rule [instruction -> output_inst] with [<Node @ 0x7f77636e4f60>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636e4c18> (<__main__.Node object at 0x7f77636e4c18>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',31,636)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkCBlock,']|',32,640)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon] with [<Node @ 0x7f77636e4c18>,';'] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636e9198> (<__main__.Node object at 0x7f77636e9198>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',32,640)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636e4cf8>,';',<Node @ 0x7f77636e9198>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636e4c88> (<__main__.Node object at 0x7f77636e4c88>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',32,640)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636e4c50>,';',<Node @ 0x7f77636e4c88>] and goto state 47
+   yacc.py: 506:Result : <Node @ 0x7f77636e4e10> (<__main__.Node object at 0x7f77636e4e10>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 47
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var sequencing . LexToken(TkCBlock,']|',32,640)
+   yacc.py: 445:Action : Shift and goto state 78
+   yacc.py: 410:
+   yacc.py: 411:State  : 78
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow TkOBlock TkDeclare declare_var sequencing TkCBlock . LexToken(TkSemicolon,';',32,642)
+   yacc.py: 471:Action : Reduce rule [block -> TkOBlock TkDeclare declare_var sequencing TkCBlock] with ['|[','declare',<Node @ 0x7f77636e4d68>,<Node @ 0x7f77636e4e10>,']|'] and goto state 13
+   yacc.py: 506:Result : <Node @ 0x7f77636e4b70> (<__main__.Node object at 0x7f77636e4b70>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 13
+   yacc.py: 430:Defaulted state 13: Reduce using 39
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow block . LexToken(TkSemicolon,';',32,642)
+   yacc.py: 471:Action : Reduce rule [instruction -> block] with [<Node @ 0x7f77636e4b70>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636e4a90> (<__main__.Node object at 0x7f77636e4a90>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow instruction . LexToken(TkSemicolon,';',32,642)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow instruction TkSemicolon . LexToken(TkFi,'fi',33,646)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon] with [<Node @ 0x7f77636e4a90>,';'] and goto state 156
+   yacc.py: 506:Result : <Node @ 0x7f77636e4ef0> (<__main__.Node object at 0x7f77636e4ef0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 156
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing TkGuard expression TkArrow sequencing . LexToken(TkFi,'fi',33,646)
+   yacc.py: 471:Action : Reduce rule [guards_inst -> TkGuard expression TkArrow sequencing] with ['[]',<Node @ 0x7f77636e4898>,'-->',<Node @ 0x7f77636e4ef0>] and goto state 161
+   yacc.py: 506:Result : <Node @ 0x7f77636e4b38> (<__main__.Node object at 0x7f77636e4b38>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 161
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing TkGuard expression TkArrow sequencing guards_inst . LexToken(TkFi,'fi',33,646)
+   yacc.py: 471:Action : Reduce rule [guards_inst -> TkGuard expression TkArrow sequencing guards_inst] with ['[]',<Node @ 0x7f77636e4358>,'-->',<Node @ 0x7f77636e4160>,<Node @ 0x7f77636e4b38>] and goto state 132
+   yacc.py: 506:Result : <Node @ 0x7f77636e4550> (<__main__.Node object at 0x7f77636e4550>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 132
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing guards_inst . LexToken(TkFi,'fi',33,646)
+   yacc.py: 445:Action : Shift and goto state 144
+   yacc.py: 410:
+   yacc.py: 411:State  : 144
+   yacc.py: 430:Defaulted state 144: Reduce using 72
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkIf expression TkArrow sequencing guards_inst TkFi . None
+   yacc.py: 471:Action : Reduce rule [if_inst -> TkIf expression TkArrow sequencing guards_inst TkFi] with ['if',<Node @ 0x7f77636ded30>,'-->',<Node @ 0x7f77636ded68>,<Node @ 0x7f77636e4550>,'fi'] and goto state 10
+   yacc.py: 506:Result : <Node @ 0x7f77636e40f0> (<__main__.Node object at 0x7f77636e40f0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 10
+   yacc.py: 430:Defaulted state 10: Reduce using 36
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon if_inst . None
+   yacc.py: 471:Action : Reduce rule [instruction -> if_inst] with [<Node @ 0x7f77636e40f0>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636de710> (<__main__.Node object at 0x7f77636de710>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',33,648)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkId,'i',34,652)
+   yacc.py: 445:Action : Shift and goto state 14
+   yacc.py: 410:
+   yacc.py: 411:State  : 14
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId . LexToken(TkAsig,':=',34,654)
+   yacc.py: 445:Action : Shift and goto state 26
+   yacc.py: 410:
+   yacc.py: 411:State  : 26
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig . LexToken(TkNum,3,34,657)
+   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 410:
+   yacc.py: 411:State  : 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkNum . LexToken(TkSemicolon,';',34,658)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [3] and goto state 51
+   yacc.py: 506:Result : <Node @ 0x7f77636e4630> (<__main__.Node object at 0x7f77636e4630>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 51
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression . LexToken(TkSemicolon,';',34,658)
+   yacc.py: 471:Action : Reduce rule [assign_inst -> TkId TkAsig expression] with ['i',':=',<Node @ 0x7f77636e4630>] and goto state 7
+   yacc.py: 506:Result : <Node @ 0x7f77636e49e8> (<__main__.Node object at 0x7f77636e49e8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 7
+   yacc.py: 430:Defaulted state 7: Reduce using 33
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon assign_inst . LexToken(TkSemicolon,';',34,658)
+   yacc.py: 471:Action : Reduce rule [instruction -> assign_inst] with [<Node @ 0x7f77636e49e8>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636deeb8> (<__main__.Node object at 0x7f77636deeb8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',34,658)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkDo,'do',35,662)
+   yacc.py: 445:Action : Shift and goto state 20
+   yacc.py: 410:
+   yacc.py: 411:State  : 20
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo . LexToken(TkId,'i',35,665)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo TkId . LexToken(TkLess,'<',35,667)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['i'] and goto state 46
+   yacc.py: 506:Result : <Node @ 0x7f77636e4390> (<__main__.Node object at 0x7f77636e4390>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 46
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression . LexToken(TkLess,'<',35,667)
+   yacc.py: 445:Action : Shift and goto state 60
+   yacc.py: 410:
+   yacc.py: 411:State  : 60
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkLess . LexToken(TkNum,10,35,669)
+   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 410:
+   yacc.py: 411:State  : 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkLess TkNum . LexToken(TkArrow,'-->',35,672)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [10] and goto state 95
+   yacc.py: 506:Result : <Node @ 0x7f77636e4470> (<__main__.Node object at 0x7f77636e4470>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 95
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkLess expression . LexToken(TkArrow,'-->',35,672)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkLess expression] with [<Node @ 0x7f77636e4390>,'<',<Node @ 0x7f77636e4470>] and goto state 46
+   yacc.py: 506:Result : <Node @ 0x7f77636e4438> (<__main__.Node object at 0x7f77636e4438>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 46
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression . LexToken(TkArrow,'-->',35,672)
+   yacc.py: 445:Action : Shift and goto state 77
+   yacc.py: 410:
+   yacc.py: 411:State  : 77
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow . LexToken(TkOBlock,'|[',36,681)
+   yacc.py: 445:Action : Shift and goto state 3
+   yacc.py: 410:
+   yacc.py: 411:State  : 3
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock . LexToken(TkRead,'read',37,692)
+   yacc.py: 445:Action : Shift and goto state 15
+   yacc.py: 410:
+   yacc.py: 411:State  : 15
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock TkRead . LexToken(TkId,'i',37,697)
+   yacc.py: 445:Action : Shift and goto state 27
+   yacc.py: 410:
+   yacc.py: 411:State  : 27
+   yacc.py: 430:Defaulted state 27: Reduce using 68
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock TkRead TkId . None
+   yacc.py: 471:Action : Reduce rule [input_inst -> TkRead TkId] with ['read','i'] and goto state 8
+   yacc.py: 506:Result : <Node @ 0x7f77636def28> (<__main__.Node object at 0x7f77636def28>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 8
+   yacc.py: 430:Defaulted state 8: Reduce using 34
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock input_inst . None
+   yacc.py: 471:Action : Reduce rule [instruction -> input_inst] with [<Node @ 0x7f77636def28>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636e48d0> (<__main__.Node object at 0x7f77636e48d0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction . LexToken(TkSemicolon,';',37,698)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon . LexToken(TkPrint,'print',38,708)
+   yacc.py: 445:Action : Shift and goto state 16
+   yacc.py: 410:
+   yacc.py: 411:State  : 16
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon TkPrint . LexToken(TkString,'"Still here!"',38,714)
+   yacc.py: 445:Action : Shift and goto state 29
+   yacc.py: 410:
+   yacc.py: 411:State  : 29
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon TkPrint TkString . LexToken(TkSemicolon,';',38,727)
+   yacc.py: 471:Action : Reduce rule [expression -> TkString] with ['"Still here!"'] and goto state 28
+   yacc.py: 506:Result : <Node @ 0x7f77636e9128> (<__main__.Node object at 0x7f77636e9128>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 28
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon TkPrint expression . LexToken(TkSemicolon,';',38,727)
+   yacc.py: 471:Action : Reduce rule [output_inst -> TkPrint expression] with ['print',<Node @ 0x7f77636e9128>] and goto state 9
+   yacc.py: 506:Result : <Node @ 0x7f77636e9208> (<__main__.Node object at 0x7f77636e9208>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 9
+   yacc.py: 430:Defaulted state 9: Reduce using 35
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon output_inst . LexToken(TkSemicolon,';',38,727)
+   yacc.py: 471:Action : Reduce rule [instruction -> output_inst] with [<Node @ 0x7f77636e9208>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636e9080> (<__main__.Node object at 0x7f77636e9080>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction . LexToken(TkSemicolon,';',38,727)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon . LexToken(TkId,'i',39,737)
+   yacc.py: 445:Action : Shift and goto state 14
+   yacc.py: 410:
+   yacc.py: 411:State  : 14
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon TkId . LexToken(TkAsig,':=',39,739)
+   yacc.py: 445:Action : Shift and goto state 26
+   yacc.py: 410:
+   yacc.py: 411:State  : 26
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon TkId TkAsig . LexToken(TkId,'i',39,742)
+   yacc.py: 445:Action : Shift and goto state 30
+   yacc.py: 410:
+   yacc.py: 411:State  : 30
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon TkId TkAsig TkId . LexToken(TkPlus,'+',39,744)
+   yacc.py: 471:Action : Reduce rule [expression -> TkId] with ['i'] and goto state 51
+   yacc.py: 506:Result : <Node @ 0x7f77636e9390> (<__main__.Node object at 0x7f77636e9390>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 51
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression . LexToken(TkPlus,'+',39,744)
+   yacc.py: 445:Action : Shift and goto state 53
+   yacc.py: 410:
+   yacc.py: 411:State  : 53
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression TkPlus . LexToken(TkNum,1,39,746)
+   yacc.py: 445:Action : Shift and goto state 31
+   yacc.py: 410:
+   yacc.py: 411:State  : 31
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression TkPlus TkNum . LexToken(TkSemicolon,';',39,747)
+   yacc.py: 471:Action : Reduce rule [expression -> TkNum] with [1] and goto state 88
+   yacc.py: 506:Result : <Node @ 0x7f77636e94a8> (<__main__.Node object at 0x7f77636e94a8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 88
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression TkPlus expression . LexToken(TkSemicolon,';',39,747)
+   yacc.py: 471:Action : Reduce rule [expression -> expression TkPlus expression] with [<Node @ 0x7f77636e9390>,'+',<Node @ 0x7f77636e94a8>] and goto state 51
+   yacc.py: 506:Result : <Node @ 0x7f77636e9470> (<__main__.Node object at 0x7f77636e9470>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 51
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon TkId TkAsig expression . LexToken(TkSemicolon,';',39,747)
+   yacc.py: 471:Action : Reduce rule [assign_inst -> TkId TkAsig expression] with ['i',':=',<Node @ 0x7f77636e9470>] and goto state 7
+   yacc.py: 506:Result : <Node @ 0x7f77636e9438> (<__main__.Node object at 0x7f77636e9438>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 7
+   yacc.py: 430:Defaulted state 7: Reduce using 33
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon assign_inst . LexToken(TkSemicolon,';',39,747)
+   yacc.py: 471:Action : Reduce rule [instruction -> assign_inst] with [<Node @ 0x7f77636e9438>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636e93c8> (<__main__.Node object at 0x7f77636e93c8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',39,747)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkCBlock,']|',40,753)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon] with [<Node @ 0x7f77636e93c8>,';'] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636e95c0> (<__main__.Node object at 0x7f77636e95c0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',40,753)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636e9080>,';',<Node @ 0x7f77636e95c0>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636e9400> (<__main__.Node object at 0x7f77636e9400>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',40,753)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636e48d0>,';',<Node @ 0x7f77636e9400>] and goto state 4
+   yacc.py: 506:Result : <Node @ 0x7f77636e9278> (<__main__.Node object at 0x7f77636e9278>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 4
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock sequencing . LexToken(TkCBlock,']|',40,753)
+   yacc.py: 445:Action : Shift and goto state 21
+   yacc.py: 410:
+   yacc.py: 411:State  : 21
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow TkOBlock sequencing TkCBlock . LexToken(TkSemicolon,';',40,755)
+   yacc.py: 471:Action : Reduce rule [block -> TkOBlock sequencing TkCBlock] with ['|[',<Node @ 0x7f77636e9278>,']|'] and goto state 13
+   yacc.py: 506:Result : <Node @ 0x7f77636e9278> (<__main__.Node object at 0x7f77636e9278>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 13
+   yacc.py: 430:Defaulted state 13: Reduce using 39
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow block . LexToken(TkSemicolon,';',40,755)
+   yacc.py: 471:Action : Reduce rule [instruction -> block] with [<Node @ 0x7f77636e9278>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636e90f0> (<__main__.Node object at 0x7f77636e90f0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow instruction . LexToken(TkSemicolon,';',40,755)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow instruction TkSemicolon . LexToken(TkOd,'od',41,759)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon] with [<Node @ 0x7f77636e90f0>,';'] and goto state 114
+   yacc.py: 506:Result : <Node @ 0x7f77636e92b0> (<__main__.Node object at 0x7f77636e92b0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 114
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow sequencing . LexToken(TkOd,'od',41,759)
+   yacc.py: 445:Action : Shift and goto state 135
+   yacc.py: 410:
+   yacc.py: 411:State  : 135
+   yacc.py: 430:Defaulted state 135: Reduce using 76
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon TkDo expression TkArrow sequencing TkOd . None
+   yacc.py: 471:Action : Reduce rule [iteration_mult_guard_inst -> TkDo expression TkArrow sequencing TkOd] with ['do',<Node @ 0x7f77636e4438>,'-->',<Node @ 0x7f77636e92b0>,'od'] and goto state 12
+   yacc.py: 506:Result : <Node @ 0x7f77636e4940> (<__main__.Node object at 0x7f77636e4940>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 12
+   yacc.py: 430:Defaulted state 12: Reduce using 38
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon iteration_mult_guard_inst . None
+   yacc.py: 471:Action : Reduce rule [instruction -> iteration_mult_guard_inst] with [<Node @ 0x7f77636e4940>] and goto state 6
+   yacc.py: 506:Result : <Node @ 0x7f77636deac8> (<__main__.Node object at 0x7f77636deac8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 6
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction . LexToken(TkSemicolon,';',41,761)
+   yacc.py: 445:Action : Shift and goto state 25
+   yacc.py: 410:
+   yacc.py: 411:State  : 25
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon] with [<Node @ 0x7f77636deac8>,';'] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636e9588> (<__main__.Node object at 0x7f77636e9588>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636deeb8>,';',<Node @ 0x7f77636e9588>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636e4978> (<__main__.Node object at 0x7f77636e4978>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636de710>,';',<Node @ 0x7f77636e4978>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636e44e0> (<__main__.Node object at 0x7f77636e44e0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636de128>,';',<Node @ 0x7f77636e44e0>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636e4128> (<__main__.Node object at 0x7f77636e4128>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636de208>,';',<Node @ 0x7f77636e4128>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636dea58> (<__main__.Node object at 0x7f77636dea58>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636de198>,';',<Node @ 0x7f77636dea58>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636e4b00> (<__main__.Node object at 0x7f77636e4b00>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636d6ef0>,';',<Node @ 0x7f77636e4b00>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636de4e0> (<__main__.Node object at 0x7f77636de4e0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636d69e8>,';',<Node @ 0x7f77636de4e0>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636de160> (<__main__.Node object at 0x7f77636de160>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636d6fd0>,';',<Node @ 0x7f77636de160>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636d6ac8> (<__main__.Node object at 0x7f77636d6ac8>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636d6ba8>,';',<Node @ 0x7f77636d6ac8>] and goto state 50
+   yacc.py: 506:Result : <Node @ 0x7f77636d6cc0> (<__main__.Node object at 0x7f77636d6cc0>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 50
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var instruction TkSemicolon sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 471:Action : Reduce rule [sequencing -> instruction TkSemicolon sequencing] with [<Node @ 0x7f77636d6eb8>,';',<Node @ 0x7f77636d6cc0>] and goto state 47
+   yacc.py: 506:Result : <Node @ 0x7f77636d6c18> (<__main__.Node object at 0x7f77636d6c18>)
+   yacc.py: 410:
+   yacc.py: 411:State  : 47
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var sequencing . LexToken(TkCBlock,']|',42,763)
+   yacc.py: 445:Action : Shift and goto state 78
+   yacc.py: 410:
+   yacc.py: 411:State  : 78
+   yacc.py: 435:Stack  : TkOBlock TkDeclare declare_var sequencing TkCBlock . $end
+   yacc.py: 471:Action : Reduce rule [block -> TkOBlock TkDeclare declare_var sequencing TkCBlock] with ['|[','declare',<Node @ 0x7f77636d6a90>,<Node @ 0x7f77636d6c18>,']|'] and goto state 2
+   yacc.py: 506:Result : <Node @ 0x7f77636d6b38> (<__main__.Node object at 0x7f77636d6b38>)
    yacc.py: 410:
    yacc.py: 411:State  : 2
    yacc.py: 430:Defaulted state 2: Reduce using 1
    yacc.py: 435:Stack  : block . $end
-   yacc.py: 471:Action : Reduce rule [start -> block] with [<Node @ 0x7f0b51d51b70>] and goto state 1
-   yacc.py: 506:Result : <Node @ 0x7f0b51d51b70> (<__main__.Node object at 0x7f0b51d51b70>)
+   yacc.py: 471:Action : Reduce rule [start -> block] with [<Node @ 0x7f77636d6b38>] and goto state 1
+   yacc.py: 506:Result : <Node @ 0x7f77636d6b38> (<__main__.Node object at 0x7f77636d6b38>)
    yacc.py: 410:
    yacc.py: 411:State  : 1
    yacc.py: 435:Stack  : start . $end
-   yacc.py: 571:Done   : Returning <Node @ 0x7f0b51d51b70> (<__main__.Node object at 0x7f0b51d51b70>)
+   yacc.py: 571:Done   : Returning <Node @ 0x7f77636d6b38> (<__main__.Node object at 0x7f77636d6b38>)
    yacc.py: 572:PLY: PARSE DEBUG END
