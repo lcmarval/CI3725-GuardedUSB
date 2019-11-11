@@ -1,0 +1,80 @@
+GramaticaGuardUSB
+
+Rule 0     S' -> start
+Rule 1     start -> block
+Rule 2     block -> TkOBlock sequencing TkCBlock
+Rule 3     block -> TkOBlock TkDeclare declare_var sequencing TkCBlock
+Rule 4     declare_var -> variables TkTwoPoints type TkSemicolon declare_var
+Rule 5     declare_var -> variables TkTwoPoints type
+Rule 6     variables -> TkId TkComma variables
+Rule 7     variables -> TkId
+Rule 8     array -> TkArray TkOBracket expression TkSoForth expression TkCBracket
+Rule 9     op_array -> TkAtoi TkOpenPar TkId TkClosePar
+Rule 10    op_array -> TkSize TkOpenPar TkId TkClosePar
+Rule 11    op_array -> TkMin TkOpenPar TkId TkClosePar
+Rule 12    op_array -> TkMax TkOpenPar TkId TkClosePar
+Rule 13    op_array -> TkAtoi TkOpenPar array_exp TkClosePar
+Rule 14    op_array -> TkSize TkOpenPar array_exp TkClosePar
+Rule 15    op_array -> TkMin TkOpenPar array_exp TkClosePar
+Rule 16    op_array -> TkMax TkOpenPar array_exp TkClosePar
+Rule 17    array_exp -> TkId TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1
+Rule 18    array_exp -> TkId TkOpenPar expression TkTwoPoints expression TkClosePar TkOBracket expression TkCBracket
+Rule 19    array_exp -> TkId TkOpenPar expression TkTwoPoints expression TkClosePar
+Rule 20    array_exp -> TkId TkOBracket expression TkCBracket
+Rule 21    array_exp1 -> TkOpenPar expression TkTwoPoints expression TkClosePar array_exp1
+Rule 22    array_exp1 -> TkOpenPar expression TkTwoPoints expression TkClosePar array_exp2
+Rule 23    array_exp1 -> TkOpenPar expression TkTwoPoints expression TkClosePar
+Rule 24    array_exp2 -> TkOBracket expression TkCBracket
+Rule 25    type -> TkInt
+Rule 26    type -> TkBool
+Rule 27    type -> array
+Rule 28    type -> TkInt TkComma type
+Rule 29    type -> TkBool TkComma type
+Rule 30    type -> array TkComma type
+Rule 31    sequencing -> instruction TkSemicolon
+Rule 32    sequencing -> instruction TkSemicolon sequencing
+Rule 33    instruction -> assign_inst
+Rule 34    instruction -> input_inst
+Rule 35    instruction -> output_inst
+Rule 36    instruction -> if_inst
+Rule 37    instruction -> iteration_for_inst
+Rule 38    instruction -> iteration_mult_guard_inst
+Rule 39    instruction -> block
+Rule 40    expression -> TkOpenPar expression TkClosePar
+Rule 41    expression -> expression TkConcat expression
+Rule 42    expression -> expression TkPlus expression
+Rule 43    expression -> expression TkMinus expression
+Rule 44    expression -> expression TkMult expression
+Rule 45    expression -> expression TkDiv expression
+Rule 46    expression -> expression TkMod expression
+Rule 47    expression -> expression TkAnd expression
+Rule 48    expression -> expression TkOr expression
+Rule 49    expression -> expression TkLess expression
+Rule 50    expression -> expression TkLeq expression
+Rule 51    expression -> expression TkGreater expression
+Rule 52    expression -> expression TkGeq expression
+Rule 53    expression -> expression TkEqual expression
+Rule 54    expression -> expression TkNEqual expression
+Rule 55    expression -> TkMinus expression
+Rule 56    expression -> TkNot expression
+Rule 57    expression -> op_array
+Rule 58    expression -> array_exp
+Rule 59    expression -> TkString
+Rule 60    expression -> TkId
+Rule 61    expression -> TkNum
+Rule 62    expression -> TkTrue
+Rule 63    expression -> TkFalse
+Rule 64    assign_inst -> TkId TkAsig expression assign1
+Rule 65    assign_inst -> TkId TkAsig expression
+Rule 66    assign1 -> TkComma expression assign1
+Rule 67    assign1 -> TkComma expression
+Rule 68    input_inst -> TkRead TkId
+Rule 69    output_inst -> TkPrint expression
+Rule 70    output_inst -> TkPrintln expression
+Rule 71    if_inst -> TkIf expression TkArrow sequencing TkFi
+Rule 72    if_inst -> TkIf expression TkArrow sequencing guards_inst TkFi
+Rule 73    guards_inst -> TkGuard expression TkArrow sequencing
+Rule 74    guards_inst -> TkGuard expression TkArrow sequencing guards_inst
+Rule 75    iteration_for_inst -> TkFor TkId TkIn expression TkTo expression TkArrow block TkRof
+Rule 76    iteration_mult_guard_inst -> TkDo expression TkArrow sequencing TkOd
+Rule 77    iteration_mult_guard_inst -> TkDo expression TkArrow sequencing guards_inst TkOd
